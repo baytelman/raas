@@ -34,7 +34,7 @@ Add flters (user, key1-3):
     "message":"stats",
     "params":{
         "key1":"576",
-        "user": "5729"
+        "user":"5729"
     },
     "stats":{
         "average":3.2,
