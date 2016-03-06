@@ -38,27 +38,30 @@ module.exports = {
     },
     selectStats: function(token, user, key1, key2, key3, statsCallback) {
         const RATING_STATS = 'SELECT \
-            user, key1, key2, key3, avg(rating) as average \
-            FROM \
-            ratings \
-            WHERE \
-            token = $1 \
-            GROUP BY \
-            user, key1, key2, key3';
+        $2::bigint as user, \
+        $3::bigint as key1, \
+        $4::bigint as key2, \
+        $5::bigint as key3, \
+        avg(rating) as average \
+        FROM \
+        ratings \
+        WHERE \
+        token = $1 AND \
+        ($2::bigint IS NULL OR $2::bigint = userId) AND \
+        ($3::bigint IS NULL OR $3::bigint = key1) AND \
+        ($4::bigint IS NULL OR $4::bigint = key2) AND \
+        ($5::bigint IS NULL OR $5::bigint = key3) \
+        ';
 
         pg.connect(config.db.url, function(err, client, done) {
             if (err) throw err;
 
-            if (!user) user = -1;
-            if (!key1) key1 = -1;
-            if (!key2) key2 = -1;
-            if (!key3) key3 = -1;
-
-            client.query(RATING_STATS, [token], function(err, result) {
+            client.query(RATING_STATS, [token, user, key1, key2, key3], function(err, result) {
                 done();
                 if (err) {
                     return console.error('error running query', err);
                 };
+                console.log(result.rows);
                 statsCallback(result.rows[0]);
             });
         });
