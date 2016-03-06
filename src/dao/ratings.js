@@ -50,7 +50,7 @@ module.exports = {
         SUM(CASE WHEN rating = 2 THEN 1 ELSE 0 END)::int AS count2, \
         SUM(CASE WHEN rating = 1 THEN 1 ELSE 0 END)::int AS count1, \
         \
-        ROUND(avg(rating), 3)::real AS average, \
+        ROUND(avg(rating)::numeric, 3)::real AS average, \
         STDDEV(rating)::real AS stddev, \
         VARIANCE(rating)::real AS variance \
         \
