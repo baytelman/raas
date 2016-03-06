@@ -61,7 +61,7 @@ module.exports = {
                 if (err) {
                     return console.error('error running query', err);
                 };
-                console.log(result.rows);
+
                 statsCallback(result.rows[0]);
             });
         });
