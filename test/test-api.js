@@ -49,7 +49,9 @@ describe('Ratings', function() {
                     res.body.should.be.a('object');
                     res.body.should.have.property('stats');
                     res.body.stats.should.have.property('average');
+                    res.body.stats.should.have.property('count');
                     res.body.stats.average.should.equal((RATE_GOOD + RATE_OK)/2.0);
+                    res.body.stats.count.should.equal(2);
                     done();
                 });
             });
@@ -74,7 +76,9 @@ describe('Ratings', function() {
                         res.body.should.be.a('object');
                         res.body.should.have.property('stats');
                         res.body.stats.should.have.property('average');
+                        res.body.stats.should.have.property('count');
                         res.body.stats.average.should.equal((RATE_GOOD + RATE_OK)/2.0);
+                        res.body.stats.count.should.equal(2);
 
                         /* KEY 2 = 2 */
                         chai.request(server)
@@ -85,7 +89,9 @@ describe('Ratings', function() {
                             res.body.should.be.a('object');
                             res.body.should.have.property('stats');
                             res.body.stats.should.have.property('average');
+                            res.body.stats.should.have.property('count');
                             res.body.stats.average.should.equal((RATE_BAD + RATE_OK)/2.0);
+                            res.body.stats.count.should.equal(2);
 
                             done();
                         });
