@@ -13,6 +13,7 @@
     "express": "^4.13.4",
     "foreman": "1.4.1",
     "mocha": "2.4.5",
+    "newrelic": "1.25.4",
     "node-pg-migrate": "0.0.9",
     "nodemon": "1.9.1",
     "pg": "^4.5.1",

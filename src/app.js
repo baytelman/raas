@@ -1,5 +1,6 @@
 "use strict";
 
+require('newrelic');
 var config = require('./config.js');
 
 var express = require('express');
