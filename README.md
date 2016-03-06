@@ -23,7 +23,8 @@ Retrieve stats for all ratings, no filter:
         "stddev":1.64317,
         "variance":2.7
     }
-}```
+}
+```
 
 Add flters (user, key1-3):
 `GET http://localhost:3000/api/v1/ratings?token=ABC&user=5729&key1=576`
@@ -46,4 +47,5 @@ Add flters (user, key1-3):
         "stddev":1.64317,
         "variance":2.7
     }
-}```
+}
+```
