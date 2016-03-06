@@ -16,6 +16,12 @@ box: node
 
     # - mongodb
     # http://devcenter.wercker.com/docs/services/mongodb.html
+
+services:
+   - id: postgres
+     env:
+       POSTGRES_PASSWORD: ourlittlesecret
+       POSTGRES_USER: postgres  # optional
 build:
   # The steps that will be executed on build
   # Steps make up the actions in your pipeline
@@ -34,8 +40,8 @@ build:
         code: |
           echo "node version $(node -v) running"
           echo "npm version $(npm -v) running"
-          
+
     - script:
       name: run tests
       code: |
-        ./scripts/run_tests.sh
+        ./scripts/clean_and_run_tests.sh
