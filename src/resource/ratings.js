@@ -32,7 +32,13 @@ module.exports = {
         ratingsDao.selectStats(token, user, key1, key2, key3, function(stats) {
             res.send({
                 message: 'stats',
-                stats: stats
+                stats: stats,
+                params: {
+                    user:user,
+                    key1:key1,
+                    key2:key2,
+                    key3:key3
+                }
             });
         });
     }

@@ -38,10 +38,6 @@ module.exports = {
     },
     selectStats: function(token, user, key1, key2, key3, statsCallback) {
         const RATING_STATS = 'SELECT \
-        $2::bigint AS user, \
-        $3::bigint AS key1, \
-        $4::bigint AS key2, \
-        $5::bigint AS key3, \
         \
         count(1)::int AS count, \
         SUM(CASE WHEN rating = 5 THEN 1 ELSE 0 END)::int AS count5, \
