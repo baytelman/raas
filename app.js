@@ -1,9 +1,11 @@
 "use strict";
 
+var config = require('./config.js');
+
 var express = require('express');
 var ratingsResource = require('./src/resource/ratings.js');
 
-const port = 3000;
+const port = config.api.port;
 var app = express();
 
 app.get('/', ratingsResource.ping);

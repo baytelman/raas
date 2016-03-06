@@ -6,7 +6,7 @@ exports.up = function(pgm) {
         key1: { type: 'bigint' },
         key2: { type: 'bigint' },
         key3: { type: 'bigint' },
-        timestamp: { type: 'Timestamp Without Time Zone', default: 'now' }
+        timestamp: { type: 'Timestamp Without Time Zone', notNull: true , default: 'now' }
     });
     pgm.createIndex('ratings', ['token']);
     pgm.createIndex('ratings', ['rating']);

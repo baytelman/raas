@@ -1,13 +1,13 @@
 "use strict";
 
+var config = require('../../config.js');
 var pg = require('pg');
-var connection = "postgresql://postgres:@localhost:5432/ratings?param=value";
 
 var ratingsDao = {};
 
 module.exports = {
     getCurrentTime: function(timeCallback) {
-        pg.connect(connection, function(err, client, done) {
+        pg.connect(config.db.url, function(err, client, done) {
             if (err) throw err;
 
             client.query('SELECT NOW() as now', function(err, result) {
@@ -22,7 +22,7 @@ module.exports = {
     insertRating: function(token, rating, key1, key2, key3, insertCallback) {
         const RATING_INSERT = 'INSERT INTO Ratings (token, rating, key1, key2, key3) VALUES ($1, $2, $3, $4, $5) RETURNING id';
 
-        pg.connect(connection, function(err, client, done) {
+        pg.connect(config.db.url, function(err, client, done) {
             if (err) throw err;
 
             client.query(RATING_INSERT, [token, rating, key1, key2, key3], function(err, result) {
