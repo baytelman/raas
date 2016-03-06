@@ -1,4 +1,4 @@
 #!/bin/bash
 
 echo "running tests"
-ENV=test mocha
+ENV=test ./node_modules/.bin/mocha

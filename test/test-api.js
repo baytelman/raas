@@ -5,7 +5,9 @@ var should = chai.should();
 
 /* Check we are NOT going to kill the main DB */
 var config = require('../src/config');
-if (config.db.url.indexOf('test') <= 0) throw new Error("Tests can ONLY run with test db (ENV should be 'test')");
+if (config.db.url.indexOf('test') <= 0 && config.db.url.indexOf('travis') <= 0) {
+    throw new Error("Tests can ONLY run with test db (ENV should be 'test')");
+}
 
 const TOKEN = "test_token_" + new Date().getTime();
 const KEY_1 = 100;
