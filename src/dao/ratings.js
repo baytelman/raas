@@ -20,7 +20,7 @@ module.exports = {
         });
     },
     insertRating: function(token, rating, key1, key2, key3, insertCallback) {
-        const RATING_INSERT = 'INSERT INTO Ratings (token, rating, key1, key2, key3) VALUES ($1, $2, $3, $4, $5)';
+        const RATING_INSERT = 'INSERT INTO Ratings (token, rating, key1, key2, key3) VALUES ($1, $2, $3, $4, $5) RETURNING id';
 
         pg.connect(connection, function(err, client, done) {
             if (err) throw err;
@@ -30,7 +30,7 @@ module.exports = {
                 if (err) {
                     return console.error('error running query', err);
                 };
-                insertCallback(true);
+                insertCallback(result.rows[0].id);
             });
         });
     }

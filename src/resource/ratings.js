@@ -14,8 +14,8 @@ module.exports = {
         var key2 = req.query.key2;
         var key3 = req.query.key3;
 
-        ratingsDao.insertRating(token, rating, key1, key2, key3, function(success) {
-            res.send('Review added!');
+        ratingsDao.insertRating(token, rating, key1, key2, key3, function(id) {
+            res.send('rating added: ' + id);
         });
     }
 };
