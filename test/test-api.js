@@ -7,9 +7,10 @@ var should = chai.should();
 var config = require('../src/config');
 if (config.db.url.indexOf('test') <= 0) throw new Error("Tests can ONLY run with test db (ENV should be 'test')");
 
-const TOKEN = "test_token_AbCdEf";
+const TOKEN = "test_token_" + new Date().getTime();
 const KEY_1 = 123;
 const RATE_GOOD = 5;
+const RATE_OK = 3;
 const USER_ID = 9;
 
 var tokenCount = 0;
@@ -33,17 +34,22 @@ describe('Ratings', function() {
     });
     it('puting a GOOD RATING will provide GOOD RATING average', function(done) {
         chai.request(server)
-        .get('/api/v1/ratings?token=' + currentToken + '&rating=' + RATE_GOOD + '&key1=' + KEY_1)
+        .put('/api/v1/ratings?token=' + currentToken + '&user=' + USER_ID + '&rating=' + RATE_GOOD + '&key1=' + KEY_1)
         .end(function(err, res){
             chai.request(server)
-            .get('/api/v1/ratings?token=' + currentToken + '&key1=' + KEY_1)
-            .end(function(err, res) {
-                res.should.have.status(200);
-                res.should.be.json;
-                res.body.should.be.a('object');
-                res.body.should.have.property('average');
-                res.body.average.should.equal(RATE_GOOD);
-                done();
+            .put('/api/v1/ratings?token=' + currentToken + '&user=' + USER_ID + '&rating=' + RATE_OK + '&key1=' + KEY_1)
+            .end(function(err, res){
+                chai.request(server)
+                .get('/api/v1/ratings?token=' + currentToken + '&key1=' + KEY_1)
+                .end(function(err, res) {
+                    res.should.have.status(200);
+                    res.should.be.json;
+                    res.body.should.be.a('object');
+                    res.body.should.have.property('stats');
+                    res.body.stats.should.have.property('average');
+                    res.body.stats.average.should.equal((RATE_GOOD + RATE_OK)/2.0);
+                    done();
+                });
             });
         });
     });
