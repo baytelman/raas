@@ -21,6 +21,7 @@ env:
 services:
    - id: postgres
      env:
+       POSTGRES_DB: ratings_test
        POSTGRES_PASSWORD: ourlittlesecret
        POSTGRES_USER: postgres  # optional
 build:
@@ -43,8 +44,8 @@ build:
     - script:
       name: run tests
       code: |
-        echo ENV=$ENV
         export ENV=travis
+        echo ENV=$ENV
         sh ./scripts/rebuild_test_db.sh
         mocha
         # A step that executes `npm test` command

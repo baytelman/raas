@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "test db: re/create $POSTGRES_PORT_5432_TCP_ADDR"
+echo "test db: re/create ($POSTGRES_PORT_5432_TCP_ADDR)"
 dropdb ratings_test
 createdb ratings_test
 
