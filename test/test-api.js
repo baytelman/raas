@@ -77,8 +77,12 @@ describe('Ratings', function() {
                         res.body.should.have.property('stats');
                         res.body.stats.should.have.property('average');
                         res.body.stats.should.have.property('count');
+                        res.body.stats.should.have.property('count5');
+                        res.body.stats.should.have.property('count1');
                         res.body.stats.average.should.equal((RATE_GOOD + RATE_OK)/2.0);
                         res.body.stats.count.should.equal(2);
+                        res.body.stats.count5.should.equal(1);
+                        res.body.stats.count1.should.equal(0);
 
                         res.body.stats.should.have.property('stddev');
                         res.body.stats.should.have.property('variance');
@@ -95,8 +99,12 @@ describe('Ratings', function() {
                             res.body.should.have.property('stats');
                             res.body.stats.should.have.property('average');
                             res.body.stats.should.have.property('count');
+                            res.body.stats.should.have.property('count5');
+                            res.body.stats.should.have.property('count1');
                             res.body.stats.average.should.equal((RATE_BAD + RATE_OK)/2.0);
                             res.body.stats.count.should.equal(2);
+                            res.body.stats.count5.should.equal(0);
+                            res.body.stats.count1.should.equal(1);
 
                             done();
                         });

@@ -3,7 +3,7 @@ exports.up = function(pgm) {
         id: { type: 'bigserial', primaryKey: true },
         token: { type: 'varchar (255)', notNull: true },
         userId: { type: 'bigint', notNull: true },
-        rating: { type: 'real', notNull: true },
+        rating: { type: 'smallint', notNull: true },
         key1: { type: 'bigint' },
         key2: { type: 'bigint' },
         key3: { type: 'bigint' },
