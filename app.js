@@ -1,16 +1,18 @@
-var express = require('express');
-var ratingsDao = require('./src/dao/ratings.js');
+"use strict";
 
+var express = require('express');
+var ratingsResource = require('./src/resource/ratings.js');
+
+const port = 3000;
 var app = express();
 
-app.get('/', function (req, res) {
-    getCurrentTime(function(time) {
-        insertRating('felipe', 5.0, 1, 2, 3, function(success) {
-            res.send('Review added! ' + time);
-        });
-    });
-});
+app.get('/', ratingsResource.ping);
 
-app.listen(3000, function () {
-    console.log('Example app listening on port 3000!');
+var base_url = '/api/v1/ratings';
+
+//api/v1/ratings?token=ABC&rating=4&key1=123&key2=456
+app.put(base_url, ratingsResource.insert);
+
+app.listen(port, function () {
+    console.log('Example app listening on port ' + port + '!');
 });
