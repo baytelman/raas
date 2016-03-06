@@ -2,6 +2,7 @@ exports.up = function(pgm) {
     pgm.createTable('ratings', {
         id: { type: 'bigserial', primaryKey: true },
         token: { type: 'varchar (255)', notNull: true },
+        userId: { type: 'bigint', notNull: true },
         rating: { type: 'real', notNull: true },
         key1: { type: 'bigint' },
         key2: { type: 'bigint' },
@@ -9,6 +10,7 @@ exports.up = function(pgm) {
         timestamp: { type: 'Timestamp Without Time Zone', notNull: true , default: 'now' }
     });
     pgm.createIndex('ratings', ['token']);
+    pgm.createIndex('ratings', ['userId']);
     pgm.createIndex('ratings', ['rating']);
     pgm.createIndex('ratings', ['key1']);
     pgm.createIndex('ratings', ['key2']);
