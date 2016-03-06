@@ -11,6 +11,7 @@
   "dependencies": {
     "express": "^4.13.4",
     "foreman": "1.4.1",
+    "node-pg-migrate": "0.0.9",
     "pg": "^4.5.1",
     "pg-native": "^1.10.0"
   }
