@@ -38,11 +38,22 @@ module.exports = {
     },
     selectStats: function(token, user, key1, key2, key3, statsCallback) {
         const RATING_STATS = 'SELECT \
-        $2::bigint as user, \
-        $3::bigint as key1, \
-        $4::bigint as key2, \
-        $5::bigint as key3, \
-        avg(rating) as average \
+        $2::bigint AS user, \
+        $3::bigint AS key1, \
+        $4::bigint AS key2, \
+        $5::bigint AS key3, \
+        \
+        count(1)::int AS count, \
+        SUM(CASE WHEN rating = 5 THEN 1 ELSE 0 END)::int AS count5, \
+        SUM(CASE WHEN rating = 4 THEN 1 ELSE 0 END)::int AS count4, \
+        SUM(CASE WHEN rating = 3 THEN 1 ELSE 0 END)::int AS count3, \
+        SUM(CASE WHEN rating = 2 THEN 1 ELSE 0 END)::int AS count2, \
+        SUM(CASE WHEN rating = 1 THEN 1 ELSE 0 END)::int AS count1, \
+        \
+        ROUND(avg(rating)::numeric, 3)::real AS average, \
+        STDDEV(rating)::real AS stddev, \
+        VARIANCE(rating)::real AS variance \
+        \
         FROM \
         ratings \
         WHERE \
