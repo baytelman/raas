@@ -2,8 +2,9 @@
   "name": "raas",
   "version": "1.0.0",
   "description": "Reviews-as-a-Service",
-  "main": "index.js",
+  "main": "src/app.js",
   "scripts": {
+    "start": "./scripts/run_prod.sh",
     "test": "./scripts/run_tests.sh"
   },
   "author": "",
