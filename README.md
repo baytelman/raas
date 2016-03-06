@@ -1,5 +1,5 @@
 # raas
-[![wercker status](https://app.wercker.com/status/24aef573772ca3706026bf52c8a54d1f/s "wercker status")](https://app.wercker.com/project/bykey/24aef573772ca3706026bf52c8a54d1f)
+[![wercker status](https://app.wercker.com/status/060efa84cf68b45c907109186971e70d/s "wercker status")](https://app.wercker.com/project/bykey/060efa84cf68b45c907109186971e70d)
 
 Ratings-as-a-Service
 
