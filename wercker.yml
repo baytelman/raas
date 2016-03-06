@@ -49,4 +49,3 @@ build:
         sh ./scripts/rebuild_test_db.sh
         ./node_modules/.bin/mocha
         # A step that executes `npm test` command
-    - npm-test
