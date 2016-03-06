@@ -1,9 +1,5 @@
-var config = {};
+var env = process.env.ENV;
 
-config.api = {};
-config.api.port = 3000;
+if (!env) throw new Error("Missing ENV variable");
 
-config.db = {};
-config.db.url = "postgresql://postgres:@localhost:5432/ratings?param=value";
-
-module.exports = config;
+module.exports = require('./config/config-' + env + ".js");
