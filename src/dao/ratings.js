@@ -1,6 +1,6 @@
 "use strict";
 
-var config = require('../../config.js');
+var config = require('../config.js');
 var pg = require('pg');
 
 var ratingsDao = {};
@@ -19,13 +19,15 @@ module.exports = {
             });
         });
     },
-    insertRating: function(token, rating, key1, key2, key3, insertCallback) {
-        const RATING_INSERT = 'INSERT INTO Ratings (token, rating, key1, key2, key3) VALUES ($1, $2, $3, $4, $5) RETURNING id';
+    insertRating: function(token, user, rating, key1, key2, key3, insertCallback) {
+        const RATING_INSERT = 'INSERT INTO ratings (token, userId, rating, key1, key2, key3) \
+                                VALUES ($1, $2, $3, $4, $5, $6) \
+                                RETURNING id';
 
         pg.connect(config.db.url, function(err, client, done) {
             if (err) throw err;
 
-            client.query(RATING_INSERT, [token, rating, key1, key2, key3], function(err, result) {
+            client.query(RATING_INSERT, [token, user, rating, key1, key2, key3], function(err, result) {
                 done();
                 if (err) {
                     return console.error('error running query', err);
