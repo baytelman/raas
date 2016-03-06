@@ -40,9 +40,6 @@ describe('Ratings', function() {
         chai.request(server)
         .put('/api/v1/ratings?token=' + currentToken + '&user=' + USER_ID + '&rating=' + RATE_GOOD + '&key1=' + KEY_1)
         .end(function(err, res){
-            chai.request(server)
-            .put('/api/v1/ratings?token=' + currentToken + '&user=' + USER_ID + '&rating=' + RATE_OK + '&key1=' + KEY_1)
-            .end(function(err, res){
                 chai.request(server)
                 .get('/api/v1/ratings?token=' + currentToken + '&key1=' + KEY_1)
                 .end(function(err, res) {
@@ -52,11 +49,12 @@ describe('Ratings', function() {
                     res.body.should.have.property('stats');
                     res.body.stats.should.have.property('average');
                     res.body.stats.should.have.property('count');
-                    res.body.stats.average.should.equal((RATE_GOOD + RATE_OK)/2.0);
-                    res.body.stats.count.should.equal(2);
+                    res.body.stats.should.have.property('stddev');
+                    res.body.stats.should.have.property('variance');
+                    res.body.stats.average.should.equal(RATE_GOOD);
+                    res.body.stats.count.should.equal(1);
                     done();
                 });
-            });
         });
     });
     it('puting a RATINGS on the right type of key', function(done) {
@@ -81,6 +79,11 @@ describe('Ratings', function() {
                         res.body.stats.should.have.property('count');
                         res.body.stats.average.should.equal((RATE_GOOD + RATE_OK)/2.0);
                         res.body.stats.count.should.equal(2);
+
+                        res.body.stats.should.have.property('stddev');
+                        res.body.stats.should.have.property('variance');
+                        res.body.stats.variance.should.equal(2);
+                        res.body.stats.stddev.should.not.equal(1);
 
                         /* KEY 2 = 2 */
                         chai.request(server)

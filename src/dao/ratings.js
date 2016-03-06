@@ -42,7 +42,7 @@ module.exports = {
         $3::bigint as key1, \
         $4::bigint as key2, \
         $5::bigint as key3, \
-        count(1) as count, \
+        count(1)::int as count, \
         avg(rating) as average, \
         stddev(rating) as stddev, \
         variance(rating) as variance \
