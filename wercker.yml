@@ -44,4 +44,6 @@ build:
     - script:
       name: run tests
       code: |
-        ./scripts/clean_and_run_tests.sh
+        export ENV=travis
+        sh ./scripts/rebuild_test_db.sh
+        mocha
