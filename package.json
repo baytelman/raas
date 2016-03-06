@@ -1,0 +1,17 @@
+{
+  "name": "raas",
+  "version": "1.0.0",
+  "description": "Reviews-as-a-Service",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.13.4",
+    "foreman": "1.4.1",
+    "pg": "^4.5.1",
+    "pg-native": "^1.10.0"
+  }
+}
