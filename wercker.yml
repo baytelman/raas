@@ -47,6 +47,6 @@ build:
         export ENV=travis
         echo ENV=$ENV
         sh ./scripts/rebuild_test_db.sh
-        mocha
+        ./node_modules/.bin/mocha
         # A step that executes `npm test` command
     - npm-test
