@@ -1,10 +1,15 @@
 "use strict";
 
+var git = require('git-rev');
 var ratingsDao = require('../dao/ratings.js');
 
 module.exports = {
-    ping: function(req, res) {
-        res.send('ping');
+    version: function(req, res) {
+        git.short(function (hash) {
+            res.send({
+                commit: hash
+            });
+        });
     },
     insert: function(req, res) {
         var token = req.query.token;

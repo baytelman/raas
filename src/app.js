@@ -13,9 +13,9 @@ var productsResource = require('./resource/products.js');
 const port = config.api.port;
 var app = express();
 
-app.get('/', ratingsResource.ping);
 
 var base_url = '/api/v1/';
+app.get(base_url + 'version', ratingsResource.version);
 
 app.put(base_url + "products", productsResource.insert);
 
