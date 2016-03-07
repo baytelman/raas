@@ -3,6 +3,20 @@
 var git = require('git-rev');
 var ratingsDao = require('../dao/ratings.js');
 
+var validateQueryParams = function(req, res, queryParams) {
+    var valid = true;
+    queryParams.forEach(function(param) {
+        if (! req.query[param]) {
+            var message = "query param not found (" + param + ")";
+            var error = new Error(message);
+            console.error(message);
+            res.status(412).send(message);
+            valid = false;
+        }
+    });
+    return valid;
+};
+
 module.exports = {
     version: function(req, res) {
         git.short(function (hash) {
@@ -12,19 +26,22 @@ module.exports = {
         });
     },
     insert: function(req, res) {
-        var token = req.query.token;
-        var user = req.query.user;
-        var rating = req.query.rating;
-        var key1 = req.query.key1;
-        var key2 = req.query.key2;
-        var key3 = req.query.key3;
 
-        ratingsDao.insertRating(token, user, rating, key1, key2, key3, function(id) {
-            res.send({
-                message: 'rating added: ' + id,
-                id: id
+        if (validateQueryParams(req, res, ['token', 'user', 'rating'])) {
+            var token = req.query.token;
+            var user = req.query.user;
+            var rating = req.query.rating;
+            var key1 = req.query.key1;
+            var key2 = req.query.key2;
+            var key3 = req.query.key3;
+
+            ratingsDao.insertRating(token, user, rating, key1, key2, key3, function (id) {
+                res.send({
+                    message: 'rating added: ' + id,
+                    id: id
+                });
             });
-        });
+        }
     },
     stats: function(req, res) {
         var token = req.query.token;
