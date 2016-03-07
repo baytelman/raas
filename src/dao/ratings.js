@@ -53,10 +53,10 @@ module.exports = {
             "WHERE " +
             "   product_id = (SELECT product_id FROM tokens WHERE access_token = $1 AND " +
             "                   (expires IS NULL or expires > now())) AND " +
-            "   ($2::bigint IS NULL OR $2::bigint = user_id) AND " +
-            "   ($3::bigint IS NULL OR $3::bigint = key1) AND " +
-            "   ($4::bigint IS NULL OR $4::bigint = key2) AND " +
-            "   ($5::bigint IS NULL OR $5::bigint = key3)";
+            "   ($2::varchar IS NULL OR $2::varchar = user_id) AND " +
+            "   ($3::varchar IS NULL OR $3::varchar = key1) AND " +
+            "   ($4::varchar IS NULL OR $4::varchar = key2) AND " +
+            "   ($5::varchar IS NULL OR $5::varchar = key3)";
 
         pg.connect(config.db.url, function(err, client, done) {
             if (err) throw err;
