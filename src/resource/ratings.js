@@ -1,7 +1,6 @@
 "use strict";
 
 var ratingsDao = require('../dao/ratings.js');
-var ratingsResource = {};
 
 module.exports = {
     ping: function(req, res) {

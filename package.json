@@ -12,12 +12,15 @@
   "dependencies": {
     "express": "^4.13.4",
     "foreman": "1.4.1",
+    "fs": "0.0.2",
     "mocha": "2.4.5",
     "newrelic": "1.25.4",
     "node-pg-migrate": "0.0.9",
+    "nodemailer": "2.3.0",
     "nodemon": "1.9.1",
     "pg": "^4.5.1",
-    "pg-native": "^1.10.0"
+    "pg-native": "^1.10.0",
+    "string-template": "1.0.0"
   },
   "devDependencies": {
     "chai": "3.5.0",
