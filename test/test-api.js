@@ -11,6 +11,11 @@ if (config.db.url.indexOf('test') <= 0 && config.db.url.indexOf('travis') <= 0) 
     throw new Error("Tests can ONLY run with test db (ENV should be 'test')");
 }
 
+/*
+WHILE RUNNING TESTS, WE DISABLE "console.info"
+Use console.log or other functions (debug/error) to output to console during tests: */
+console.info = function() {};
+
 const TOKEN = "test_token_" + new Date().getTime();
 const KEY_1 = 100;
 const KEY_1B = 101;

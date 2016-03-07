@@ -15,7 +15,7 @@ module.exports = {
                     if (err) throw err;
 
                     var productId = result.rows[0].id;
-                    console.log("Product inserted:" + productId);
+                    console.info("Product inserted:" + productId);
                     newProductCallback(productId);
                 });
         });
@@ -31,7 +31,7 @@ module.exports = {
                     if (err) throw err;
 
                     var token = result.rows[0].access_token;
-                    console.log("Token inserted:" + token);
+                    console.info("Token inserted:" + token);
                     accessTokenCallback(token);
                 });
         });

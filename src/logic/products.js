@@ -52,9 +52,9 @@ module.exports = {
                             text: body
                         }, function (error, response) {
                             if (error) {
-                                console.log(error);
+                                console.error(error);
                             } else {
-                                console.log("Message sent to " + email);
+                                console.info("Message sent to " + email);
                             }
                         });
                     }
