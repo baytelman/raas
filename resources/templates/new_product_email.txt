@@ -1,4 +1,4 @@
-Welcome to RAASta - Ratings as a Service
+Welcome to RAASTA - Ratings as a Service
 
 Your product has been created in our system:
 - Product ID: {product_id}

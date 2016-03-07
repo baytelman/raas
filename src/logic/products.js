@@ -38,7 +38,7 @@ module.exports = {
                             access_token: accessToken
                         };
 
-                        var subject = "Welcome to RAASta ✔";
+                        var subject = "Welcome to RAASTA ✔";
                         if (config.env != 'prod') {
                             subject += " (" + config.env + ")";
                         }

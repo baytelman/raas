@@ -26,7 +26,7 @@ if (process.env.APP == 'web') {
 }
 
 app.listen(port, function () {
-    console.log('RAASta listening on port ' + port + '!');
+    console.log('RAASTA listening on port ' + port + '!');
 });
 
 module.exports = app;

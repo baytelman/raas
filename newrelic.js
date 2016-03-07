@@ -8,7 +8,7 @@ exports.config = {
   /**
    * Array of application names.
    */
-  app_name: ['RAASta'],
+  app_name: ['RAASTA'],
   /**
    * Your New Relic license key.
    */
