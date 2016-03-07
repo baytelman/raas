@@ -1,4 +1,4 @@
-# raas
+# RAASTA
 [![wercker status](https://app.wercker.com/status/060efa84cf68b45c907109186971e70d/s "wercker status")](https://app.wercker.com/project/bykey/060efa84cf68b45c907109186971e70d)
 
 Ratings-as-a-Service
