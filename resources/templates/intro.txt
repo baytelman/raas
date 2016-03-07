@@ -1,0 +1,35 @@
+HOW TO INSERT RATINGS
+
+Insert a rating and a user with optional parameters (key1, key2, key3):
+
+PUT https://raasta.herokuapp.com/api/v1/ratings?token=[TOKEN]&rating=[RATING_HERE]&user=[USER_ID]
+... &key1=[INTERNAL ID TO SOMETHING YOU CARE FOR]
+... &key2=[INTERNAL ID TO SOMETHING YOU CARE FOR]
+... &key3=[INTERNAL ID TO SOMETHING YOU CARE FOR]
+
+For now, you need to keep track of what does "key1" mean in your system.
+
+As an example, if your user 123 is giving a 3-rating to a movie 456 in a cinema 789, you can define:
++ key1 = movieId (where movieId is an internal ID of your system)
++ key2 = cinemaId (where cinemaId is an internal ID of your system)
+= PUT https://raasta.herokuapp.com/api/v1/ratings?token={access_token}&rating=3&user=123&key1=456&key2=789
+
+
+HOW TO RETRIEVE RATINGS STATS
+
+You can retrieve your Ratings using your access token and optional parameters (user, key1, key2, key3):
+
+GET https://raasta.herokuapp.com/api/v1/ratings?token=[TOKEN]
+GET https://raasta.herokuapp.com/api/v1/ratings?token=[TOKEN]&user=[USER_ID]
+... &key1=[INTERNAL ID TO SOMETHING YOU CARE FOR]
+... &key2=[INTERNAL ID TO SOMETHING YOU CARE FOR]
+... &key3=[INTERNAL ID TO SOMETHING YOU CARE FOR]
+
+As an example, the following URL will retrieve ALL the ratings for your products:
+GET https://raasta.herokuapp.com/api/v1/ratings?token={access_token}
+
+If you want to filter for a specific key, you can add it as a parameter.
+As an example, let's get all the ratings for movie 456:
+GET https://raasta.herokuapp.com/api/v1/ratings?token={access_token}&key1=456
+All the reviews for user 123:
+GET https://raasta.herokuapp.com/api/v1/ratings?token={access_token}&user=123

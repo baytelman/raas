@@ -18,7 +18,8 @@ if (config.email.service) {
     }));
 }
 
-var templateString = fs.readFileSync('resources/templates/new_product_email.txt', 'utf-8');
+var emailWelcomeString = fs.readFileSync('resources/templates/new_product_email.txt', 'utf-8');
+var introString = fs.readFileSync('resources/templates/intro.txt', 'utf-8');
 
 module.exports = {
 
@@ -31,15 +32,24 @@ module.exports = {
                 productsDao.getAccessTokenForProduct(productId, function (accessToken) {
 
                     if (transporter) {
+                        var params = {
+                            message: 'product added: ' + productId,
+                            product_id: productId,
+                            access_token: accessToken
+                        };
+
+                        var subject = "Welcome to RAASta ✔";
+                        if (config.env != 'prod') {
+                            subject += " (" + config.env + ")";
+                        }
+
+                        var body = format(emailWelcomeString + introString, params);
+
                         transporter.sendMail({
                             from: config.email.username,
                             to: email,
-                            subject: "Welcome to RAASta ✔",
-                            text: format(templateString, {
-                                message: 'product added: ' + productId,
-                                product_id: productId,
-                                access_token: accessToken
-                            })
+                            subject: subject,
+                            text: body
                         }, function (error, response) {
                             if (error) {
                                 console.log(error);
