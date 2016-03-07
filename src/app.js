@@ -2,6 +2,7 @@
 
 if (process.env.ENV == 'prod') require('newrelic');
 var express = require('express');
+
 var ratingsResource = require('./resource/ratings.js');
 var productsResource = require('./resource/products.js');
 

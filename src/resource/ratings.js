@@ -1,6 +1,9 @@
 "use strict";
 
 var git = require('git-rev');
+var Mixpanel = require('mixpanel');
+
+var mixpanel = Mixpanel.init('b29b41ff48abeec3b8a8c8cf8d3241b0');
 var ratingsDao = require('../dao/ratings.js');
 
 var validateQueryParams = function(req, res, queryParams) {
@@ -19,6 +22,7 @@ var validateQueryParams = function(req, res, queryParams) {
 
 module.exports = {
     version: function(req, res) {
+        mixpanel.track('api-version');
         git.short(function (hash) {
             res.send({
                 commit: hash
