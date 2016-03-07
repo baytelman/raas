@@ -6,14 +6,4 @@ Your product has been created in our system:
 In order to use our APIs, you will need the following access token:
 - Access Token: {access_token}
 
-Insert a rating with optional parameters (user_id, key_1, key_2, key_3):
-
-PUT https://raasta.herokuapp.com/api/v1/ratings?token={access_token}&rating=[RATING HERE]
-PUT https://raasta.herokuapp.com/api/v1/ratings?token={access_token}&rating=[RATING HERE]&user_id=[USER ID]
-PUT https://raasta.herokuapp.com/api/v1/ratings?token={access_token}&rating=[RATING HERE]&key_1=[YOUR INTERNAL UNIQUE ID]
-
-You can retrieve your Ratings using your access token and optiona parameters:
-
-GET https://raasta.herokuapp.com/api/v1/ratings?token={access_token}
-GET https://raasta.herokuapp.com/api/v1/ratings?token={access_token}&user_id=[USER ID]
-GET https://raasta.herokuapp.com/api/v1/ratings?token={access_token}&key_1=[YOUR INTERNAL UNIQUE ID]
+=================================
