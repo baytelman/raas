@@ -9,6 +9,8 @@ var productsResource = require('./resource/products.js');
 /* Configure the app */
 var config = require('./config.js');
 const port = config.api.port;
+var Mixpanel = require('mixpanel');
+console.mixpanel = Mixpanel.init('b29b41ff48abeec3b8a8c8cf8d3241b0');
 
 /* Start the right service */
 var app = express();

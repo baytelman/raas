@@ -1,9 +1,6 @@
 "use strict";
 
 var git = require('git-rev');
-var Mixpanel = require('mixpanel');
-
-var mixpanel = Mixpanel.init('b29b41ff48abeec3b8a8c8cf8d3241b0');
 var ratingsDao = require('../dao/ratings.js');
 
 var validateQueryParams = function(req, res, queryParams) {
@@ -22,7 +19,7 @@ var validateQueryParams = function(req, res, queryParams) {
 
 module.exports = {
     version: function(req, res) {
-        mixpanel.track('api-version');
+        console.mixpanel.track('api-version');
         git.short(function (hash) {
             res.send({
                 commit: hash
@@ -31,7 +28,10 @@ module.exports = {
     },
     insert: function(req, res) {
 
-        if (validateQueryParams(req, res, ['token', 'user', 'rating'])) {
+        if (!validateQueryParams(req, res, ['token', 'user', 'rating'])) {
+            console.mixpanel.track('api-ratings-insert-fail');
+        } else {
+            console.mixpanel.track('api-ratings-insert');
             var token = req.query.token;
             var user = req.query.user;
             var rating = req.query.rating;
@@ -48,6 +48,7 @@ module.exports = {
         }
     },
     stats: function(req, res) {
+        console.mixpanel.track('api-ratings-stats');
         var token = req.query.token;
         var user = req.query.user;
         var key1 = req.query.key1;
