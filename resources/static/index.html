@@ -54,7 +54,7 @@ mixpanel.init("b29b41ff48abeec3b8a8c8cf8d3241b0");</script><!-- end Mixpanel -->
             Use the following request to create a new account/product in RAASTA.
         </p>
         <code>
-            PUT https://raasta.heroku.com/api/v1/products?<email>email=[EMAIL]</email>
+            <b>curl -X PUT</b> "https://raasta.heroku.com/api/v1/products?<email>email=[EMAIL]</email>"
         </code>
         <p>
             You will receive an <email>email</email> with you <token>ACCESS_TOKEN</token>.
@@ -69,7 +69,7 @@ mixpanel.init("b29b41ff48abeec3b8a8c8cf8d3241b0");</script><!-- end Mixpanel -->
         </p>
 
         <code>
-            <b>PUT</b> https://raasta.heroku.com/api/v1/ratings?<token>token=[ACCESS_TOKEN]</token>&<user>user=[USER_ID]</user>&<key1>key1=[ITEM_ID]</key1>
+            <b>curl -X PUT </b> "https://raasta.heroku.com/api/v1/ratings?<token>token=[ACCESS_TOKEN]</token>&<user>user=[USER_ID]</user>&<key1>key1=[ITEM_ID]</key1>"
         </code>
         <p>
             A User-Rating for <key1>item or service [ITEM_ID]</key1> will be stored.
@@ -83,7 +83,7 @@ mixpanel.init("b29b41ff48abeec3b8a8c8cf8d3241b0");</script><!-- end Mixpanel -->
         </p>
 
         <code>
-            <b>GET</b>  https://raasta.heroku.com/api/v1/ratings?<token>token=[ACCESS_TOKEN]</token>&<key1>key1=[ITEM_ID]</key1>
+            <b>curl -X GET</b> "https://raasta.heroku.com/api/v1/ratings?<token>token=[ACCESS_TOKEN]</token>&<key1>key1=[ITEM_ID]</key1>"
         </code>
         <p>
             Retrieved statistics of User-Ratings for <key1>item or service [ITEM_ID]</key1> will be returned.<br/>
