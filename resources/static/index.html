@@ -25,17 +25,15 @@ mixpanel.init("b29b41ff48abeec3b8a8c8cf8d3241b0");</script><!-- end Mixpanel -->
     </style>
 
 </head>
-<body>
+<p>
 
 <h1>RAASTA - Ratings as a Service</h1>
 <h2>Out-of-the-box User-Ratings Backend for Developers</h2>
 
 <p>
-    RAASTA is a set of high-performance APIs, allowing your team to quickly add User-Ratings support to your applications.
+    RAASTA is a set of high-performing APIs, allowing your team to quickly add User-Ratings support to your applications.
 </p>
-<p>
-    RAASTA (v1.0) has been designed for these 3 main use-cases:
-</p>
+<h3>Use cases</h3>
 <ul>
     <li>
         Insert User-Ratings, as a result of a user-interaction.
@@ -48,15 +46,15 @@ mixpanel.init("b29b41ff48abeec3b8a8c8cf8d3241b0");</script><!-- end Mixpanel -->
     </li>
 </ul>
 
-<h2>Usage</h2>
+<h3>Usage</h3>
 <ul>
     <li>
-        <h3>Create a new account</h3>
+        <h4>Create a new account</h4>
         <p>
             Use the following request to create a new account/product in RAASTA.
         </p>
         <code>
-            PUT https://raasta.heroku.com/api/v1/products?<email>email=[EMAIL]</email>
+            <b>curl -X PUT</b> "https://raasta.heroku.com/api/v1/products?<email>email=[EMAIL]</email>"
         </code>
         <p>
             You will receive an <email>email</email> with you <token>ACCESS_TOKEN</token>.
@@ -64,28 +62,28 @@ mixpanel.init("b29b41ff48abeec3b8a8c8cf8d3241b0");</script><!-- end Mixpanel -->
         </p>
     </li>
     <li>
-        <h3>Store user-ratings</h3>
+        <h4>Store user-ratings</h4>
 
         <p>
             In your website or app, users will give ratings to your items or services.
         </p>
 
         <code>
-            <b>PUT</b> https://raasta.heroku.com/api/v1/ratings?<token>token=[ACCESS_TOKEN]</token>&<user>user=[USER_ID]</user>&<key1>key1=[ITEM_ID]</key1>
+            <b>curl -X PUT </b> "https://raasta.heroku.com/api/v1/ratings?<token>token=[ACCESS_TOKEN]</token>&<user>user=[USER_ID]</user>&<key1>key1=[ITEM_ID]</key1>"
         </code>
         <p>
             A User-Rating for <key1>item or service [ITEM_ID]</key1> will be stored.
         </p>
     </li>
     <li>
-        <h3>Retrieve average user-ratings for an  <key1>item or service</key1></h3>
+        <h4>Retrieve average user-ratings for an  <key1>item or service</key1></h4>
 
         <p>
             Retrieve the average user-rating for a specific item, so you can pass the value to your frontend/UI.
         </p>
 
         <code>
-            <b>GET</b>  https://raasta.heroku.com/api/v1/ratings?<token>token=[ACCESS_TOKEN]</token>&<key1>key1=[ITEM_ID]</key1>
+            <b>curl -X GET</b> "https://raasta.heroku.com/api/v1/ratings?<token>token=[ACCESS_TOKEN]</token>&<key1>key1=[ITEM_ID]</key1>"
         </code>
         <p>
             Retrieved statistics of User-Ratings for <key1>item or service [ITEM_ID]</key1> will be returned.<br/>
@@ -112,5 +110,56 @@ mixpanel.init("b29b41ff48abeec3b8a8c8cf8d3241b0");</script><!-- end Mixpanel -->
     </li>
 </ul>
 
+
+<h2>About RAASTA</h2>
+
+<h3>Tech Stack and Development Practices</h3>
+<ul>
+    <li>Server: NodeJS (v5.7) and Express (v4.x)
+        <ul>
+            <li>Mocha (2.x) and Chai (2.x) for TDD</li>
+        </ul>
+    </li>
+    <li>Database: Postgres (v9.x) with an Append-Only data model</li>
+    <li>Hosting: Heroku</li>
+    <li>Monitoring: NewRelic APM</li>
+    <li>Logging: Papertrail</li>
+    <li>CI: Wercker</li>
+</ul>
+
+<h3>Performance</h3>
+<ul>
+    <li>PUT /app/v1/ratings: ~8.4ms</li>
+    <li>GET /app/v1/ratings: ~7.7ms</li>
+</ul>
+
+<h3>Team</h3>
+<p>
+    Created and maintained by
+</p>
+<ul>
+    <li>Felipe Baytelman: Software engineer, Experience Designer
+        <ul>
+            <li>Twitter <a href="http://twitter.com/baytelman" target="_blank">@baytelman</a></li>
+            <li>GitHub <a href="http://github.com/baytelman" target="_blank">@baytelman</a></li>
+            <li>LinkedIn <a href="https://www.linkedin.com/in/baytelman" target="_blank">in/baytelman</a></li>
+        </ul>
+    </li>
+    <li>Thanks to Sepehr</li>
+    <li>Interested in collaborating? Contact us on <a href="http://twitter.com/baytelman" target="_blank">twitter</a>!</li>
+</ul>
+<h3>Motivation</h3>
+<ul>
+    <li>
+        Along our careers, we've witnessed multiple teams struggling to solve the user-ratings problem in an effective, efficient way.
+        RAASTA intends to summarize these learnings, by focusing on performance and simplicity.
+    </li>
+    <li>RAASTA was conceived as an experimental project, to measure the Time-To-Market
+        of a new service based on NodeJS+Express, and to test the performance of NodeJS with a Postgres DB.</li>
+</ul>
+
+<script>
+    mixpanel.track("index");
+</script>
 </body>
 </html>
