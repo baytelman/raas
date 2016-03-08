@@ -1,7 +1,10 @@
-# RAASTA
+# RAASTA - Ratings as a Service
 [![wercker status](https://app.wercker.com/status/060efa84cf68b45c907109186971e70d/s "wercker status")](https://app.wercker.com/project/bykey/060efa84cf68b45c907109186971e70d)
 
-Ratings-as-a-Service
+Out-of-the-box User-Ratings Backend for Developers
+
+[https://get-raasta.herokuapp.com](https://get-raasta.herokuapp.com)
+
 
 # Usage
 
