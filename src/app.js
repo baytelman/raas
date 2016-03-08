@@ -10,7 +10,13 @@ var productsResource = require('./resource/products.js');
 var config = require('./config.js');
 const port = config.api.port;
 var Mixpanel = require('mixpanel');
-console.mixpanel = Mixpanel.init('b29b41ff48abeec3b8a8c8cf8d3241b0');
+
+if (process.env.ENV != 'test' && process.env.ENV != 'travis') {
+    console.mixpanel = Mixpanel.init('b29b41ff48abeec3b8a8c8cf8d3241b0');
+    console.track = console.mixpanel.track;
+} else {
+    console.track = function() {};
+}
 
 /* Start the right service */
 var app = express();
