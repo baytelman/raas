@@ -19,7 +19,7 @@ var validateQueryParams = function(req, res, queryParams) {
 
 module.exports = {
     version: function(req, res) {
-        console.mixpanel.track('api-version');
+        console.track('api-version');
         git.short(function (hash) {
             res.send({
                 commit: hash
@@ -29,9 +29,9 @@ module.exports = {
     insert: function(req, res) {
 
         if (!validateQueryParams(req, res, ['token', 'user', 'rating'])) {
-            console.mixpanel.track('api-ratings-insert-fail');
+            console.track('api-ratings-insert-fail');
         } else {
-            console.mixpanel.track('api-ratings-insert');
+            console.track('api-ratings-insert');
             var token = req.query.token;
             var user = req.query.user;
             var rating = req.query.rating;
@@ -48,7 +48,7 @@ module.exports = {
         }
     },
     stats: function(req, res) {
-        console.mixpanel.track('api-ratings-stats');
+        console.track('api-ratings-stats');
         var token = req.query.token;
         var user = req.query.user;
         var key1 = req.query.key1;

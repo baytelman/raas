@@ -1,3 +1,8 @@
+AGREEMENTS AND DISCLAIMER
+
+By using the provided token, you agree to consume this service at your own risk.
+Be aware that RAASTA is in a pretty early stage: Don't connect it to life monitors or bet your marriage on it (yet).
+
 HOW TO INSERT RATINGS
 
 Insert a rating and a user with optional parameters (key1, key2, key3):
