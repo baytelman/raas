@@ -12,6 +12,9 @@ mixpanel.init("b29b41ff48abeec3b8a8c8cf8d3241b0");</script><!-- end Mixpanel -->
         token {
             color: darkred;
         }
+        rating {
+            color: darkturquoise;
+        }
         email {
             color: darkcyan;
         }
@@ -29,7 +32,7 @@ mixpanel.init("b29b41ff48abeec3b8a8c8cf8d3241b0");</script><!-- end Mixpanel -->
 
 <h1>RAASTA - Ratings as a Service</h1>
 <h2>Out-of-the-box User-Ratings Backend for Developers</h2>
-
+<a href="#usage">Usage</a> | <a href="#about">About</a> | <a href="#contact">Contact</a>
 <p>
     RAASTA is a set of high-performing APIs, allowing your team to quickly add User-Ratings support to your applications.
 </p>
@@ -49,15 +52,15 @@ mixpanel.init("b29b41ff48abeec3b8a8c8cf8d3241b0");</script><!-- end Mixpanel -->
     </li>
 </ul>
 
-<h3>Help improve RAASTA</h3>
+<h3><a name="improve">Help improve RAASTA</a></h3>
 <p>Do you want to help improve RASTA? Take this one-question survey to choose
     <a href="http://goo.gl/forms/sjMEedCVdF" target="_blank">what feature we should add next!</a>
 </p>
 
-<h3>Usage</h3>
+<a name="usage"><h3>Usage</h3></a>
 <ul>
     <li>
-        <h4>Create a new account</h4>
+        <h4>Create a new account / product</h4>
         <p>
             Use the following request to create a new account/product in RAASTA.
         </p>
@@ -77,7 +80,7 @@ mixpanel.init("b29b41ff48abeec3b8a8c8cf8d3241b0");</script><!-- end Mixpanel -->
         </p>
 
         <code>
-            <b>curl -X PUT </b> "https://raasta.heroku.com/api/v1/ratings?<token>token=[ACCESS_TOKEN]</token>&<user>user=[USER_ID]</user>&<key1>key1=[ITEM_ID]</key1>"
+            <b>curl -X PUT </b> "https://raasta.heroku.com/api/v1/ratings?<token>token=[ACCESS_TOKEN]</token>&<user>user=[USER_ID]</user>&<rating>rating=[NUMERIC_RATING]</rating>&<key1>key1=[ITEM_ID]</key1>"
         </code>
         <p>
             A User-Rating for <key1>item or service [ITEM_ID]</key1> will be stored.
@@ -119,7 +122,7 @@ mixpanel.init("b29b41ff48abeec3b8a8c8cf8d3241b0");</script><!-- end Mixpanel -->
 </ul>
 
 
-<h2>About RAASTA</h2>
+<a name="about"><h2>About RAASTA</h2></a>
 
 <h3>License and Legal Agreement</h3>
 <ul>
@@ -162,7 +165,7 @@ mixpanel.init("b29b41ff48abeec3b8a8c8cf8d3241b0");</script><!-- end Mixpanel -->
     Created and maintained by
 </p>
 <ul>
-    <li>Felipe Baytelman: Software engineer, Experience Designer
+    <li><a name="contact">Felipe Baytelman: Software engineer, Experience Designer</a>
         <ul>
             <li>Twitter <a href="http://twitter.com/baytelman" target="_blank">@baytelman</a></li>
             <li>GitHub <a href="http://github.com/baytelman" target="_blank">@baytelman</a></li>
