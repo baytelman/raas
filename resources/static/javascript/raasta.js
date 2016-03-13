@@ -44,6 +44,55 @@ raasta.rate = function(params) {
         url += "&key3=" + key3;
     }
     raasta._send("POST", url, success);
+    return raasta._classNameForAverage(rating);
+};
+
+raasta.get = function(params) {
+    if (! raasta.initialized) {
+        throw new Error("[RAASTA] Not initialized");
+    }
+    var key1 = params.key1;
+    var key2 = params.key2;
+    var key3 = params.key3;
+    var display = params.display;
+    var style = params.style;
+    if (! display && ! style) {
+        throw new Error("[RAASTA] Params must include either display or style, or both.");
+    }
+
+    var url = raasta.host + "/api/v1/ratings?token=" + raasta.token;
+    if (key1) {
+        url += "&key1=" + key1;
+    }
+    if (key2) {
+        url += "&key2=" + key2;
+    }
+    if (key3) {
+        url += "&key3=" + key3;
+    }
+    raasta._send("GET", url, function(response) {
+        var average = response.stats.average;
+        var count = response.stats.count;
+
+        if (display) {
+            var element = (typeof(display) == "string") ? document.getElementById(display) : display;
+            if (average) {
+                element.textContent = average.toFixed(1) + " (" + count + " ratings)";
+            }
+        }
+
+        if (style) {
+            var element = (typeof(style) == "string") ? document.getElementById(style) : style;
+            var cName = element.className;
+            if (cName) {
+                cName = cName.replace(/raasta_._./,'');
+            } else {
+                cName = "";
+            }
+            cName += " " + raasta._classNameForAverage(average);
+            element.className = cName;
+        }
+    });
 };
 
 raasta._send = function(method, url, success) {
@@ -52,9 +101,16 @@ raasta._send = function(method, url, success) {
     xmlhttp.onreadystatechange = function() {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             var response = JSON.parse(xmlhttp.responseText);
-            success(response);
+            if (success) {
+                success(response);
+            }
         }
     };
     xmlhttp.open(method, url, true);
     xmlhttp.send();
 };
+
+raasta._classNameForAverage = function(average) {
+    var round = "" + (Math.round(average * 2) / 2.0).toFixed(1);
+    return ("raasta_" + round).replace(".", "_").replace(",", "_");
+}
