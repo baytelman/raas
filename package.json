@@ -11,8 +11,6 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.13.4",
-    "foreman": "1.4.1",
-    "fs": "0.0.2",
     "git-rev": "0.2.1",
     "mixpanel": "0.4.0",
     "newrelic": "1.25.4",

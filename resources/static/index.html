@@ -12,6 +12,9 @@ mixpanel.init("b29b41ff48abeec3b8a8c8cf8d3241b0");</script><!-- end Mixpanel -->
         token {
             color: darkred;
         }
+        rating {
+            color: darkturquoise;
+        }
         email {
             color: darkcyan;
         }
@@ -29,7 +32,7 @@ mixpanel.init("b29b41ff48abeec3b8a8c8cf8d3241b0");</script><!-- end Mixpanel -->
 
 <h1>RAASTA - Ratings as a Service</h1>
 <h2>Out-of-the-box User-Ratings Backend for Developers</h2>
-
+<a href="#usage">Usage</a> | <a href="#about">About</a> | <a href="#contact">Contact</a>
 <p>
     RAASTA is a set of high-performing APIs, allowing your team to quickly add User-Ratings support to your applications.
 </p>
@@ -49,15 +52,15 @@ mixpanel.init("b29b41ff48abeec3b8a8c8cf8d3241b0");</script><!-- end Mixpanel -->
     </li>
 </ul>
 
-<h3>Help improve RAASTA</h3>
+<h3><a name="improve">Help improve RAASTA</a></h3>
 <p>Do you want to help improve RASTA? Take this one-question survey to choose
     <a href="http://goo.gl/forms/sjMEedCVdF" target="_blank">what feature we should add next!</a>
 </p>
 
-<h3>Usage</h3>
+<a name="usage"><h3>Usage</h3></a>
 <ul>
     <li>
-        <h4>Create a new account</h4>
+        <h4>Create a new account / product</h4>
         <p>
             Use the following request to create a new account/product in RAASTA.
         </p>
@@ -70,21 +73,48 @@ mixpanel.init("b29b41ff48abeec3b8a8c8cf8d3241b0");</script><!-- end Mixpanel -->
         </p>
     </li>
     <li>
-        <h4>Store user-ratings</h4>
+        <h4>Store user-ratings (Javascript)</h4>
 
         <p>
-            In your website or app, users will give ratings to your items or services.
+            High-level Javascript wrapper to call low-level POST request.
         </p>
 
         <code>
-            <b>curl -X PUT </b> "https://raasta.heroku.com/api/v1/ratings?<token>token=[ACCESS_TOKEN]</token>&<user>user=[USER_ID]</user>&<key1>key1=[ITEM_ID]</key1>"
+            &lt;script src="https://raasta.herokuapp.com/javascript/raasta.js"&gt;&lt;/script&gt;<br/>
+            &lt;script&gt;<br/>
+            &nbsp;&nbsp;/* Init must be called before any other RAASTA methods. You only need it ONCE per page-load. */<br/>
+            &nbsp;&nbsp;raasta.init(<token>ACCESS_TOKEN</token>, <user>USER_ID</user>);<br/>
+            &lt;/script&gt;<br/>
+            <br/>
+            &lt;script&gt;<br/>
+            &nbsp;&nbsp;/* Store user-rating for user <user>USER_ID</user> about item <key1>[ITEM_ID]</key1>: */<br/>
+            &nbsp;&nbsp;raasta.rate(<br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;<rating>rating: [NUMERIC_RATING]</rating>, <br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;<key1>key1:[ITEM_ID]</key1>,  // optional <br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;success:[SUCCESS_CALLBACK] // optional <br/>
+            &nbsp;&nbsp;});<br/>
+            &lt;/script&gt;
         </code>
         <p>
             A User-Rating for <key1>item or service [ITEM_ID]</key1> will be stored.
         </p>
     </li>
     <li>
-        <h4>Retrieve average user-ratings for an  <key1>item or service</key1></h4>
+        <h4>Store user-ratings (Low-level POST/PUT request)</h4>
+
+        <p>
+            Call this low-level end-point from website or backend.
+        </p>
+
+        <code>
+            <b>curl -X PUT </b> "https://raasta.heroku.com/api/v1/ratings?<token>token=[ACCESS_TOKEN]</token>&<user>user=[USER_ID]</user>&<rating>rating=[NUMERIC_RATING]</rating>&<key1>key1=[ITEM_ID]</key1>"
+        </code>
+        <p>
+            A User-Rating for <key1>item or service [ITEM_ID]</key1> will be stored.
+        </p>
+    </li>
+    <li>
+        <h4>Retrieve average user-ratings for an  <key1>item or service</key1> (Low-level GET request)</h4>
 
         <p>
             Retrieve the average user-rating for a specific item, so you can pass the value to your frontend/UI.
@@ -95,7 +125,7 @@ mixpanel.init("b29b41ff48abeec3b8a8c8cf8d3241b0");</script><!-- end Mixpanel -->
         </code>
         <p>
             Retrieved statistics of User-Ratings for <key1>item or service [ITEM_ID]</key1> will be returned.<br/>
-            <code>
+            <samp>
                 {<br/>
                 &nbsp;&nbsp;"message": "stats",<br/>
                 &nbsp;&nbsp;"params": {<br/>
@@ -113,13 +143,13 @@ mixpanel.init("b29b41ff48abeec3b8a8c8cf8d3241b0");</script><!-- end Mixpanel -->
                 &nbsp;&nbsp;&nbsp;&nbsp;"variance": [VARIANCE]<br/>
                 &nbsp;&nbsp;}<br/>
                 }
-            </code>
+            </samp>
         </p>
     </li>
 </ul>
 
 
-<h2>About RAASTA</h2>
+<a name="about"><h2>About RAASTA</h2></a>
 
 <h3>License and Legal Agreement</h3>
 <ul>
@@ -162,7 +192,7 @@ mixpanel.init("b29b41ff48abeec3b8a8c8cf8d3241b0");</script><!-- end Mixpanel -->
     Created and maintained by
 </p>
 <ul>
-    <li>Felipe Baytelman: Software engineer, Experience Designer
+    <li><a name="contact">Felipe Baytelman: Software engineer, Experience Designer</a>
         <ul>
             <li>Twitter <a href="http://twitter.com/baytelman" target="_blank">@baytelman</a></li>
             <li>GitHub <a href="http://github.com/baytelman" target="_blank">@baytelman</a></li>
