@@ -25,6 +25,60 @@ mixpanel.init("b29b41ff48abeec3b8a8c8cf8d3241b0");</script><!-- end Mixpanel -->
             color: darkgreen;
         }
 
+        .star {
+            display: inline-blockblock;
+            width: 32px;
+            height: 30px;
+            background: url("/images/raasta_ratings.png") 0 -150px;
+            background-size: 160px 180px;
+        }
+
+
+        .style_element {
+            display: block;
+            width: 160px;
+            height: 30px;
+            background: url("/images/raasta_ratings.png") 0 0px;
+            background-size: 160px 180px;
+        }
+
+        .style_element.raasta_5_0 {
+            background-position: 0 -150px;
+            width: 160px;
+        }
+        .style_element.raasta_4_0 {
+            background-position: 0 -150px;
+            width: 128px;
+        }
+        .style_element.raasta_3_0 {
+            background-position: 0 -150px;
+            width: 96px;
+        }
+        .style_element.raasta_2_0 {
+            background-position: 0 -150px;
+            width: 64px;
+        }
+        .style_element.raasta_1_0 {
+            background-position: 0 -150px;
+            width: 32px;
+        }
+        .style_element.raasta_4_5 {
+            background-position: 0 -150px;
+            width: 144px;
+        }
+        .style_element.raasta_3_5 {
+            background-position: 0 -150px;
+            width: 112px;
+        }
+        .style_element.raasta_2_5 {
+            background-position: 0 -150px;
+            width: 80px;
+        }
+        .style_element.raasta_1_5 {
+            background-position: 0 -150px;
+            width: 48px;
+        }
+
     </style>
 
 </head>
@@ -73,30 +127,150 @@ mixpanel.init("b29b41ff48abeec3b8a8c8cf8d3241b0");</script><!-- end Mixpanel -->
         </p>
     </li>
     <li>
-        <h4>Store user-ratings (Javascript)</h4>
-
+        <h4>Store user-ratings (Client-side Javascript)</h4>
         <p>
             High-level Javascript wrapper to call low-level POST requests.
         </p>
+        <ul>
+            <li>
+                Calling <code>raasta.rate(...)</code>
+            </li>
+            <li>
+                will submit a new user-rating for item [ITEM_ID], and
+            </li>
+            <li>
+                call the success <u>[SUCCESS]</u> callback.
+            </li>
+        </ul>
 
-        <code>
-            &lt;script src="https://raasta.herokuapp.com/javascript/raasta.js"&gt;&lt;/script&gt;<br/>
-            &lt;script&gt;<br/>
-            &nbsp;&nbsp;/* Init must be called before any other RAASTA methods. You only need it ONCE per page-load. */<br/>
-            &nbsp;&nbsp;raasta.init(<token>ACCESS_TOKEN</token>, <user>USER_ID</user>);<br/>
-            &lt;/script&gt;<br/>
-            <br/>
-            &lt;script&gt;<br/>
-            &nbsp;&nbsp;/* Store user-rating for user <user>USER_ID</user> about item <key1>[ITEM_ID]</key1>: */<br/>
-            &nbsp;&nbsp;raasta.rate(<br/>
-            &nbsp;&nbsp;&nbsp;&nbsp;<rating>rating: [NUMERIC_RATING]</rating>, <br/>
-            &nbsp;&nbsp;&nbsp;&nbsp;<key1>key1:[ITEM_ID]</key1>,  // optional <br/>
-            &nbsp;&nbsp;&nbsp;&nbsp;success:[SUCCESS_CALLBACK] // optional <br/>
-            &nbsp;&nbsp;});<br/>
-            &lt;/script&gt;
-        </code>
+        <script src="/javascript/raasta.js"></script>
+        <script>
+            var demoToken = "c9a3a03d-27ce-41c8-a338-0f411a5bce23";
+            var demoUser = "demo-user";
+
+            var demoItem = "demo-item-id-123";
+
+            raasta.init(demoToken, demoUser);
+
+            var demoRate = function(rating) {
+                var className = raasta.rate({key1:demoItem, rating:rating, success:demoRateSuccess});
+                document.getElementById("demo_get_result_style").className = "style_element " + className;
+            };
+            var demoRateSuccess = function(result) {
+                document.getElementById("demo_get_result").textContent = JSON.stringify(result);
+            };
+        </script>
+        <p>
+            <strong>Try it:</strong> Submit a new rating for item "demo-item-id-123"
+        <table>
+            <tr>
+                <td>
+
+                    <button onclick="demoRate(1)">1 Star</button>
+                    <button onclick="demoRate(2)">2 Star</button>
+                    <button onclick="demoRate(3)">3 Star</button>
+                    <button onclick="demoRate(4)">4 Star</button>
+                    <button onclick="demoRate(5)">5 Star</button>
+                </td>
+            </tr>
+            <tr>
+                <td id="demo_get_result">...</td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="style_element" id="demo_get_result_style"></span>
+                </td>
+            </tr>
+        </table>
+        </p>
+
+        <p>
+            Source:<br/>
+            <code>
+                &lt;script src="https://raasta.herokuapp.com/javascript/raasta.js"&gt;&lt;/script&gt;<br/>
+                &lt;script&gt;<br/>
+                &nbsp;&nbsp;/* Init must be called before any other RAASTA method. You only need it ONCE per page-load. */<br/>
+                &nbsp;&nbsp;raasta.init(<token>[ACCESS_TOKEN]</token>, <user>[USER_ID]</user>);<br/>
+                &lt;/script&gt;<br/>
+                <br/>
+                &lt;script&gt;<br/>
+                &nbsp;&nbsp;/* Store user-rating for user <user>[USER_ID]</user> about item <key1>[ITEM_ID]</key1>: */<br/>
+                &nbsp;&nbsp;raasta.rate(<br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;<rating>rating: [NUMERIC_RATING]</rating>, <br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;<key1>key1:[ITEM_ID]</key1>,  // optional <br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;success:[SUCCESS_CALLBACK] // optional <br/>
+                &nbsp;&nbsp;});<br/>
+                &lt;/script&gt;
+            </code>
+        </p>
         <p>
             A User-Rating for <key1>item or service [ITEM_ID]</key1> will be stored.
+        </p>
+    </li>
+    <li>
+        <h4>Retrieve average user-ratings (Client-side Javascript)</h4>
+        <p>
+            High-level Javascript wrapper to call low-level GET requests.
+        </p>
+        <ul>
+            <li>
+                Calling <code>raasta.get(...)</code>
+            </li>
+            <li>
+                will load the user-rating average of item [ITEM_ID],
+            </li>
+            <li>
+                set the <u>content</u> of DOM element [DISPLAY_ELEMENT_ID], and
+            </li>
+            <li>
+                set the <u>style</u> of DOM element [STYLE_ELEMENT_ID].
+            </li>
+        </ul>
+
+        <script>
+            var demoGet = function() {
+                raasta.get({key1:demoItem, display:"display_element_id", style:"style_element_id"})
+            };
+        </script>
+        <p>
+            <strong>Try it:</strong> <button onclick="demoGet()">Load Ratings for item "demo-item-id-123"</button>
+        </p>
+        <table>
+            <tr>
+                <td colspan="2">
+                </td>
+            </tr>
+            <tr>
+                <td>Display element:</td>
+                <td>
+                    <span id="display_element_id">[...]</span>
+                </td>
+            </tr>
+            <tr>
+                <td>Style element:</td>
+                <td>
+                    <span class="style_element" id="style_element_id"></span>
+                </td>
+            </tr>
+        </table>
+
+        <p>
+            Source:<br/>
+            <code>
+                &lt;script src="https://raasta.herokuapp.com/javascript/raasta.js"&gt;&lt;/script&gt;<br/>
+                &lt;script&gt;<br/>
+                &nbsp;&nbsp;/* Init must be called before any other RAASTA method. You only need it ONCE per page-load. */<br/>
+                &nbsp;&nbsp;raasta.init(<token>[ACCESS_TOKEN]</token>, <user>[USER_ID]</user>);<br/>
+                &lt;/script&gt;<br/>
+                <br/>
+                &lt;script&gt;<br/>
+                &nbsp;&nbsp;raasta.get({<br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;<key1>key1:[ITEM_ID]</key1>,  // optional <br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;display:[DISPLAY_ELEMENT_ID], // optional <br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;style:[STYLE_ELEMENT_ID] // optional <br/>
+                &nbsp;&nbsp;});<br/>
+                &lt;/script&gt;
+            </code>
         </p>
     </li>
     <li>
@@ -211,7 +385,6 @@ mixpanel.init("b29b41ff48abeec3b8a8c8cf8d3241b0");</script><!-- end Mixpanel -->
     <li>RAASTA was conceived as an experimental project, to measure the Time-To-Market
         of a new service based on NodeJS+Express, and to test the performance of NodeJS with a Postgres DB.</li>
 </ul>
-
 <script>
     mixpanel.track("index");
 </script>
