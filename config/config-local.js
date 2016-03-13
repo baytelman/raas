@@ -1,7 +1,7 @@
 var config = {};
 
 config.api = {};
-config.api.port = 3000;
+config.api.port = 3000 + ((process.env.APP == 'web')? 1: 0);
 
 config.db = {};
 config.db.url = "postgresql://postgres:@localhost:5432/ratings?param=value";

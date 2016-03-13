@@ -24,16 +24,25 @@ var app = express();
 if (process.env.APP == 'web') {
     app.use("/", express.static('resources/static'));
 } else {
+    app.use(function(req, res, next) {
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        next();
+    });
+
     app.get('/', function(req, res) {
         res.redirect("https://get-raasta.herokuapp.com");
     });
+    app.use("/javascript", express.static('resources/static/javascript'));
 
     var base_url = '/api/v1/';
     app.get(base_url + 'version', ratingsResource.version);
     app.put(base_url + 'products', productsResource.insert);
+    app.post(base_url + 'products', productsResource.insert);
 
     app.get(base_url + 'ratings', ratingsResource.stats);
     app.put(base_url + 'ratings', ratingsResource.insert);
+    app.post(base_url + 'ratings', ratingsResource.insert);
 }
 
 app.listen(port, function () {
