@@ -19,9 +19,9 @@ module.exports = {
     },
     insertRating: function(token, user, rating, key1, key2, key3, insertCallback) {
         const RATING_INSERT = "INSERT INTO ratings " +
-            "   (product_id, user_id, rating, key1, key2, key3) " +
+            "   (project_id, user_id, rating, key1, key2, key3) " +
             "VALUES " +
-            "   ((SELECT product_id FROM tokens WHERE access_token = $1 AND (expires IS NULL or expires > now()))," +
+            "   ((SELECT project_id FROM tokens WHERE access_token = $1 AND (expires IS NULL or expires > now()))," +
             "       $2, $3, $4, $5, $6) " +
             "RETURNING id";
 
@@ -51,7 +51,7 @@ module.exports = {
             "FROM " +
             "   ratings " +
             "WHERE " +
-            "   product_id = (SELECT product_id FROM tokens WHERE access_token = $1 AND " +
+            "   project_id = (SELECT project_id FROM tokens WHERE access_token = $1 AND " +
             "                   (expires IS NULL or expires > now())) AND " +
             "   ($2::varchar IS NULL OR $2::varchar = user_id) AND " +
             "   ($3::varchar IS NULL OR $3::varchar = key1) AND " +

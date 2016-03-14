@@ -8,6 +8,7 @@
     for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=e.createElement("script");a.type="text/javascript";a.async=!0;a.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?MIXPANEL_CUSTOM_LIB_URL:"file:"===e.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";f=e.getElementsByTagName("script")[0];f.parentNode.insertBefore(a,f)}})(document,window.mixpanel||[]);
 mixpanel.init("b29b41ff48abeec3b8a8c8cf8d3241b0");</script><!-- end Mixpanel -->
 
+    <script src="/javascript/raasta.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
           integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <style>
@@ -104,17 +105,28 @@ mixpanel.init("b29b41ff48abeec3b8a8c8cf8d3241b0");</script><!-- end Mixpanel -->
                 <li><a href="#about">About</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
-            <!--
             <form class="navbar-form navbar-right">
                 <div class="form-group">
-                    <input type="text" placeholder="Email" class="form-control">
+                    <input type="text" placeholder="Email" class="form-control" id="registerEmailField">
                 </div>
-                <div class="form-group">
-                    <input type="password" placeholder="Password" class="form-control">
-                </div>
-                <button type="submit" class="btn btn-success">Sign in</button>
+                <!--<div class="form-group">-->
+                    <!--<input type="password" placeholder="Password" class="form-control">-->
+                <!--</div>-->
+                <script>
+                    var submitRegistration = function() {
+                        event.preventDefault();
+                        var email = document.getElementById("registerEmailField").value;
+                        raasta.register({
+                            email:email,
+                            success:function(response) {
+                                console.log(response);
+                                document.location = '/welcome.html';
+                            }
+                        });
+                    };
+                </script>
+                <button class="btn btn-success" onclick="submitRegistration(); return false;">Register</button>
             </form>
-            -->
         </div>
     </div>
 </nav>
@@ -142,7 +154,7 @@ mixpanel.init("b29b41ff48abeec3b8a8c8cf8d3241b0");</script><!-- end Mixpanel -->
                 Run these functions directly in your front-end code, without having to change anything in your
                 backend.
             </p>
-            <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
+            <!--<p><a class="btn btn-default" href="#" role="button">View details »</a></p>-->
         </div>
         <div class="col-md-4">
             <h2>Flexible</h2>
@@ -152,7 +164,7 @@ mixpanel.init("b29b41ff48abeec3b8a8c8cf8d3241b0");</script><!-- end Mixpanel -->
                 functionality of RAASTA.
 
             </p>
-            <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
+            <!--<p><a class="btn btn-default" href="#" role="button">View details »</a></p>-->
         </div>
         <div class="col-md-4">
             <h2>Your info is safe</h2>
@@ -161,7 +173,7 @@ mixpanel.init("b29b41ff48abeec3b8a8c8cf8d3241b0");</script><!-- end Mixpanel -->
                 Use secret hashed ids, salted+encrypted ids, or your actual database ids:
                 You set the rules.
             </p>
-            <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
+            <!--<p><a class="btn btn-default" href="#" role="button">View details »</a></p>-->
         </div>
     </div>
 </div>
@@ -245,7 +257,6 @@ mixpanel.init("b29b41ff48abeec3b8a8c8cf8d3241b0");</script><!-- end Mixpanel -->
                 </li>
             </ul>
 
-            <script src="/javascript/raasta.js"></script>
             <script>
                 var demoToken = "df3a9d58-8c13-4d9c-9b13-46f032704ef0";
                 var demoUser = "demo-user";

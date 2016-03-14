@@ -22,6 +22,19 @@ raasta.init = function(token, user, overrideHost) {
     console.info("[RAASTA] Initializing RAASTA (token: " + token + ")");
 };
 
+raasta.register = function(params) {
+    var email = params.email;
+    var success = params.success;
+
+    if (! email) {
+        throw new Error("[RAASTA] 'email' param not provided");
+    }
+
+    var url = raasta.host + "/api/v1/projects?email=" + email;
+
+    raasta._send("POST", url, success);
+}
+
 raasta.rate = function(params) {
     if (! raasta.initialized) {
         throw new Error("[RAASTA] Not initialized");
