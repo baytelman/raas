@@ -2,7 +2,7 @@ var format = require("string-template")
 var nodemailer = require('nodemailer');
 var smtpTransport = require('nodemailer-smtp-transport');
 
-var productsDao = require("../dao/products");
+var projectsDao = require("../dao/projects");
 
 var fs = require('fs');
 
@@ -18,23 +18,23 @@ if (config.email.service) {
     }));
 }
 
-var emailWelcomeString = fs.readFileSync('resources/templates/new_product_email.txt', 'utf-8');
+var emailWelcomeString = fs.readFileSync('resources/templates/new_project_email.txt', 'utf-8');
 var introString = fs.readFileSync('resources/templates/intro.txt', 'utf-8');
 
 module.exports = {
 
-    createNewProductAndSendToken: function(email, callback) {
-        productsDao.insertNewProduct(function(productId) {
+    createNewProjectAndSendToken: function(email, callback) {
+        projectsDao.insertNewProject(function(projectId) {
 
-            productsDao.updateProductDescription(productId, {
+            projectsDao.updateProjectDescription(projectId, {
                 email: email
             }, function() {
-                productsDao.getAccessTokenForProduct(productId, function (accessToken) {
+                projectsDao.getAccessTokenForProject(projectId, function (accessToken) {
 
                     if (transporter) {
                         var params = {
-                            message: 'product added: ' + productId,
-                            product_id: productId,
+                            message: 'project added: ' + projectId,
+                            project_id: projectId,
                             access_token: accessToken
                         };
 
@@ -59,7 +59,7 @@ module.exports = {
                         });
                     }
 
-                    callback(productId, email);
+                    callback(projectId, email);
                 });
             });
         });

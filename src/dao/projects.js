@@ -5,27 +5,27 @@ var pg = require('pg');
 
 
 module.exports = {
-    insertNewProduct: function(newProductCallback) {
+    insertNewProject: function(newProjectCallback) {
         pg.connect(config.db.url, function(err, client, done) {
             if (err) throw err;
 
-            client.query('INSERT INTO products (id) VALUES (DEFAULT) RETURNING id',
+            client.query('INSERT INTO projects (id) VALUES (DEFAULT) RETURNING id',
                 function(err, result) {
                     done();
                     if (err) throw err;
 
-                    var productId = result.rows[0].id;
-                    console.info("Product inserted:" + productId);
-                    newProductCallback(productId);
+                    var projectId = result.rows[0].id;
+                    console.info("Project inserted:" + projectId);
+                    newProjectCallback(projectId);
                 });
         });
     },
-    getAccessTokenForProduct: function(productId, accessTokenCallback) {
+    getAccessTokenForProject: function(projectId, accessTokenCallback) {
         pg.connect(config.db.url, function(err, client, done) {
             if (err) throw err;
 
-            client.query('INSERT INTO tokens (product_id) VALUES ($1) RETURNING access_token',
-                [productId],
+            client.query('INSERT INTO tokens (project_id) VALUES ($1) RETURNING access_token',
+                [projectId],
                 function(err, result) {
                     done();
                     if (err) throw err;
@@ -36,62 +36,62 @@ module.exports = {
                 });
         });
     },
-    getProductDescription: function(productId, productCallback) {
+    getProjectDescription: function(projectId, projectCallback) {
         pg.connect(config.db.url, function(err, client, done) {
             if (err) throw err;
 
             client.query('SELECT * FROM ' +
-                '   product_descriptions ' +
+                '   project_descriptions ' +
                 'WHERE ' +
-                '   product_id = $1 ' +
+                '   project_id = $1 ' +
                 'ORDER BY ' +
                 '   timestamp DESC ' +
                 'LIMIT 1',
-                [productId],
+                [projectId],
                 function(err, result) {
                     done();
                     if (err) throw err;
 
-                    productCallback(result.rows[0]);
+                    projectCallback(result.rows[0]);
                 });
         });
     },
-    updateProductDescription: function(productId, newValues, insertCallback) {
-        this.getProductDescription(productId, function(product) {
+    updateProjectDescription: function(projectId, newValues, insertCallback) {
+        this.getProjectDescription(projectId, function(project) {
 
-            if (!product) {
-                product = {
-                    name: 'New Product'
+            if (!project) {
+                project = {
+                    name: 'New Project'
                 };
             }
             for (var key in newValues) {
-                product[key] = newValues[key];
+                project[key] = newValues[key];
             }
-            product['timestamp'] = undefined;
-            product['product_id'] = productId;
+            project['timestamp'] = undefined;
+            project['project_id'] = projectId;
 
             const DESCRIPTION_INSERT = 'INSERT ' +
-                'INTO product_descriptions ' +
-                '   (product_id, name, email, key_1, key_2, key_3) ' +
+                'INTO project_descriptions ' +
+                '   (project_id, name, email, key_1, key_2, key_3) ' +
                 'VALUES ' +
                 '   ($1, $2, $3, $4, $5, $6) ' +
-                'RETURNING product_id';
+                'RETURNING project_id';
 
             pg.connect(config.db.url, function(err, client, done) {
                 if (err) throw err;
 
                 client.query(DESCRIPTION_INSERT,
-                    [product['product_id'],
-                        product['name'],
-                        product['email'],
-                        product['key_1'],
-                        product['key_2'],
-                        product['key_3']],
+                    [project['project_id'],
+                        project['name'],
+                        project['email'],
+                        project['key_1'],
+                        project['key_2'],
+                        project['key_3']],
                     function(err, result) {
                         done();
                         if (err) throw err;
 
-                        insertCallback(result.rows[0].product_id);
+                        insertCallback(result.rows[0].project_id);
                     });
             });
         });
