@@ -8,6 +8,8 @@
     for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=e.createElement("script");a.type="text/javascript";a.async=!0;a.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?MIXPANEL_CUSTOM_LIB_URL:"file:"===e.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";f=e.getElementsByTagName("script")[0];f.parentNode.insertBefore(a,f)}})(document,window.mixpanel||[]);
 mixpanel.init("b29b41ff48abeec3b8a8c8cf8d3241b0");</script><!-- end Mixpanel -->
 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <style>
         token {
             color: darkred;
@@ -32,7 +34,6 @@ mixpanel.init("b29b41ff48abeec3b8a8c8cf8d3241b0");</script><!-- end Mixpanel -->
             background: url("/images/raasta_ratings.png") 0 -150px;
             background-size: 160px 180px;
         }
-
 
         .style_element {
             display: block;
@@ -82,309 +83,490 @@ mixpanel.init("b29b41ff48abeec3b8a8c8cf8d3241b0");</script><!-- end Mixpanel -->
     </style>
 
 </head>
-<p>
+<body role="documemt">
 
-<h1>RAASTA - Ratings as a Service</h1>
-<h2>Out-of-the-box User-Ratings Backend for Developers</h2>
-<a href="#usage">Usage</a> | <a href="#about">About</a> | <a href="#contact">Contact</a>
-<p>
-    RAASTA is a set of high-performing APIs, allowing your team to quickly add User-Ratings support to your applications.
-</p>
-<p>
-    <img src="./images/RAASTA.png" width="404" height="402"/>
-</p>
-<h3>Use cases</h3>
-<ul>
-    <li>
-        Insert User-Ratings, as a result of a user-interaction.
-    </li>
-    <li>
-        Retrieve average User-Ratings, to be displayed to users (externally).
-    </li>
-    <li>
-        Retrieve summarized/digested User-Ratings, for your internal use.
-    </li>
-</ul>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">RAASTA</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="#quick">Quick Start</a></li>
+                <li><a href="#usage">Usage</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <!--
+            <form class="navbar-form navbar-right">
+                <div class="form-group">
+                    <input type="text" placeholder="Email" class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="password" placeholder="Password" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-success">Sign in</button>
+            </form>
+            -->
+        </div>
+    </div>
+</nav>
 
-<h3><a name="improve">Help improve RAASTA</a></h3>
-<p>Do you want to help improve RASTA? Take this one-question survey to choose
-    <a href="http://goo.gl/forms/sjMEedCVdF" target="_blank">what feature we should add next!</a>
-</p>
-
-<a name="usage"><h3>Usage</h3></a>
-<ul>
-    <li>
-        <h4>Create a new account / product</h4>
+<div class="jumbotron">
+    <div class="container">
+        <h1>RAASTA - Ratings as a Service</h1>
         <p>
-            Use the following request to create a new account/product in RAASTA.
+            RAASTA is a set of high-performing APIs, allowing your team to quickly add User-Ratings support (track and
+            display) to your applications.
+            Out-of-the box, RAASTA includes both high-level javascript client and low-level REST API access, so you can
+            choose how to integrate RAASTA into your app.
         </p>
-        <code>
-            <b>curl -X PUT</b> "https://raasta.heroku.com/api/v1/products?<email>email=[EMAIL]</email>"
-        </code>
-        <p>
-            You will receive an <email>email</email> with you <token>ACCESS_TOKEN</token>.
-            Store this <token>ACCESS_TOKEN</token> safely, as it will allow you to make all the following API calls.
-        </p>
-    </li>
-    <li>
-        <h4>Store user-ratings (Client-side Javascript)</h4>
-        <p>
-            High-level Javascript wrapper to call low-level POST requests.
-        </p>
-        <ul>
-            <li>
-                Calling <code>raasta.rate(...)</code>
-            </li>
-            <li>
-                will submit a new user-rating for item [ITEM_ID], and
-            </li>
-            <li>
-                call the success <u>[SUCCESS]</u> callback.
-            </li>
-        </ul>
+        <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more »</a></p>
+    </div>
+</div>
 
-        <script src="/javascript/raasta.js"></script>
-        <script>
-            var demoToken = "c9a3a03d-27ce-41c8-a338-0f411a5bce23";
-            var demoUser = "demo-user";
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Easy</h2>
+            <p>
+                RAASTA's client-side Javascript library wraps everything you need to quickly add user-ratings to your
+                web-app.
+                Run these functions directly in your front-end code, without having to change anything in your
+                backend.
+            </p>
+            <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Flexible</h2>
+            <p>
+                Do you need more control? Don't want to expose your tokens?
+                Call RAASTA directly from your backend stack, using standarized REST APIs to access the complete
+                functionality of RAASTA.
 
-            var demoItem = "demo-item-id-123";
+            </p>
+            <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Your info is safe</h2>
+            <p>
+                You can choose to pass your system's internal ids however you want.
+                Use secret hashed ids, salted+encrypted ids, or your actual database ids:
+                You set the rules.
+            </p>
+            <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
+        </div>
+    </div>
+</div>
 
-            raasta.init(demoToken, demoUser);
+<div class="container">
+    <h1 id="quick" class="page-header">
+        <a class="anchorjs-link " href="#quick" aria-label="Anchor link for: quick" data-anchorjs-icon=""
+           style="font-family: anchorjs-icons; font-style: normal; font-variant-ligatures: normal; font-variant-position: normal; font-variant-caps: normal; font-variant-numeric: normal; font-variant-alternates: normal; font-variant-east-asian: normal; font-weight: normal; position: absolute; margin-left: -1em; padding-right: 0.5em;">
+        </a>
+        Quick Start: Integrating the client-side library
+    </h1>
+    <p>
+        The client-side library lets you STORE and RETRIEVE user-ratings directly from your client-side app.
+        For example, allow your users to rate items with 1-5 stars, and show previous user's ratings in your listing.
+        You can choose to use a 1-5 stars rating system, or any other numeric range.
+    </p>
 
-            var demoRate = function(rating) {
-                var className = raasta.rate({key1:demoItem, rating:rating, success:demoRateSuccess});
-                document.getElementById("demo_get_result_style").className = "style_element " + className;
-            };
-            var demoRateSuccess = function(result) {
-                document.getElementById("demo_get_result").textContent = JSON.stringify(result);
-            };
-        </script>
-        <p>
-            <strong>Try it:</strong> Submit a new rating for item "demo-item-id-123"
-        <table>
-            <tr>
-                <td>
+    <center>
+        <img src="./images/RAASTA.png" width="202"
+             class="figure-img img-fluid img-rounded"
+             alt="Two different users rate items and visualize listing.">
+        <div>
+            Fig. 1: Two users rate different items and visualize result in listing.
+        </div>
+    </center>
 
-                    <button onclick="demoRate(1)">1 Star</button>
-                    <button onclick="demoRate(2)">2 Star</button>
-                    <button onclick="demoRate(3)">3 Star</button>
-                    <button onclick="demoRate(4)">4 Star</button>
-                    <button onclick="demoRate(5)">5 Star</button>
-                </td>
-            </tr>
-            <tr>
-                <td id="demo_get_result">...</td>
-            </tr>
-            <tr>
-                <td>
-                    <span class="style_element" id="demo_get_result_style"></span>
-                </td>
-            </tr>
-        </table>
-        </p>
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Get your Access Token</h2>
+            <p>
+                Register your organization and project to receive your access-token.
+                Both the client-side library and the API call will require this token.
+            </p>
+            <p><a class="btn btn-default" href="#" role="button">Register »</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Gather user-ratings</h2>
+            <p>
+                Call RAASTA's <code>rate</code> function from your custom input component,
+                or include one of the predefined user-rating UI components.
+                You can store ratings for a specific item,
+                but also for its category, its parent structure or any other relation.
+            </p>
+            <p><a class="btn btn-default" href="#" role="button">View tutorial »</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Display user-ratings</h2>
+            <p>
+                Once your users have rated items, you can display past ratings in your items listing or detail views.
+                The <code>get</code> call will get the user-rating average for a specific item.
+                You can choose to show its numeric value or alter the style of a rating's graphic representation.
+            </p>
+            <p><a class="btn btn-default" href="#" role="button">View tutorial »</a></p>
+        </div>
+    </div>
+</div>
 
-        <p>
-            Source:<br/>
+<div class="container">
+    <h1 id="usage" class="page-header">
+        <a class="anchorjs-link " href="#usage" aria-label="Anchor link for: usage" data-anchorjs-icon=""
+           style="font-family: anchorjs-icons; font-style: normal; font-variant-ligatures: normal; font-variant-position: normal; font-variant-caps: normal; font-variant-numeric: normal; font-variant-alternates: normal; font-variant-east-asian: normal; font-weight: normal; position: absolute; margin-left: -1em; padding-right: 0.5em;">
+        </a>
+        Usage: Client-side Javascript Library
+    </h1>
+
+    <ul>
+        <li>
+            <h4>Store user-ratings</h4>
+            <p>
+                High-level Javascript wrapper to call low-level POST requests.
+            </p>
+            <ul>
+                <li>
+                    Calling <code>raasta.rate(...)</code>
+                </li>
+                <li>
+                    will submit a new user-rating for item [ITEM_ID], and
+                </li>
+                <li>
+                    call the success <u>[SUCCESS]</u> callback.
+                </li>
+            </ul>
+
+            <script src="/javascript/raasta.js"></script>
+            <script>
+                var demoToken = "c9a3a03d-27ce-41c8-a338-0f411a5bce23";
+                var demoUser = "demo-user";
+
+                var demoItem = "demo-item-id-123";
+
+                raasta.init(demoToken, demoUser);
+
+                var demoRate = function (rating) {
+                    var className = raasta.rate({key1: demoItem, rating: rating, success: demoRateSuccess});
+                    document.getElementById("demo_get_result_style").className = "style_element " + className;
+                };
+                var demoRateSuccess = function (result) {
+                    document.getElementById("demo_get_result").textContent = JSON.stringify(result);
+                };
+            </script>
+            <p>
+                <strong>Try it:</strong> Submit a new rating for item "demo-item-id-123"
+            <table>
+                <tr>
+                    <td>
+
+                        <button onclick="demoRate(1)">1 Star</button>
+                        <button onclick="demoRate(2)">2 Star</button>
+                        <button onclick="demoRate(3)">3 Star</button>
+                        <button onclick="demoRate(4)">4 Star</button>
+                        <button onclick="demoRate(5)">5 Star</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td id="demo_get_result">...</td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="style_element" id="demo_get_result_style"></span>
+                    </td>
+                </tr>
+            </table>
+            </p>
+
+            <p>
+                Source:<br/>
+                <code>
+                    &lt;script src="https://raasta.herokuapp.com/javascript/raasta.js"&gt;&lt;/script&gt;<br/>
+                    &lt;script&gt;<br/>
+                    &nbsp;&nbsp;/* Init must be called before any other RAASTA method. You only need it ONCE per
+                    page-load.
+                    */<br/>
+                    &nbsp;&nbsp;raasta.init(
+                    <token>[ACCESS_TOKEN]</token>
+                    ,
+                    <user>[USER_ID]</user>
+                    );<br/>
+                    &lt;/script&gt;<br/>
+                    <br/>
+                    &lt;script&gt;<br/>
+                    &nbsp;&nbsp;/* Store user-rating for user
+                    <user>[USER_ID]</user>
+                    about item
+                    <key1>[ITEM_ID]</key1>
+                    : */<br/>
+                    &nbsp;&nbsp;raasta.rate(<br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <rating>rating: [NUMERIC_RATING]</rating>
+                    , <br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <key1>key1:[ITEM_ID]</key1>
+                    , // optional <br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;success:[SUCCESS_CALLBACK] // optional <br/>
+                    &nbsp;&nbsp;});<br/>
+                    &lt;/script&gt;
+                </code>
+            </p>
+            <p>
+                A User-Rating for
+                <key1>item or service [ITEM_ID]</key1>
+                will be stored.
+            </p>
+        </li>
+        <li>
+            <h4>Retrieve and display user-ratings' average</h4>
+            <p>
+                High-level Javascript wrapper to call low-level GET requests.
+            </p>
+            <ul>
+                <li>
+                    Calling <code>raasta.get(...)</code>
+                </li>
+                <li>
+                    will load the user-rating average of item [ITEM_ID],
+                </li>
+                <li>
+                    set the <u>content</u> of DOM element [DISPLAY_ELEMENT_ID], and
+                </li>
+                <li>
+                    set the <u>style</u> of DOM element [STYLE_ELEMENT_ID].
+                </li>
+            </ul>
+
+            <script>
+                var demoGet = function () {
+                    raasta.get({key1: demoItem, display: "display_element_id", style: "style_element_id"})
+                };
+            </script>
+            <p>
+                <strong>Try it:</strong>
+                <button onclick="demoGet()">Load Ratings for item "demo-item-id-123"</button>
+            </p>
+            <table>
+                <tr>
+                    <td colspan="2">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Display element:</td>
+                    <td>
+                        <span id="display_element_id">[...]</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Style element:</td>
+                    <td>
+                        <span class="style_element" id="style_element_id"></span>
+                    </td>
+                </tr>
+            </table>
+
+            <p>
+                Source:<br/>
+                <code>
+                    &lt;script src="https://raasta.herokuapp.com/javascript/raasta.js"&gt;&lt;/script&gt;<br/>
+                    &lt;script&gt;<br/>
+                    &nbsp;&nbsp;/* Init must be called before any other RAASTA method. You only need it ONCE per
+                    page-load.
+                    */<br/>
+                    &nbsp;&nbsp;raasta.init(
+                    <token>[ACCESS_TOKEN]</token>
+                    ,
+                    <user>[USER_ID]</user>
+                    );<br/>
+                    &lt;/script&gt;<br/>
+                    <br/>
+                    &lt;script&gt;<br/>
+                    &nbsp;&nbsp;raasta.get({<br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <key1>key1:[ITEM_ID]</key1>
+                    , // optional <br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;display:[DISPLAY_ELEMENT_ID], // optional <br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;style:[STYLE_ELEMENT_ID] // optional <br/>
+                    &nbsp;&nbsp;});<br/>
+                    &lt;/script&gt;
+                </code>
+            </p>
+        </li>
+    </ul>
+
+    <h1 id="api_usage" class="page-header">
+        <a class="anchorjs-link " href="#usage" aria-label="Anchor link for: api_usage" data-anchorjs-icon=""
+           style="font-family: anchorjs-icons; font-style: normal; font-variant-ligatures: normal; font-variant-position: normal; font-variant-caps: normal; font-variant-numeric: normal; font-variant-alternates: normal; font-variant-east-asian: normal; font-weight: normal; position: absolute; margin-left: -1em; padding-right: 0.5em;">
+        </a>
+        Usage: Low-level REST API requests
+    </h1>
+    <ul>
+        <li>
+            <h4>Store user-ratings</h4>
+
+            <p>
+                Call this low-level end-point from website or backend.
+            </p>
+
             <code>
-                &lt;script src="https://raasta.herokuapp.com/javascript/raasta.js"&gt;&lt;/script&gt;<br/>
-                &lt;script&gt;<br/>
-                &nbsp;&nbsp;/* Init must be called before any other RAASTA method. You only need it ONCE per page-load. */<br/>
-                &nbsp;&nbsp;raasta.init(<token>[ACCESS_TOKEN]</token>, <user>[USER_ID]</user>);<br/>
-                &lt;/script&gt;<br/>
-                <br/>
-                &lt;script&gt;<br/>
-                &nbsp;&nbsp;/* Store user-rating for user <user>[USER_ID]</user> about item <key1>[ITEM_ID]</key1>: */<br/>
-                &nbsp;&nbsp;raasta.rate(<br/>
-                &nbsp;&nbsp;&nbsp;&nbsp;<rating>rating: [NUMERIC_RATING]</rating>, <br/>
-                &nbsp;&nbsp;&nbsp;&nbsp;<key1>key1:[ITEM_ID]</key1>,  // optional <br/>
-                &nbsp;&nbsp;&nbsp;&nbsp;success:[SUCCESS_CALLBACK] // optional <br/>
-                &nbsp;&nbsp;});<br/>
-                &lt;/script&gt;
+                <b> curl -X PUT </b> "https://raasta.heroku.com/api/v1/ratings?<token>token=[ACCESS_TOKEN]</token>&<user>user=[USER_ID]</user>&<rating>rating=[NUMERIC_RATING]</rating>&<key1>key1=[ITEM_ID]</key1>"
             </code>
-        </p>
-        <p>
-            A User-Rating for <key1>item or service [ITEM_ID]</key1> will be stored.
-        </p>
-    </li>
-    <li>
-        <h4>Retrieve average user-ratings (Client-side Javascript)</h4>
-        <p>
-            High-level Javascript wrapper to call low-level GET requests.
-        </p>
-        <ul>
-            <li>
-                Calling <code>raasta.get(...)</code>
-            </li>
-            <li>
-                will load the user-rating average of item [ITEM_ID],
-            </li>
-            <li>
-                set the <u>content</u> of DOM element [DISPLAY_ELEMENT_ID], and
-            </li>
-            <li>
-                set the <u>style</u> of DOM element [STYLE_ELEMENT_ID].
-            </li>
-        </ul>
+            <p>
+                A User-Rating for
+                <key1>item or service [ITEM_ID]</key1>
+                will be stored.
+            </p>
+        </li>
+        <li>
+            <h4>Retrieve average user-ratings for an
+                <key1>item or service</key1>
+                (Low-level GET request)
+            </h4>
 
-        <script>
-            var demoGet = function() {
-                raasta.get({key1:demoItem, display:"display_element_id", style:"style_element_id"})
-            };
-        </script>
-        <p>
-            <strong>Try it:</strong> <button onclick="demoGet()">Load Ratings for item "demo-item-id-123"</button>
-        </p>
-        <table>
-            <tr>
-                <td colspan="2">
-                </td>
-            </tr>
-            <tr>
-                <td>Display element:</td>
-                <td>
-                    <span id="display_element_id">[...]</span>
-                </td>
-            </tr>
-            <tr>
-                <td>Style element:</td>
-                <td>
-                    <span class="style_element" id="style_element_id"></span>
-                </td>
-            </tr>
-        </table>
+            <p>
+                Retrieve the average user-rating for a specific item, so you can pass the value to your frontend/UI.
+            </p>
 
-        <p>
-            Source:<br/>
             <code>
-                &lt;script src="https://raasta.herokuapp.com/javascript/raasta.js"&gt;&lt;/script&gt;<br/>
-                &lt;script&gt;<br/>
-                &nbsp;&nbsp;/* Init must be called before any other RAASTA method. You only need it ONCE per page-load. */<br/>
-                &nbsp;&nbsp;raasta.init(<token>[ACCESS_TOKEN]</token>, <user>[USER_ID]</user>);<br/>
-                &lt;/script&gt;<br/>
-                <br/>
-                &lt;script&gt;<br/>
-                &nbsp;&nbsp;raasta.get({<br/>
-                &nbsp;&nbsp;&nbsp;&nbsp;<key1>key1:[ITEM_ID]</key1>,  // optional <br/>
-                &nbsp;&nbsp;&nbsp;&nbsp;display:[DISPLAY_ELEMENT_ID], // optional <br/>
-                &nbsp;&nbsp;&nbsp;&nbsp;style:[STYLE_ELEMENT_ID] // optional <br/>
-                &nbsp;&nbsp;});<br/>
-                &lt;/script&gt;
+                <b>curl -X GET</b> "https://raasta.heroku.com/api/v1/ratings?
+                <token>token=[ACCESS_TOKEN]</token>
+                &
+                <key1>key1=[ITEM_ID]</key1>
+                "
             </code>
-        </p>
-    </li>
-    <li>
-        <h4>Store user-ratings (Low-level POST/PUT request)</h4>
+            <p>
+                Retrieved statistics of User-Ratings for
+                <key1>item or service [ITEM_ID]</key1>
+                will be returned.<br/>
+                <samp>
+                    {<br/>
+                    &nbsp;&nbsp;"message": "stats",<br/>
+                    &nbsp;&nbsp;"params": {<br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <key1>"key1": [ITEM_ID]</key1>
+                    <br/>
+                    &nbsp;&nbsp;}<br/>
+                    &nbsp;&nbsp;"stats": {<br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;"average": [AVERAGE],<br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;"count": [TOTAL RATINGS],<br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;"count1": [RATINGS WITH 1-STAR],<br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;"count2": [RATINGS WITH 2-STAR],<br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;"count3": [RATINGS WITH 3-STAR],<br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;"count4": [RATINGS WITH 4-STAR],<br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;"count5": [RATINGS WITH 5-STAR],<br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;"stddev": [STANDARD DEVIATION],<br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;"variance": [VARIANCE]<br/>
+                    &nbsp;&nbsp;}<br/>
+                    }
+                </samp>
+            </p>
+        </li>
+    </ul>
+</div>
 
-        <p>
-            Call this low-level end-point from website or backend.
-        </p>
+<div class="container">
+    <h1 id="about" class="page-header">
+        <a class="anchorjs-link " href="#about" aria-label="Anchor link for: about" data-anchorjs-icon=""
+           style="font-family: anchorjs-icons; font-style: normal; font-variant-ligatures: normal; font-variant-position: normal; font-variant-caps: normal; font-variant-numeric: normal; font-variant-alternates: normal; font-variant-east-asian: normal; font-weight: normal; position: absolute; margin-left: -1em; padding-right: 0.5em;">
+        </a>
+        About RAASTA
+    </h1>
 
-        <code>
-            <b>curl -X PUT </b> "https://raasta.heroku.com/api/v1/ratings?<token>token=[ACCESS_TOKEN]</token>&<user>user=[USER_ID]</user>&<rating>rating=[NUMERIC_RATING]</rating>&<key1>key1=[ITEM_ID]</key1>"
-        </code>
-        <p>
-            A User-Rating for <key1>item or service [ITEM_ID]</key1> will be stored.
-        </p>
-    </li>
-    <li>
-        <h4>Retrieve average user-ratings for an  <key1>item or service</key1> (Low-level GET request)</h4>
+    <h3>Motivation</h3>
+    <ul>
+        <li>
+            Along our careers, we've witnessed multiple teams struggling to solve the user-ratings problem in an
+            effective,
+            efficient way.
+            RAASTA intends to summarize these learnings, by focusing on performance and simplicity.
+        </li>
+        <li>RAASTA was conceived as an experimental project, to measure the Time-To-Market
+            of a new service based on NodeJS+Express, and to test the performance of NodeJS with a Postgres DB.
+        </li>
+    </ul>
 
-        <p>
-            Retrieve the average user-rating for a specific item, so you can pass the value to your frontend/UI.
-        </p>
+    <h3>Tech Stack and Development Practices</h3>
+    <ul>
+        <li>Server: NodeJS (v5.7) and Express (v4.x)
+            <ul>
+                <li>Mocha (2.x) and Chai (2.x) for TDD</li>
+            </ul>
+        </li>
+        <li>Database: Postgres (v9.x) with an Append-Only data model</li>
+        <li>Hosting: Heroku</li>
+        <li>Monitoring: NewRelic APM</li>
+        <li>Logging: Papertrail</li>
+        <li>CI: Wercker</li>
+    </ul>
 
-        <code>
-            <b>curl -X GET</b> "https://raasta.heroku.com/api/v1/ratings?<token>token=[ACCESS_TOKEN]</token>&<key1>key1=[ITEM_ID]</key1>"
-        </code>
-        <p>
-            Retrieved statistics of User-Ratings for <key1>item or service [ITEM_ID]</key1> will be returned.<br/>
-            <samp>
-                {<br/>
-                &nbsp;&nbsp;"message": "stats",<br/>
-                &nbsp;&nbsp;"params": {<br/>
-                &nbsp;&nbsp;&nbsp;&nbsp;<key1>"key1": [ITEM_ID]</key1><br/>
-                &nbsp;&nbsp;}<br/>
-                &nbsp;&nbsp;"stats": {<br/>
-                &nbsp;&nbsp;&nbsp;&nbsp;"average": [AVERAGE],<br/>
-                &nbsp;&nbsp;&nbsp;&nbsp;"count": [TOTAL RATINGS],<br/>
-                &nbsp;&nbsp;&nbsp;&nbsp;"count1": [RATINGS WITH 1-STAR],<br/>
-                &nbsp;&nbsp;&nbsp;&nbsp;"count2": [RATINGS WITH 2-STAR],<br/>
-                &nbsp;&nbsp;&nbsp;&nbsp;"count3": [RATINGS WITH 3-STAR],<br/>
-                &nbsp;&nbsp;&nbsp;&nbsp;"count4": [RATINGS WITH 4-STAR],<br/>
-                &nbsp;&nbsp;&nbsp;&nbsp;"count5": [RATINGS WITH 5-STAR],<br/>
-                &nbsp;&nbsp;&nbsp;&nbsp;"stddev": [STANDARD DEVIATION],<br/>
-                &nbsp;&nbsp;&nbsp;&nbsp;"variance": [VARIANCE]<br/>
-                &nbsp;&nbsp;}<br/>
-                }
-            </samp>
-        </p>
-    </li>
-</ul>
+    <h3>License and Legal Agreement</h3>
+    <ul>
+        <li>
+            By using your access token, you agree to consume this service at your own risk.
+        </li>
+        <li>
+            Be aware that RAASTA is in a pretty early stage: Don't connect it to life monitors or bet your marriage on
+            it
+            (yet).
+        </li>
+        <li>
+            You own your data: we will soon add endpoints to export it.
+        </li>
+        <li>
+            Given you are only providing the IDs of your internal entities and user representation, RAASTA does not keep
+            any
+            copy of your data beyond these ratings.
+        </li>
+    </ul>
+</div>
+
+<div class="container">
+    <h1 id="contact" class="page-header">
+        <a class="anchorjs-link " href="#contact" aria-label="Anchor link for: contact" data-anchorjs-icon=""
+           style="font-family: anchorjs-icons; font-style: normal; font-variant-ligatures: normal; font-variant-position: normal; font-variant-caps: normal; font-variant-numeric: normal; font-variant-alternates: normal; font-variant-east-asian: normal; font-weight: normal; position: absolute; margin-left: -1em; padding-right: 0.5em;">
+        </a>
+        Contact
+    </h1>
+    <p>
+        Created and maintained by
+    </p>
+    <ul>
+        <li>Felipe Baytelman: Software engineer, Experience Designer
+            <ul>
+                <li>Twitter <a href="http://twitter.com/baytelman" target="_blank">@baytelman</a></li>
+                <li>GitHub <a href="http://github.com/baytelman" target="_blank">@baytelman</a></li>
+                <li>LinkedIn <a href="https://www.linkedin.com/in/baytelman" target="_blank">in/baytelman</a></li>
+            </ul>
+        </li>
+        <li>Thanks to Sepehr</li>
+        <li>Interested in collaborating? Contact us on <a href="http://twitter.com/baytelman"
+                                                          target="_blank">twitter</a>!
+        </li>
+    </ul>
+
+    <h3><a name="improve"></a>Help improve RAASTA</h3>
+    <p>Do you want to help improve RASTA? Take this one-question survey to choose
+        <a href="http://goo.gl/forms/sjMEedCVdF" target="_blank">what feature we should add next!</a>
+    </p>
+</div>
+
+<div class="container">
+    <hr>
+
+    <footer>
+        <p>© 2016 Felipe Baytelman.</p>
+    </footer>
+</div>
 
 
-<a name="about"><h2>About RAASTA</h2></a>
-
-<h3>License and Legal Agreement</h3>
-<ul>
-    <li>
-        By using your access token, you agree to consume this service at your own risk.
-    </li>
-    <li>
-        Be aware that RAASTA is in a pretty early stage: Don't connect it to life monitors or bet your marriage on it (yet).
-    </li>
-    <li>
-        You own your data: we will soon add endpoints to export it.
-    </li>
-    <li>
-        Given you are only providing the IDs of your internal entities and user representation, RAASTA does not keep any copy of your data beyond these ratings.
-    </li>
-</ul>
-
-<h3>Tech Stack and Development Practices</h3>
-<ul>
-    <li>Server: NodeJS (v5.7) and Express (v4.x)
-        <ul>
-            <li>Mocha (2.x) and Chai (2.x) for TDD</li>
-        </ul>
-    </li>
-    <li>Database: Postgres (v9.x) with an Append-Only data model</li>
-    <li>Hosting: Heroku</li>
-    <li>Monitoring: NewRelic APM</li>
-    <li>Logging: Papertrail</li>
-    <li>CI: Wercker</li>
-</ul>
-
-<h3>Performance</h3>
-<ul>
-    <li>PUT /app/v1/ratings: ~8.4ms</li>
-    <li>GET /app/v1/ratings: ~7.7ms</li>
-</ul>
-
-<h3>Team</h3>
-<p>
-    Created and maintained by
-</p>
-<ul>
-    <li><a name="contact">Felipe Baytelman: Software engineer, Experience Designer</a>
-        <ul>
-            <li>Twitter <a href="http://twitter.com/baytelman" target="_blank">@baytelman</a></li>
-            <li>GitHub <a href="http://github.com/baytelman" target="_blank">@baytelman</a></li>
-            <li>LinkedIn <a href="https://www.linkedin.com/in/baytelman" target="_blank">in/baytelman</a></li>
-        </ul>
-    </li>
-    <li>Thanks to Sepehr</li>
-    <li>Interested in collaborating? Contact us on <a href="http://twitter.com/baytelman" target="_blank">twitter</a>!</li>
-</ul>
-<h3>Motivation</h3>
-<ul>
-    <li>
-        Along our careers, we've witnessed multiple teams struggling to solve the user-ratings problem in an effective, efficient way.
-        RAASTA intends to summarize these learnings, by focusing on performance and simplicity.
-    </li>
-    <li>RAASTA was conceived as an experimental project, to measure the Time-To-Market
-        of a new service based on NodeJS+Express, and to test the performance of NodeJS with a Postgres DB.</li>
-</ul>
 <script>
     mixpanel.track("index");
 </script>
