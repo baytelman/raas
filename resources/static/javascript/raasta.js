@@ -56,8 +56,10 @@ raasta.get = function(params) {
     var key3 = params.key3;
     var display = params.display;
     var style = params.style;
-    if (! display && ! style) {
-        throw new Error("[RAASTA] Params must include either display or style, or both.");
+    var success = params.success;
+
+    if (! display && ! style && ! success) {
+        throw new Error("[RAASTA] Params must include at least display, style or success.");
     }
 
     var url = raasta.host + "/api/v1/ratings?token=" + raasta.token;
@@ -73,7 +75,6 @@ raasta.get = function(params) {
     raasta._send("GET", url, function(response) {
         var average = response.stats.average;
         var count = response.stats.count;
-
         if (display) {
             var element = (typeof(display) == "string") ? document.getElementById(display) : display;
             if (average) {
@@ -91,6 +92,10 @@ raasta.get = function(params) {
             }
             cName += " " + raasta._classNameForAverage(average);
             element.className = cName;
+        }
+
+        if (success) {
+            success(response.stats);
         }
     });
 };
