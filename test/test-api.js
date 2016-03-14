@@ -3,7 +3,7 @@ var chaiHttp = require('chai-http');
 var server = require('../src/app');
 var should = chai.should();
 
-var productsDao = require('../src/dao/products');
+var projectsDao = require('../src/dao/projects');
 
 /* Check we are NOT going to kill the main DB */
 var config = require('../src/config');
@@ -31,21 +31,21 @@ var currentToken = null;
 chai.use(chaiHttp);
 describe('Ratings', function() {
     beforeEach(function(done){
-        productsDao.insertNewProduct(function(productId) {
-            productsDao.getAccessTokenForProduct(productId, function(accessToken) {
+        projectsDao.insertNewProject(function(projectId) {
+            projectsDao.getAccessTokenForProject(projectId, function(accessToken) {
                 currentToken = accessToken;
                 done();
             });
         });
     });
-    it('should create the PRODCTS and TOKENS', function(done) {
+    it('should create the PROJECTS and TOKENS', function(done) {
         chai.request(server)
-            .put('/api/v1/products?email=test@test')
+            .put('/api/v1/projects?email=test@test')
             .end(function(err, res) {
                 res.should.have.status(200);
                 res.should.be.json;
                 res.body.should.be.a('object');
-                res.body.should.have.property('product_id');
+                res.body.should.have.property('project_id');
                 res.body.should.have.property('email');
                 done();
             });

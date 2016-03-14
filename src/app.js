@@ -4,7 +4,7 @@ if (process.env.ENV == 'prod') require('newrelic');
 var express = require('express');
 
 var ratingsResource = require('./resource/ratings.js');
-var productsResource = require('./resource/products.js');
+var projectsResource = require('./resource/projects.js');
 
 /* Configure the app */
 var config = require('./config.js');
@@ -37,8 +37,8 @@ if (process.env.APP == 'web') {
 
     var base_url = '/api/v1/';
     app.get(base_url + 'version', ratingsResource.version);
-    app.put(base_url + 'products', productsResource.insert);
-    app.post(base_url + 'products', productsResource.insert);
+    app.put(base_url + 'projects', projectsResource.insert);
+    app.post(base_url + 'projects', projectsResource.insert);
 
     app.get(base_url + 'ratings', ratingsResource.stats);
     app.put(base_url + 'ratings', ratingsResource.insert);
