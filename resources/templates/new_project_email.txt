@@ -1,7 +1,7 @@
 Welcome to RAASTA - Ratings as a Service
 
-Your product has been created in our system:
-- Product ID: {product_id}
+Your project has been created in our system:
+- Project ID: {project}
 
 In order to use our APIs, you will need the following access token:
 - Access Token: {access_token}
