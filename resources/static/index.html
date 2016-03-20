@@ -11,7 +11,8 @@
 mixpanel.init("b29b41ff48abeec3b8a8c8cf8d3241b0");</script><!-- end Mixpanel -->
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
-          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous" />
+    <link rel="stylesheet" href="/styles/styles.css" />
     <style>
         token {
             color: darkred;
@@ -28,60 +29,6 @@ mixpanel.init("b29b41ff48abeec3b8a8c8cf8d3241b0");</script><!-- end Mixpanel -->
         key1 {
             color: darkgreen;
         }
-
-        .star {
-            display: inline-blockblock;
-            width: 32px;
-            height: 30px;
-            background: url("/images/raasta_ratings.png") 0 -150px;
-            background-size: 160px 180px;
-        }
-
-        .style_element {
-            display: block;
-            width: 160px;
-            height: 30px;
-            background: url("/images/raasta_ratings.png") 0 0px;
-            background-size: 160px 180px;
-        }
-
-        .style_element.raasta_5_0 {
-            background-position: 0 -150px;
-            width: 160px;
-        }
-        .style_element.raasta_4_0 {
-            background-position: 0 -150px;
-            width: 128px;
-        }
-        .style_element.raasta_3_0 {
-            background-position: 0 -150px;
-            width: 96px;
-        }
-        .style_element.raasta_2_0 {
-            background-position: 0 -150px;
-            width: 64px;
-        }
-        .style_element.raasta_1_0 {
-            background-position: 0 -150px;
-            width: 32px;
-        }
-        .style_element.raasta_4_5 {
-            background-position: 0 -150px;
-            width: 144px;
-        }
-        .style_element.raasta_3_5 {
-            background-position: 0 -150px;
-            width: 112px;
-        }
-        .style_element.raasta_2_5 {
-            background-position: 0 -150px;
-            width: 80px;
-        }
-        .style_element.raasta_1_5 {
-            background-position: 0 -150px;
-            width: 48px;
-        }
-
     </style>
 </head>
 <body role="documemt">
@@ -245,7 +192,7 @@ mixpanel.init("b29b41ff48abeec3b8a8c8cf8d3241b0");</script><!-- end Mixpanel -->
 
                 var demoRate = function (rating) {
                     var className = raasta.rate({key1: demoItem, rating: rating, success: demoRateSuccess});
-                    document.getElementById("demo_get_result_style").className = "style_element " + className;
+                    document.getElementById("demo_get_result_style").className = "raasta_stars " + className;
                 };
                 var demoRateSuccess = function (result) {
                     document.getElementById("demo_get_result").textContent = JSON.stringify(result);
@@ -269,7 +216,7 @@ mixpanel.init("b29b41ff48abeec3b8a8c8cf8d3241b0");</script><!-- end Mixpanel -->
                 </tr>
                 <tr>
                     <td>
-                        <span class="style_element" id="demo_get_result_style"></span>
+                        <span class="raasta_stars" id="demo_get_result_style"></span>
                     </td>
                 </tr>
             </table>
@@ -330,13 +277,13 @@ mixpanel.init("b29b41ff48abeec3b8a8c8cf8d3241b0");</script><!-- end Mixpanel -->
                     set the <u>content</u> of DOM element [DISPLAY_ELEMENT_ID], and
                 </li>
                 <li>
-                    set the <u>style</u> of DOM element [STYLE_ELEMENT_ID].
+                    set the <u>style</u> of DOM element [raasta_stars_ID].
                 </li>
             </ul>
 
             <script>
                 var demoGet = function () {
-                    raasta.get({key1: demoItem, display: "display_element_id", style: "style_element_id"})
+                    raasta.get({key1: demoItem, display: "display_element_id", style: "raasta_stars_id"})
                 };
             </script>
             <p>
@@ -357,7 +304,7 @@ mixpanel.init("b29b41ff48abeec3b8a8c8cf8d3241b0");</script><!-- end Mixpanel -->
                 <tr>
                     <td>Style element:</td>
                     <td>
-                        <span class="style_element" id="style_element_id"></span>
+                        <span class="raasta_stars" id="raasta_stars_id"></span>
                     </td>
                 </tr>
             </table>
@@ -383,7 +330,7 @@ mixpanel.init("b29b41ff48abeec3b8a8c8cf8d3241b0");</script><!-- end Mixpanel -->
                     <key1>key1:[ITEM_ID]</key1>
                     , // optional <br/>
                     &nbsp;&nbsp;&nbsp;&nbsp;display:[DISPLAY_ELEMENT_ID], // optional <br/>
-                    &nbsp;&nbsp;&nbsp;&nbsp;style:[STYLE_ELEMENT_ID] // optional <br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;style:[raasta_stars_ID] // optional <br/>
                     &nbsp;&nbsp;});<br/>
                     &lt;/script&gt;
                 </code>

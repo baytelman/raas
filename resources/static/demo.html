@@ -8,22 +8,24 @@
 
         var refresh = function() {
             for (var id = 10001; id <= 10004; id++) {
-                raasta.get({key1: 'id-' + id, display: 'rating_id_' + id});
+                raasta.get({key1: 'id-' + id, display: 'rating_id_' + id, style: 'stars_id_' + id });
             }
         };
 
         refresh();
     </script>
+    <link rel="stylesheet" href="https://get-raasta.herokuapp.com/styles/styles.css" />
 </head>
 <body>
 <h1>Bob's Furniture</h1>
 <table border="1" cellpadding="5">
     <tr>
-        <td>Product</td><td>SKU</td><td>Rating</td><td>Rate!</td>
+        <td>Product</td><td>SKU</td><td colspan="2">Rating</td><td>Rate!</td>
     </tr>
     <tr>
         <td>Love Seat</td>
         <td>id-10001</td>
+        <td><span class="raasta_stars" id="stars_id_10001"></span></td>
         <td id="rating_id_10001">???</td>
         <td>
             <a href="javascript:" onclick="raasta.rate({key1:'id-10001', rating:1, success: refresh});">[1]</a>
@@ -36,6 +38,7 @@
     <tr>
         <td>Dinner Table</td>
         <td>id-10002</td>
+        <td><span class="raasta_stars" id="stars_id_10002"></span></td>
         <td id="rating_id_10002">???</td>
         <td>
             <a href="javascript:" onclick="raasta.rate({key1:'id-10002', rating:1, success: refresh});">[1]</a>
@@ -48,6 +51,7 @@
     <tr>
         <td>Bed Frame</td>
         <td>id-10003</td>
+        <td><span class="raasta_stars" id="stars_id_10003"></span></td>
         <td id="rating_id_10003">???</td>
         <td>
             <a href="javascript:" onclick="raasta.rate({key1:'id-10003', rating:1, success: refresh});">[1]</a>
@@ -60,6 +64,7 @@
     <tr>
         <td>Kitchen Counter</td>
         <td>id-10004</td>
+        <td><span class="raasta_stars" id="stars_id_10004"></span></td>
         <td id="rating_id_10004">???</td>
         <td>
             <a href="javascript:" onclick="raasta.rate({key1:'id-10004', rating:1, success: refresh});">[1]</a>
