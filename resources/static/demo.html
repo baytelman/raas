@@ -4,14 +4,13 @@
     <script>
         var demoToken = "df3a9d58-8c13-4d9c-9b13-46f032704ef0";
         var demoUser = "demo-user";
-        raasta.init(demoToken, demoUser);
-
         var refresh = function() {
-            for (var id = 10001; id <= 10004; id++) {
-                raasta.get({key1: 'id-' + id, display: 'rating_id_' + id, style: 'stars_id_' + id });
-            }
+          raasta.get({key1: 'id-10001', display: 'rating_id_10001', style: 'stars_id_10001'});
+          raasta.get({key1: 'id-10002', display: 'rating_id_10002', style: 'stars_id_10002'});
+          raasta.get({key1: 'id-10003', display: 'rating_id_10003', style: 'stars_id_10003'});
+          raasta.get({key1: 'id-10004', display: 'rating_id_10004', style: 'stars_id_10004'});
         };
-
+        raasta.init(demoToken, demoUser);
         refresh();
     </script>
     <link rel="stylesheet" href="https://get-raasta.herokuapp.com/styles/styles.css" />
