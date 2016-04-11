@@ -12,11 +12,10 @@ if (config.db.url.indexOf('test') <= 0 && config.db.url.indexOf('travis') <= 0) 
 }
 
 /*
-WHILE RUNNING TESTS, WE DISABLE "console.info"
-Use console.log or other functions (debug/error) to output to console during tests: */
+ WHILE RUNNING TESTS, WE DISABLE "console.info"
+ Use console.log or other functions (debug/error) to output to console during tests: */
 console.info = function() {};
 
-const TOKEN = "test_token_" + new Date().getTime();
 const KEY_1 = 100;
 const KEY_1B = 101;
 const KEY_2 = 200;
@@ -25,11 +24,11 @@ const RATE_OK = 3;
 const RATE_BAD = 1;
 const USER_ID = 9;
 
-var tokenCount = 0;
 var currentToken = null;
 
 chai.use(chaiHttp);
-describe('Ratings', function() {
+
+describe('Projects', function() {
     beforeEach(function(done){
         projectsDao.insertNewProject(function(projectId) {
             projectsDao.getAccessTokenForProject(projectId, function(accessToken) {
@@ -50,6 +49,17 @@ describe('Ratings', function() {
                 done();
             });
     });
+});
+
+describe('Ratings', function() {
+    beforeEach(function(done){
+        projectsDao.insertNewProject(function(projectId) {
+            projectsDao.getAccessTokenForProject(projectId, function(accessToken) {
+                currentToken = accessToken;
+                done();
+            });
+        });
+    });
     it('should insert a SINGLE rating on /ratings PUT', function(done) {
         chai.request(server)
             .put('/api/v1/ratings?token=' + currentToken + '&user=' + USER_ID + '&rating=' + RATE_GOOD + '&key1=' + KEY_1)
@@ -60,7 +70,7 @@ describe('Ratings', function() {
                 done();
             });
     });
-    it('puting a GOOD RATING will provide GOOD RATING average', function(done) {
+    it('putting a GOOD RATING will provide GOOD RATING average', function(done) {
         chai.request(server)
             .put('/api/v1/ratings?token=' + currentToken + '&user=' + USER_ID + '&rating=' + RATE_GOOD + '&key1=' + KEY_1)
             .end(function(err, res){
@@ -106,6 +116,7 @@ describe('Ratings', function() {
                                         res.body.stats.average.should.equal((RATE_GOOD + RATE_OK)/2.0);
                                         res.body.stats.count.should.equal(2);
                                         res.body.stats.count5.should.equal(1);
+                                        res.body.stats.count3.should.equal(1);
                                         res.body.stats.count1.should.equal(0);
 
                                         res.body.stats.should.have.property('stddev');
@@ -163,6 +174,56 @@ describe('Ratings', function() {
                                         done();
                                     });
                             });
+                    });
+            });
+    });
+});
+
+describe('Reviews', function() {
+    beforeEach(function(done){
+        projectsDao.insertNewProject(function(projectId) {
+            projectsDao.getAccessTokenForProject(projectId, function(accessToken) {
+                currentToken = accessToken;
+                done();
+            });
+        });
+    });
+    it('New project has no reviews', function(done) {
+        chai.request(server)
+            .get('/api/v1/reviews?token=' + currentToken + '&key2=' + KEY_2)
+            .end(function(err, res) {
+                res.should.have.status(200);
+                res.should.be.json;
+                res.body.should.be.a('object');
+                res.body.should.have.property('reviews');
+                res.body.reviews.should.be.empty;
+
+                done();
+            });
+    });
+    it('should insert a SINGLE reviews on /reviews PUT', function(done) {
+        var review = {
+            title: "Test review title",
+            body: "Test review body",
+        };
+        chai.request(server)
+            .put('/api/v1/reviews?token=' + currentToken + '&user=' + USER_ID + '&key1=' + KEY_1)
+            .send(review)
+            .end(function(err, res){
+                res.should.have.status(200);
+                res.should.be.json;
+                res.body.should.be.a('object');
+
+                chai.request(server)
+                    .get('/api/v1/reviews?token=' + currentToken + '&key1=' + KEY_1)
+                    .end(function(err, res) {
+                        res.should.have.status(200);
+                        res.should.be.json;
+                        res.body.should.be.a('object');
+                        res.body.should.have.property('reviews');
+                        res.body.reviews.should.be.not.empty;
+                        res.body.reviews[0].should.deep.equal(review);
+                        done();
                     });
             });
     });

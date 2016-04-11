@@ -1,0 +1,89 @@
+
+.raasta_stars {
+    display: block;
+    width: 160px;
+    height: 30px;
+    background-size: 32px 90px;
+}
+
+.raasta_stars.raasta_5_0 {
+    background:
+        url("/images/raasta_ratings_single_star.png") 0px -60px no-repeat,
+        url("/images/raasta_ratings_single_star.png") 32px -60px no-repeat,
+        url("/images/raasta_ratings_single_star.png") 64px -60px no-repeat,
+        url("/images/raasta_ratings_single_star.png") 96px -60px no-repeat,
+        url("/images/raasta_ratings_single_star.png") 128px -60px no-repeat;
+    background-size: 32px 90px;
+}
+.raasta_stars.raasta_4_0 {
+    background:
+        url("/images/raasta_ratings_single_star.png") 0px -60px no-repeat,
+        url("/images/raasta_ratings_single_star.png") 32px -60px no-repeat,
+        url("/images/raasta_ratings_single_star.png") 64px -60px no-repeat,
+        url("/images/raasta_ratings_single_star.png") 96px -60px no-repeat,
+        url("/images/raasta_ratings_single_star.png") 128px 0px no-repeat;
+    background-size: 32px 90px;
+}
+.raasta_stars.raasta_3_0 {
+    background:
+        url("/images/raasta_ratings_single_star.png") 0px -60px no-repeat,
+        url("/images/raasta_ratings_single_star.png") 32px -60px no-repeat,
+        url("/images/raasta_ratings_single_star.png") 64px -60px no-repeat,
+        url("/images/raasta_ratings_single_star.png") 96px 0px no-repeat,
+        url("/images/raasta_ratings_single_star.png") 128px 0px no-repeat;
+    background-size: 32px 90px;
+}
+.raasta_stars.raasta_2_0 {
+    background:
+        url("/images/raasta_ratings_single_star.png") 0px -60px no-repeat,
+        url("/images/raasta_ratings_single_star.png") 32px -60px no-repeat,
+        url("/images/raasta_ratings_single_star.png") 64px 0px no-repeat,
+        url("/images/raasta_ratings_single_star.png") 96px 0px no-repeat,
+        url("/images/raasta_ratings_single_star.png") 128px 0px no-repeat;
+    background-size: 32px 90px;
+}
+.raasta_stars.raasta_1_0 {
+    background:
+        url("/images/raasta_ratings_single_star.png") 0px -60px no-repeat,
+        url("/images/raasta_ratings_single_star.png") 32px 0px no-repeat,
+        url("/images/raasta_ratings_single_star.png") 64px 0px no-repeat,
+        url("/images/raasta_ratings_single_star.png") 96px 0px no-repeat,
+        url("/images/raasta_ratings_single_star.png") 128px 0px no-repeat;
+    background-size: 32px 90px;
+}
+.raasta_stars.raasta_4_5 {
+    background:
+        url("/images/raasta_ratings_single_star.png") 0px -60px no-repeat,
+        url("/images/raasta_ratings_single_star.png") 32px -60px no-repeat,
+        url("/images/raasta_ratings_single_star.png") 64px -60px no-repeat,
+        url("/images/raasta_ratings_single_star.png") 96px -60px no-repeat,
+        url("/images/raasta_ratings_single_star.png") 128px -30px no-repeat;
+    background-size: 32px 90px;
+}
+.raasta_stars.raasta_3_5 {
+    background:
+        url("/images/raasta_ratings_single_star.png") 0px -60px no-repeat,
+        url("/images/raasta_ratings_single_star.png") 32px -60px no-repeat,
+        url("/images/raasta_ratings_single_star.png") 64px -60px no-repeat,
+        url("/images/raasta_ratings_single_star.png") 96px -30px no-repeat,
+        url("/images/raasta_ratings_single_star.png") 128px 0px no-repeat;
+    background-size: 32px 90px;
+}
+.raasta_stars.raasta_2_5 {
+    background:
+        url("/images/raasta_ratings_single_star.png") 0px -60px no-repeat,
+        url("/images/raasta_ratings_single_star.png") 32px -60px no-repeat,
+        url("/images/raasta_ratings_single_star.png") 64px -30px no-repeat,
+        url("/images/raasta_ratings_single_star.png") 96px 0px no-repeat,
+        url("/images/raasta_ratings_single_star.png") 128px 0px no-repeat;
+    background-size: 32px 90px;
+}
+.raasta_stars.raasta_1_5 {
+    background:
+        url("/images/raasta_ratings_single_star.png") 0px -60px no-repeat,
+        url("/images/raasta_ratings_single_star.png") 32px -30px no-repeat,
+        url("/images/raasta_ratings_single_star.png") 64px 0px no-repeat,
+        url("/images/raasta_ratings_single_star.png") 96px 0px no-repeat,
+        url("/images/raasta_ratings_single_star.png") 128px 0px no-repeat;
+    background-size: 32px 90px;
+}
