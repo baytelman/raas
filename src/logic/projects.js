@@ -1,6 +1,7 @@
 var format = require("string-template")
 var nodemailer = require('nodemailer');
 var smtpTransport = require('nodemailer-smtp-transport');
+var git = require('git-rev');
 
 var projectsDao = require("../dao/projects");
 
@@ -22,7 +23,14 @@ var emailWelcomeString = fs.readFileSync('resources/templates/new_project_email.
 var introString = fs.readFileSync('resources/templates/intro.txt', 'utf-8');
 
 module.exports = {
-
+    getVersion: function(callback) {
+        git.short(function (hash) {
+            callback({
+                commit: hash,
+                version: 1
+            });
+        });
+    },
     createNewProjectAndSendToken: function(email, callback) {
         projectsDao.insertNewProject(function(projectId) {
 

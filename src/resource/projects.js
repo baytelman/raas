@@ -1,9 +1,14 @@
 "use strict";
 
-var config = require('../config.js');
 var projectsLogic = require('../logic/projects.js');
 
 module.exports = {
+    version: function(req, res) {
+        console.track('api-version');
+        projectsLogic.getVersion(function(version) {
+            res.send(version);
+        });
+    },
     insert: function(req, res) {
         var email = req.query.email;
         projectsLogic.createNewProjectAndSendToken(email, function(projectId, email) {

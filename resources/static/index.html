@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>RAASTA - Ratings as a Service</title>
+    <title>RAASTA - Ratings &amp; Reviews as a Service</title>
     <script src="/javascript/libs/jquery-2.2.1.min.js"></script>
     <script src="/javascript/raasta.js"></script>
 
@@ -39,10 +39,10 @@ mixpanel.init("b29b41ff48abeec3b8a8c8cf8d3241b0");</script><!-- end Mixpanel -->
 
 <div class="jumbotron">
     <div class="container">
-        <h1>RAASTA - Ratings as a Service</h1>
-        <h2>Add ratings to anything in your app&mdash; with one line.</h2>
+        <h1>Ratings &amp; Reviews as a Service</h1>
+        <h2>Add ratings and reviews to anything in your app&mdash; with one line.</h2>
         <p>
-            RAASTA is a set of high-performing APIs, allowing your team to quickly add User-Ratings support (track and
+            RAASTA is a set of high-performing APIs, allowing your team to quickly add User-Ratings+Reviews support (track and
             display) to your applications.
             Out-of-the box, RAASTA includes both high-level javascript client and low-level REST API access, so you can
             choose how to integrate RAASTA into your app.
@@ -61,7 +61,7 @@ mixpanel.init("b29b41ff48abeec3b8a8c8cf8d3241b0");</script><!-- end Mixpanel -->
         <div class="col-md-4">
             <h2>Easy</h2>
             <p>
-                RAASTA's client-side Javascript library wraps everything you need to quickly add user-ratings to your
+                RAASTA's client-side Javascript library wraps everything you need to quickly add user-ratings+reviews to your
                 web-app.
                 Run these functions directly in your front-end code, without having to change anything in your
                 backend.
@@ -72,7 +72,7 @@ mixpanel.init("b29b41ff48abeec3b8a8c8cf8d3241b0");</script><!-- end Mixpanel -->
             <h2>Flexible</h2>
             <p>
                 Do you need more control? Don't want to expose your tokens?
-                Call RAASTA directly from your backend stack, using standarized REST APIs to access the complete
+                Call RAASTA directly from your backend stack, using standard REST APIs to access the complete
                 functionality of RAASTA.
 
             </p>
@@ -135,11 +135,11 @@ mixpanel.init("b29b41ff48abeec3b8a8c8cf8d3241b0");</script><!-- end Mixpanel -->
             <!--            <p><a class="btn btn-default" href="#" role="button">Register »</a></p> -->
         </div>
         <div class="col-md-4">
-            <h2>Gather user-ratings</h2>
+            <h2>Gather ratings &amp; reviews</h2>
             <p>
                 Call RAASTA's <code>rate</code> function from your custom input component,
                 or include one of the predefined user-rating UI components.
-                You can store ratings for a specific item,
+                You can store ratings and reviews for a specific item,
                 but also for its category, its parent structure or any other relation.
             </p>
             <p><a class="btn btn-default disabled" href="#" role="button">View tutorial (SOON) »</a></p>
@@ -161,7 +161,7 @@ mixpanel.init("b29b41ff48abeec3b8a8c8cf8d3241b0");</script><!-- end Mixpanel -->
         <a class="anchorjs-link " href="#usage" aria-label="Anchor link for: usage" data-anchorjs-icon=""
            style="font-family: anchorjs-icons; font-style: normal; font-variant-ligatures: normal; font-variant-position: normal; font-variant-caps: normal; font-variant-numeric: normal; font-variant-alternates: normal; font-variant-east-asian: normal; font-weight: normal; position: absolute; margin-left: -1em; padding-right: 0.5em;">
         </a>
-        Usage: Client-side Javascript Library
+        Usage: Client-side Javascript Library (ratings only, soon reviews)
     </h1>
 
     <ul>
@@ -342,11 +342,11 @@ mixpanel.init("b29b41ff48abeec3b8a8c8cf8d3241b0");</script><!-- end Mixpanel -->
         <a class="anchorjs-link " href="#usage" aria-label="Anchor link for: api_usage" data-anchorjs-icon=""
            style="font-family: anchorjs-icons; font-style: normal; font-variant-ligatures: normal; font-variant-position: normal; font-variant-caps: normal; font-variant-numeric: normal; font-variant-alternates: normal; font-variant-east-asian: normal; font-weight: normal; position: absolute; margin-left: -1em; padding-right: 0.5em;">
         </a>
-        Usage: Low-level REST API requests
+        Usage: Low-level REST API requests (ratings &amp; reviews)
     </h1>
     <ul>
         <li>
-            <h4>Store user-ratings</h4>
+            <h4>Ratings: Store</h4>
 
             <p>
                 Call this low-level end-point from website or backend.
@@ -362,8 +362,7 @@ mixpanel.init("b29b41ff48abeec3b8a8c8cf8d3241b0");</script><!-- end Mixpanel -->
             </p>
         </li>
         <li>
-            <h4>Retrieve average user-ratings for an
-                <key1>item or service</key1>
+            <h4>Ratings: Retrieve average and other stats for an <key1>item or service</key1>
             </h4>
 
             <p>
@@ -371,11 +370,7 @@ mixpanel.init("b29b41ff48abeec3b8a8c8cf8d3241b0");</script><!-- end Mixpanel -->
             </p>
 
             <code>
-                <b>curl -X GET</b> "https://raasta.heroku.com/api/v1/ratings?
-                <token>token=[ACCESS_TOKEN]</token>
-                &
-                <key1>key1=[ITEM_ID]</key1>
-                "
+                <b>curl -X GET</b> "https://raasta.heroku.com/api/v1/ratings?<token>token=[ACCESS_TOKEN]</token>&<key1>key1=[ITEM_ID]</key1>"
             </code>
             <p>
                 Retrieved statistics of User-Ratings for
@@ -400,6 +395,66 @@ mixpanel.init("b29b41ff48abeec3b8a8c8cf8d3241b0");</script><!-- end Mixpanel -->
                     &nbsp;&nbsp;&nbsp;&nbsp;"stddev": [STANDARD DEVIATION],<br/>
                     &nbsp;&nbsp;&nbsp;&nbsp;"variance": [VARIANCE]<br/>
                     &nbsp;&nbsp;}<br/>
+                    }
+                </samp>
+            </p>
+        </li>
+        <li>
+            <h4>Reviews: Store</h4>
+
+            <p>
+                Call this low-level end-point from website or backend.
+                <br/>
+            <code>
+                <b> curl -X PUT </b> "https://raasta.heroku.com/api/v1/reviews?<token>token=[ACCESS_TOKEN]</token>&<user>user=[USER_ID]</user>&<key1>key1=[ITEM_ID]</key1>"
+            </code>
+            </p>
+            <p>
+            Body:
+                <br/>
+            <code>
+                { <b>title</b>: "The title of the review", <b>body</b>: "Long text to completely describe the user's opinion for this item" }
+            </code>
+            </p>
+            <p>
+                A User-Review for
+                <key1>item or service [ITEM_ID]</key1>
+                will be stored.
+            </p>
+        </li>
+        <li>
+            <h4>Reviews: Retrieve latest reviews for an <key1>item or service</key1>
+            </h4>
+
+            <p>
+                Retrieve the latest reviews (up to 30) for a specific item, so you can pass the value to your frontend/UI.
+            </p>
+
+            <code>
+                <b>curl -X GET</b> "https://raasta.heroku.com/api/v1/reviews?<token>token=[ACCESS_TOKEN]</token>&<key1>key1=[ITEM_ID]</key1>"
+            </code>
+            <p>
+                A list of most recent reviews (descending) for the
+                <key1>item or service [ITEM_ID]</key1>
+                will be returned.<br/>
+                <samp>
+                    {<br/>
+                    &nbsp;&nbsp;"message": "reviews",<br/>
+                    &nbsp;&nbsp;"params": {<br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <key1>"key1": [ITEM_ID]</key1>
+                    <br/>
+                    &nbsp;&nbsp;}<br/>
+                    &nbsp;&nbsp;"reviews": [<br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"title": [REVIEW_1 TITLE],<br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"body": [REVIEW_1 BODY],<br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"user_id": [REVIEW_1 USER],<br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"timestamp": [REVIEW_1 TIMESTAMP]<br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;}, {<br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...<br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+                    &nbsp;&nbsp;]<br/>
                     }
                 </samp>
             </p>
