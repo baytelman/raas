@@ -1,15 +1,12 @@
 "use strict";
 
-var config = require('../config.js');
 var projectsLogic = require('../logic/projects.js');
 
 module.exports = {
     version: function(req, res) {
         console.track('api-version');
-        git.short(function (hash) {
-            res.send({
-                commit: hash
-            });
+        projectsLogic.getVersion(function(version) {
+            res.send(version);
         });
     },
     insert: function(req, res) {

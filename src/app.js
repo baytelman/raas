@@ -41,7 +41,7 @@ if (process.env.APP == 'web') {
     app.use("/javascript", express.static('resources/static/javascript'));
 
     var base_url = '/api/v1/';
-    app.get(base_url + 'version', ratingsResource.version);
+    app.get(base_url + 'version', projectsResource.version);
     app.put(base_url + 'projects', projectsResource.insert);
     app.post(base_url + 'projects', projectsResource.insert);
 

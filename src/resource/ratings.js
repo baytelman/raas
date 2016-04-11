@@ -1,18 +1,9 @@
 "use strict";
 
-var git = require('git-rev');
 var ratingsDao = require('../dao/ratings.js');
 var validation = require('../utils/validation.js');
 
 module.exports = {
-    version: function(req, res) {
-        console.track('api-version');
-        git.short(function (hash) {
-            res.send({
-                commit: hash
-            });
-        });
-    },
     insert: function(req, res) {
         if (!validation.validateQueryParams(req, res, ['token', 'user', 'rating'])) {
             console.track('api-ratings-insert-fail');

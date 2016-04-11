@@ -4,6 +4,7 @@ var server = require('../src/app');
 var should = chai.should();
 
 var projectsDao = require('../src/dao/projects');
+var projectsLogic = require('../src/logic/projects');
 
 /* Check we are NOT going to kill the main DB */
 var config = require('../src/config');
@@ -36,6 +37,21 @@ describe('Projects', function() {
                 done();
             });
         });
+    });
+    it('get the right VERSION', function(done) {
+        chai.request(server)
+            .get('/api/v1/version')
+            .end(function(err, res) {
+                res.should.have.status(200);
+                res.should.be.json;
+                res.body.should.be.a('object');
+                res.body.should.have.property('version');
+                res.body.should.have.property('commit');
+                projectsLogic.getVersion(function(version) {
+                    res.body.should.deep.equal(version);
+                    done();
+                });
+            });
     });
     it('should create the PROJECTS and TOKENS', function(done) {
         chai.request(server)
