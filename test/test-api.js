@@ -16,7 +16,6 @@ if (config.db.url.indexOf('test') <= 0 && config.db.url.indexOf('travis') <= 0) 
  Use console.log or other functions (debug/error) to output to console during tests: */
 console.info = function() {};
 
-const TOKEN = "test_token_" + new Date().getTime();
 const KEY_1 = 100;
 const KEY_1B = 101;
 const KEY_2 = 200;
@@ -25,7 +24,6 @@ const RATE_OK = 3;
 const RATE_BAD = 1;
 const USER_ID = 9;
 
-var tokenCount = 0;
 var currentToken = null;
 
 chai.use(chaiHttp);
@@ -209,7 +207,7 @@ describe('Reviews', function() {
             body: "Test review body",
         };
         chai.request(server)
-            .post('/api/v1/reviews?token=' + currentToken + '&user=' + USER_ID + '&key1=' + KEY_1)
+            .put('/api/v1/reviews?token=' + currentToken + '&user=' + USER_ID + '&key1=' + KEY_1)
             .send(review)
             .end(function(err, res){
                 res.should.have.status(200);
