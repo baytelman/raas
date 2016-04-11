@@ -40,13 +40,13 @@ module.exports = {
         pg.connect(config.db.url, function(err, client, done) {
             if (err) throw err;
 
-            client.query('SELECT * FROM ' +
-                '   project_description_log ' +
-                'WHERE ' +
-                '   project_id = $1 ' +
-                'ORDER BY ' +
-                '   timestamp DESC ' +
-                'LIMIT 1',
+            client.query(`
+                SELECT * FROM
+                    project_description_log
+                WHERE
+                    project_id = $1
+                ORDER BY
+                    timestamp DESC LIMIT 1`,
                 [projectId],
                 function(err, result) {
                     done();
@@ -70,12 +70,12 @@ module.exports = {
             project['timestamp'] = undefined;
             project['project_id'] = projectId;
 
-            const DESCRIPTION_INSERT = 'INSERT ' +
-                'INTO project_description_log ' +
-                '   (project_id, name, email, key_1, key_2, key_3) ' +
-                'VALUES ' +
-                '   ($1, $2, $3, $4, $5, $6) ' +
-                'RETURNING project_id';
+            const DESCRIPTION_INSERT = `
+                INSERT INTO project_description_log
+                    (project_id, name, email, key_1, key_2, key_3)
+                VALUES
+                    ($1, $2, $3, $4, $5, $6)
+                RETURNING project_id`;
 
             pg.connect(config.db.url, function(err, client, done) {
                 if (err) throw err;
