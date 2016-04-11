@@ -18,6 +18,7 @@ exports.up = function(pgm) {
     pgm.createIndex('reviews', ['user_id']);
     pgm.createIndex('reviews', ['timestamp']);
 
+    /* For Append-only tables with update data, use _log naming */
     pgm.renameTable('project_descriptions', 'project_description_log');
 };
 
