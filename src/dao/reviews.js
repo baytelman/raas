@@ -26,7 +26,7 @@ module.exports = {
         });
     },
     latestReviews: function(token, user, key1, key2, key3, reviewsCallback) {
-        const REVIEWS_ALL = `
+        const REVIEWS_LATEST = `
             SELECT
                 title, body
             FROM
@@ -44,7 +44,7 @@ module.exports = {
         pg.connect(config.db.url, function(err, client, done) {
             if (err) throw err;
 
-            client.query(REVIEWS_ALL, [token, user, key1, key2, key3], function(err, result) {
+            client.query(REVIEWS_LATEST, [token, user, key1, key2, key3], function(err, result) {
                 done();
                 if (err) throw err;
 
