@@ -1,0 +1,79 @@
+<html>
+<head>
+    <script src="https://get-raasta.herokuapp.com/javascript/raasta.js"></script>
+    <script>
+        var demoToken = "df3a9d58-8c13-4d9c-9b13-46f032704ef0";
+        var demoUser = "demo-user";
+        var refresh = function() {
+          raasta.get({key1: 'id-10001', display: 'rating_id_10001', style: 'stars_id_10001'});
+          raasta.get({key1: 'id-10002', display: 'rating_id_10002', style: 'stars_id_10002'});
+          raasta.get({key1: 'id-10003', display: 'rating_id_10003', style: 'stars_id_10003'});
+          raasta.get({key1: 'id-10004', display: 'rating_id_10004', style: 'stars_id_10004'});
+        };
+        raasta.init(demoToken, demoUser);
+        refresh();
+    </script>
+    <link rel="stylesheet" href="https://get-raasta.herokuapp.com/styles/styles.css" />
+</head>
+<body>
+<h1>Bob's Furniture</h1>
+<table border="1" cellpadding="5">
+    <tr>
+        <td>Product</td><td>SKU</td><td colspan="2">Rating</td><td>Rate!</td>
+    </tr>
+    <tr>
+        <td>Love Seat</td>
+        <td>id-10001</td>
+        <td><span class="raasta_stars" id="stars_id_10001"></span></td>
+        <td id="rating_id_10001">???</td>
+        <td>
+            <a href="javascript:" onclick="raasta.rate({key1:'id-10001', rating:1, success: refresh});">[1]</a>
+            <a href="javascript:" onclick="raasta.rate({key1:'id-10001', rating:2, success: refresh});">[2]</a>
+            <a href="javascript:" onclick="raasta.rate({key1:'id-10001', rating:3, success: refresh});">[3]</a>
+            <a href="javascript:" onclick="raasta.rate({key1:'id-10001', rating:4, success: refresh});">[4]</a>
+            <a href="javascript:" onclick="raasta.rate({key1:'id-10001', rating:5, success: refresh});">[5]</a>
+        </td>
+    </tr>
+    <tr>
+        <td>Dinner Table</td>
+        <td>id-10002</td>
+        <td><span class="raasta_stars" id="stars_id_10002"></span></td>
+        <td id="rating_id_10002">???</td>
+        <td>
+            <a href="javascript:" onclick="raasta.rate({key1:'id-10002', rating:1, success: refresh});">[1]</a>
+            <a href="javascript:" onclick="raasta.rate({key1:'id-10002', rating:2, success: refresh});">[2]</a>
+            <a href="javascript:" onclick="raasta.rate({key1:'id-10002', rating:3, success: refresh});">[3]</a>
+            <a href="javascript:" onclick="raasta.rate({key1:'id-10002', rating:4, success: refresh});">[4]</a>
+            <a href="javascript:" onclick="raasta.rate({key1:'id-10002', rating:5, success: refresh});">[5]</a>
+        </td>
+    </tr>
+    <tr>
+        <td>Bed Frame</td>
+        <td>id-10003</td>
+        <td><span class="raasta_stars" id="stars_id_10003"></span></td>
+        <td id="rating_id_10003">???</td>
+        <td>
+            <a href="javascript:" onclick="raasta.rate({key1:'id-10003', rating:1, success: refresh});">[1]</a>
+            <a href="javascript:" onclick="raasta.rate({key1:'id-10003', rating:2, success: refresh});">[2]</a>
+            <a href="javascript:" onclick="raasta.rate({key1:'id-10003', rating:3, success: refresh});">[3]</a>
+            <a href="javascript:" onclick="raasta.rate({key1:'id-10003', rating:4, success: refresh});">[4]</a>
+            <a href="javascript:" onclick="raasta.rate({key1:'id-10003', rating:5, success: refresh});">[5]</a>
+        </td>
+    </tr>
+    <tr>
+        <td>Kitchen Counter</td>
+        <td>id-10004</td>
+        <td><span class="raasta_stars" id="stars_id_10004"></span></td>
+        <td id="rating_id_10004">???</td>
+        <td>
+            <a href="javascript:" onclick="raasta.rate({key1:'id-10004', rating:1, success: refresh});">[1]</a>
+            <a href="javascript:" onclick="raasta.rate({key1:'id-10004', rating:2, success: refresh});">[2]</a>
+            <a href="javascript:" onclick="raasta.rate({key1:'id-10004', rating:3, success: refresh});">[3]</a>
+            <a href="javascript:" onclick="raasta.rate({key1:'id-10004', rating:4, success: refresh});">[4]</a>
+            <a href="javascript:" onclick="raasta.rate({key1:'id-10004', rating:5, success: refresh});">[5]</a>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

@@ -3,14 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>RAASTA - Ratings as a Service</title>
+    <script src="/javascript/libs/jquery-2.2.1.min.js"></script>
+    <script src="/javascript/raasta.js"></script>
 
     <!-- start Mixpanel --><script type="text/javascript">(function(e,b){if(!b.__SV){var a,f,i,g;window.mixpanel=b;b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable time_event track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");
     for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=e.createElement("script");a.type="text/javascript";a.async=!0;a.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?MIXPANEL_CUSTOM_LIB_URL:"file:"===e.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";f=e.getElementsByTagName("script")[0];f.parentNode.insertBefore(a,f)}})(document,window.mixpanel||[]);
 mixpanel.init("b29b41ff48abeec3b8a8c8cf8d3241b0");</script><!-- end Mixpanel -->
 
-    <script src="/javascript/raasta.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
-          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous" />
+    <link rel="stylesheet" href="/styles/styles.css" />
     <style>
         token {
             color: darkred;
@@ -27,120 +29,30 @@ mixpanel.init("b29b41ff48abeec3b8a8c8cf8d3241b0");</script><!-- end Mixpanel -->
         key1 {
             color: darkgreen;
         }
-
-        .star {
-            display: inline-blockblock;
-            width: 32px;
-            height: 30px;
-            background: url("/images/raasta_ratings.png") 0 -150px;
-            background-size: 160px 180px;
-        }
-
-        .style_element {
-            display: block;
-            width: 160px;
-            height: 30px;
-            background: url("/images/raasta_ratings.png") 0 0px;
-            background-size: 160px 180px;
-        }
-
-        .style_element.raasta_5_0 {
-            background-position: 0 -150px;
-            width: 160px;
-        }
-        .style_element.raasta_4_0 {
-            background-position: 0 -150px;
-            width: 128px;
-        }
-        .style_element.raasta_3_0 {
-            background-position: 0 -150px;
-            width: 96px;
-        }
-        .style_element.raasta_2_0 {
-            background-position: 0 -150px;
-            width: 64px;
-        }
-        .style_element.raasta_1_0 {
-            background-position: 0 -150px;
-            width: 32px;
-        }
-        .style_element.raasta_4_5 {
-            background-position: 0 -150px;
-            width: 144px;
-        }
-        .style_element.raasta_3_5 {
-            background-position: 0 -150px;
-            width: 112px;
-        }
-        .style_element.raasta_2_5 {
-            background-position: 0 -150px;
-            width: 80px;
-        }
-        .style_element.raasta_1_5 {
-            background-position: 0 -150px;
-            width: 48px;
-        }
-
     </style>
-
 </head>
 <body role="documemt">
 
 <nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
-                    aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">RAASTA</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li><a href="#quick">Quick Start</a></li>
-                <li><a href="#usage">Usage</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <form class="navbar-form navbar-right">
-                <div class="form-group">
-                    <input type="text" placeholder="Email" class="form-control" id="registerEmailField">
-                </div>
-                <!--<div class="form-group">-->
-                    <!--<input type="password" placeholder="Password" class="form-control">-->
-                <!--</div>-->
-                <script>
-                    var submitRegistration = function() {
-                        event.preventDefault();
-                        var email = document.getElementById("registerEmailField").value;
-                        raasta.register({
-                            email:email,
-                            success:function(response) {
-                                console.log(response);
-                                document.location = '/welcome.html';
-                            }
-                        });
-                    };
-                </script>
-                <button class="btn btn-success" onclick="submitRegistration(); return false;">Register</button>
-            </form>
-        </div>
-    </div>
+    <script>$(function() { $('nav').load("templates/navigation.html"); });</script>
 </nav>
 
 <div class="jumbotron">
     <div class="container">
         <h1>RAASTA - Ratings as a Service</h1>
+        <h2>Add ratings to anything in your app&mdash; with one line.</h2>
         <p>
             RAASTA is a set of high-performing APIs, allowing your team to quickly add User-Ratings support (track and
             display) to your applications.
             Out-of-the box, RAASTA includes both high-level javascript client and low-level REST API access, so you can
             choose how to integrate RAASTA into your app.
         </p>
-        <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more »</a></p>
+        <h2>
+            Free for early adopters (and Felipe's friends)
+            <small>First 3 Months&mdash; or until our servers collapse.</small>
+        </h2>
+
+        <!--        <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more »</a></p> -->
     </div>
 </div>
 
@@ -179,6 +91,16 @@ mixpanel.init("b29b41ff48abeec3b8a8c8cf8d3241b0");</script><!-- end Mixpanel -->
 </div>
 
 <div class="container">
+    <h1 id="demo" class="page-header">
+        <a class="anchorjs-link " href="#demo" aria-label="Anchor link for: demo" data-anchorjs-icon=""
+           style="font-family: anchorjs-icons; font-style: normal; font-variant-ligatures: normal; font-variant-position: normal; font-variant-caps: normal; font-variant-numeric: normal; font-variant-alternates: normal; font-variant-east-asian: normal; font-weight: normal; position: absolute; margin-left: -1em; padding-right: 0.5em;">
+        </a>
+        Demo: Bob's Furniture
+    </h1>
+    <iframe width="100%" height="300" src="//jsfiddle.net/baytelman/96yk7fk8/embedded/result,js,html/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+</div>
+
+<div class="container">
     <h1 id="quick" class="page-header">
         <a class="anchorjs-link " href="#quick" aria-label="Anchor link for: quick" data-anchorjs-icon=""
            style="font-family: anchorjs-icons; font-style: normal; font-variant-ligatures: normal; font-variant-position: normal; font-variant-caps: normal; font-variant-numeric: normal; font-variant-alternates: normal; font-variant-east-asian: normal; font-weight: normal; position: absolute; margin-left: -1em; padding-right: 0.5em;">
@@ -207,7 +129,10 @@ mixpanel.init("b29b41ff48abeec3b8a8c8cf8d3241b0");</script><!-- end Mixpanel -->
                 Register your organization and project to receive your access-token.
                 Both the client-side library and the API call will require this token.
             </p>
-            <p><a class="btn btn-default" href="#" role="button">Register »</a></p>
+            <p>
+                Use the upper-right "Register" box to get your access-token.
+            </p>
+            <!--            <p><a class="btn btn-default" href="#" role="button">Register »</a></p> -->
         </div>
         <div class="col-md-4">
             <h2>Gather user-ratings</h2>
@@ -217,7 +142,7 @@ mixpanel.init("b29b41ff48abeec3b8a8c8cf8d3241b0");</script><!-- end Mixpanel -->
                 You can store ratings for a specific item,
                 but also for its category, its parent structure or any other relation.
             </p>
-            <p><a class="btn btn-default" href="#" role="button">View tutorial »</a></p>
+            <p><a class="btn btn-default disabled" href="#" role="button">View tutorial (SOON) »</a></p>
         </div>
         <div class="col-md-4">
             <h2>Display user-ratings</h2>
@@ -226,7 +151,7 @@ mixpanel.init("b29b41ff48abeec3b8a8c8cf8d3241b0");</script><!-- end Mixpanel -->
                 The <code>get</code> call will get the user-rating average for a specific item.
                 You can choose to show its numeric value or alter the style of a rating's graphic representation.
             </p>
-            <p><a class="btn btn-default" href="#" role="button">View tutorial »</a></p>
+            <p><a class="btn btn-default disabled" href="#" role="button">View tutorial (SOON) »</a></p>
         </div>
     </div>
 </div>
@@ -267,7 +192,7 @@ mixpanel.init("b29b41ff48abeec3b8a8c8cf8d3241b0");</script><!-- end Mixpanel -->
 
                 var demoRate = function (rating) {
                     var className = raasta.rate({key1: demoItem, rating: rating, success: demoRateSuccess});
-                    document.getElementById("demo_get_result_style").className = "style_element " + className;
+                    document.getElementById("demo_get_result_style").className = "raasta_stars " + className;
                 };
                 var demoRateSuccess = function (result) {
                     document.getElementById("demo_get_result").textContent = JSON.stringify(result);
@@ -291,7 +216,7 @@ mixpanel.init("b29b41ff48abeec3b8a8c8cf8d3241b0");</script><!-- end Mixpanel -->
                 </tr>
                 <tr>
                     <td>
-                        <span class="style_element" id="demo_get_result_style"></span>
+                        <span class="raasta_stars" id="demo_get_result_style"></span>
                     </td>
                 </tr>
             </table>
@@ -352,13 +277,13 @@ mixpanel.init("b29b41ff48abeec3b8a8c8cf8d3241b0");</script><!-- end Mixpanel -->
                     set the <u>content</u> of DOM element [DISPLAY_ELEMENT_ID], and
                 </li>
                 <li>
-                    set the <u>style</u> of DOM element [STYLE_ELEMENT_ID].
+                    set the <u>style</u> of DOM element [raasta_stars_ID].
                 </li>
             </ul>
 
             <script>
                 var demoGet = function () {
-                    raasta.get({key1: demoItem, display: "display_element_id", style: "style_element_id"})
+                    raasta.get({key1: demoItem, display: "display_element_id", style: "raasta_stars_id"})
                 };
             </script>
             <p>
@@ -379,7 +304,7 @@ mixpanel.init("b29b41ff48abeec3b8a8c8cf8d3241b0");</script><!-- end Mixpanel -->
                 <tr>
                     <td>Style element:</td>
                     <td>
-                        <span class="style_element" id="style_element_id"></span>
+                        <span class="raasta_stars" id="raasta_stars_id"></span>
                     </td>
                 </tr>
             </table>
@@ -405,7 +330,7 @@ mixpanel.init("b29b41ff48abeec3b8a8c8cf8d3241b0");</script><!-- end Mixpanel -->
                     <key1>key1:[ITEM_ID]</key1>
                     , // optional <br/>
                     &nbsp;&nbsp;&nbsp;&nbsp;display:[DISPLAY_ELEMENT_ID], // optional <br/>
-                    &nbsp;&nbsp;&nbsp;&nbsp;style:[STYLE_ELEMENT_ID] // optional <br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;style:[raasta_stars_ID] // optional <br/>
                     &nbsp;&nbsp;});<br/>
                     &lt;/script&gt;
                 </code>
@@ -439,7 +364,6 @@ mixpanel.init("b29b41ff48abeec3b8a8c8cf8d3241b0");</script><!-- end Mixpanel -->
         <li>
             <h4>Retrieve average user-ratings for an
                 <key1>item or service</key1>
-                (Low-level GET request)
             </h4>
 
             <p>

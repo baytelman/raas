@@ -3,131 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>RAASTA - Ratings as a Service</title>
+    <script src="/javascript/libs/jquery-2.2.1.min.js"></script>
+    <script src="/javascript/raasta.js"></script>
 
     <!-- start Mixpanel --><script type="text/javascript">(function(e,b){if(!b.__SV){var a,f,i,g;window.mixpanel=b;b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable time_event track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");
     for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=e.createElement("script");a.type="text/javascript";a.async=!0;a.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?MIXPANEL_CUSTOM_LIB_URL:"file:"===e.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";f=e.getElementsByTagName("script")[0];f.parentNode.insertBefore(a,f)}})(document,window.mixpanel||[]);
 mixpanel.init("b29b41ff48abeec3b8a8c8cf8d3241b0");</script><!-- end Mixpanel -->
 
-    <script src="/javascript/raasta.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
           integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    <style>
-        token {
-            color: darkred;
-        }
-        rating {
-            color: darkturquoise;
-        }
-        email {
-            color: darkcyan;
-        }
-        user {
-            color: darkblue;
-        }
-        key1 {
-            color: darkgreen;
-        }
-
-        .star {
-            display: inline-blockblock;
-            width: 32px;
-            height: 30px;
-            background: url("/images/raasta_ratings.png") 0 -150px;
-            background-size: 160px 180px;
-        }
-
-        .style_element {
-            display: block;
-            width: 160px;
-            height: 30px;
-            background: url("/images/raasta_ratings.png") 0 0px;
-            background-size: 160px 180px;
-        }
-
-        .style_element.raasta_5_0 {
-            background-position: 0 -150px;
-            width: 160px;
-        }
-        .style_element.raasta_4_0 {
-            background-position: 0 -150px;
-            width: 128px;
-        }
-        .style_element.raasta_3_0 {
-            background-position: 0 -150px;
-            width: 96px;
-        }
-        .style_element.raasta_2_0 {
-            background-position: 0 -150px;
-            width: 64px;
-        }
-        .style_element.raasta_1_0 {
-            background-position: 0 -150px;
-            width: 32px;
-        }
-        .style_element.raasta_4_5 {
-            background-position: 0 -150px;
-            width: 144px;
-        }
-        .style_element.raasta_3_5 {
-            background-position: 0 -150px;
-            width: 112px;
-        }
-        .style_element.raasta_2_5 {
-            background-position: 0 -150px;
-            width: 80px;
-        }
-        .style_element.raasta_1_5 {
-            background-position: 0 -150px;
-            width: 48px;
-        }
-
-    </style>
-
 </head>
 <body role="documemt">
 
 <nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
-                    aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">RAASTA</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li><a href="#quick">Quick Start</a></li>
-                <li><a href="#usage">Usage</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <form class="navbar-form navbar-right">
-                <div class="form-group">
-                    <input type="text" placeholder="Email" class="form-control" id="registerEmailField">
-                </div>
-                <!--<div class="form-group">-->
-                    <!--<input type="password" placeholder="Password" class="form-control">-->
-                <!--</div>-->
-                <script>
-                    var submitRegistration = function() {
-                        event.preventDefault();
-                        var email = document.getElementById("registerEmailField").value;
-                        raasta.register({
-                            email:email,
-                            success:function(response) {
-                                console.log(response);
-                            }
-                        });
-                    };
-                </script>
-                <button class="btn btn-success" onclick="submitRegistration(); return false;">Register</button>
-            </form>
-        </div>
-    </div>
+    <script>$(function() { $('nav').load("templates/navigation.html"); });</script>
 </nav>
 
 <div class="jumbotron">
