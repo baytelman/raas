@@ -6,12 +6,12 @@ var pg = require('pg');
 module.exports = {
     insertReview: function(token, user, title, body, key1, key2, key3, insertCallback) {
         const REVIEWS_INSERT = `
-        INSERT INTO reviews
-            (project_id, user_id, title, body, key1, key2, key3)
-        VALUES
-            ((SELECT project_id FROM tokens WHERE access_token = $1 AND (expires IS NULL or expires > now())),
-                   $2, $3, $4, $5, $6, $7)
-       RETURNING id`;
+            INSERT INTO reviews
+                (project_id, user_id, title, body, key1, key2, key3)
+            VALUES
+                ((SELECT project_id FROM tokens WHERE access_token = $1 AND (expires IS NULL or expires > now())),
+                       $2, $3, $4, $5, $6, $7)
+           RETURNING id`;
 
         pg.connect(config.db.url, function(err, client, done) {
             if (err) throw err;
