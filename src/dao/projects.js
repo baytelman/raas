@@ -41,7 +41,7 @@ module.exports = {
             if (err) throw err;
 
             client.query('SELECT * FROM ' +
-                '   project_descriptions ' +
+                '   project_description_log ' +
                 'WHERE ' +
                 '   project_id = $1 ' +
                 'ORDER BY ' +
@@ -71,7 +71,7 @@ module.exports = {
             project['project_id'] = projectId;
 
             const DESCRIPTION_INSERT = 'INSERT ' +
-                'INTO project_descriptions ' +
+                'INTO project_description_log ' +
                 '   (project_id, name, email, key_1, key_2, key_3) ' +
                 'VALUES ' +
                 '   ($1, $2, $3, $4, $5, $6) ' +

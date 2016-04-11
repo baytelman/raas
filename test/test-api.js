@@ -29,7 +29,8 @@ var tokenCount = 0;
 var currentToken = null;
 
 chai.use(chaiHttp);
-describe('Ratings', function() {
+
+describe('Projects', function() {
     beforeEach(function(done){
         projectsDao.insertNewProject(function(projectId) {
             projectsDao.getAccessTokenForProject(projectId, function(accessToken) {
@@ -49,6 +50,17 @@ describe('Ratings', function() {
                 res.body.should.have.property('email');
                 done();
             });
+    });
+});
+
+describe('Ratings', function() {
+    beforeEach(function(done){
+        projectsDao.insertNewProject(function(projectId) {
+            projectsDao.getAccessTokenForProject(projectId, function(accessToken) {
+                currentToken = accessToken;
+                done();
+            });
+        });
     });
     it('should insert a SINGLE rating on /ratings PUT', function(done) {
         chai.request(server)
@@ -164,6 +176,44 @@ describe('Ratings', function() {
                                     });
                             });
                     });
+            });
+    });
+});
+
+describe('Reviews', function() {
+    beforeEach(function(done){
+        projectsDao.insertNewProject(function(projectId) {
+            projectsDao.getAccessTokenForProject(projectId, function(accessToken) {
+                currentToken = accessToken;
+                done();
+            });
+        });
+    });
+    it('New project has no reviews', function(done) {
+        chai.request(server)
+            .get('/api/v1/reviews?token=' + currentToken + '&key2=' + KEY_2)
+            .end(function(err, res) {
+                res.should.have.status(200);
+                res.should.be.json;
+                res.body.should.be.a('object');
+                res.body.should.have.property('reviews');
+                res.body.reviews.should.be.empty;
+
+                done();
+            });
+    });
+    it('should insert a SINGLE reviews on /reviews PUT', function(done) {
+        chai.request(server)
+            .post('/api/v1/reviews?token=' + currentToken + '&user=' + USER_ID + '&rating=' + RATE_GOOD + '&key1=' + KEY_1)
+            .send({
+                    title: "Test review title",
+                    body: "Test review body",
+                })
+            .end(function(err, res){
+                res.should.have.status(200);
+                res.should.be.json;
+                res.body.should.be.a('object');
+                done();
             });
     });
 });

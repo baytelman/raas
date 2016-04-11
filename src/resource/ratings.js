@@ -2,20 +2,7 @@
 
 var git = require('git-rev');
 var ratingsDao = require('../dao/ratings.js');
-
-var validateQueryParams = function(req, res, queryParams) {
-    var valid = true;
-    queryParams.forEach(function(param) {
-        if (! req.query[param]) {
-            var message = "query param not found (" + param + ")";
-            var error = new Error(message);
-            console.error(message);
-            res.status(412).send(message);
-            valid = false;
-        }
-    });
-    return valid;
-};
+var validation = require('../utils/validation.js');
 
 module.exports = {
     version: function(req, res) {
@@ -27,8 +14,7 @@ module.exports = {
         });
     },
     insert: function(req, res) {
-
-        if (!validateQueryParams(req, res, ['token', 'user', 'rating'])) {
+        if (!validation.validateQueryParams(req, res, ['token', 'user', 'rating'])) {
             console.track('api-ratings-insert-fail');
         } else {
             console.track('api-ratings-insert');
@@ -44,6 +30,7 @@ module.exports = {
                     message: 'rating added: ' + id,
                     id: id
                 });
+                // TODO: Calculate averages
             });
         }
     },

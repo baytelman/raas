@@ -2,8 +2,10 @@
 
 if (process.env.ENV == 'prod') require('newrelic');
 var express = require('express');
+var bodyParser = require('body-parser');
 
 var ratingsResource = require('./resource/ratings.js');
+var reviewsResource = require('./resource/reviews.js');
 var projectsResource = require('./resource/projects.js');
 
 /* Configure the app */
@@ -24,6 +26,9 @@ var app = express();
 if (process.env.APP == 'web') {
     app.use("/", express.static('resources/static'));
 } else {
+    app.use(bodyParser.urlencoded({ extended: false }));
+    app.use(bodyParser.json());
+
     app.use(function(req, res, next) {
         res.header("Access-Control-Allow-Origin", "*");
         res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -43,6 +48,9 @@ if (process.env.APP == 'web') {
     app.get(base_url + 'ratings', ratingsResource.stats);
     app.put(base_url + 'ratings', ratingsResource.insert);
     app.post(base_url + 'ratings', ratingsResource.insert);
+
+    app.get(base_url + 'reviews', reviewsResource.all);
+    app.post(base_url + 'reviews', reviewsResource.insert);
 }
 
 app.listen(port, function () {
