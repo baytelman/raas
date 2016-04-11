@@ -28,7 +28,7 @@ module.exports = {
     latestReviews: function(token, user, key1, key2, key3, reviewsCallback) {
         const REVIEWS_LATEST = `
             SELECT
-                title, body
+                title, body, user_id as user, timestamp
             FROM
                 reviews
             WHERE
