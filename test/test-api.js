@@ -12,8 +12,8 @@ if (config.db.url.indexOf('test') <= 0 && config.db.url.indexOf('travis') <= 0) 
 }
 
 /*
-WHILE RUNNING TESTS, WE DISABLE "console.info"
-Use console.log or other functions (debug/error) to output to console during tests: */
+ WHILE RUNNING TESTS, WE DISABLE "console.info"
+ Use console.log or other functions (debug/error) to output to console during tests: */
 console.info = function() {};
 
 const TOKEN = "test_token_" + new Date().getTime();
@@ -203,17 +203,29 @@ describe('Reviews', function() {
             });
     });
     it('should insert a SINGLE reviews on /reviews PUT', function(done) {
+        var review = {
+            title: "Test review title",
+            body: "Test review body",
+        };
         chai.request(server)
-            .post('/api/v1/reviews?token=' + currentToken + '&user=' + USER_ID + '&rating=' + RATE_GOOD + '&key1=' + KEY_1)
-            .send({
-                    title: "Test review title",
-                    body: "Test review body",
-                })
+            .post('/api/v1/reviews?token=' + currentToken + '&user=' + USER_ID + '&key1=' + KEY_1)
+            .send(review)
             .end(function(err, res){
                 res.should.have.status(200);
                 res.should.be.json;
                 res.body.should.be.a('object');
-                done();
+
+                chai.request(server)
+                    .get('/api/v1/reviews?token=' + currentToken + '&key1=' + KEY_1)
+                    .end(function(err, res) {
+                        res.should.have.status(200);
+                        res.should.be.json;
+                        res.body.should.be.a('object');
+                        res.body.should.have.property('reviews');
+                        res.body.reviews.should.be.not.empty;
+                        res.body.reviews[0].should.deep.equal(review);
+                        done();
+                    });
             });
     });
 });
