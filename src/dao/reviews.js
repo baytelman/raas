@@ -24,7 +24,7 @@ module.exports = {
             });
         });
     },
-    allReviews: function(token, user, key1, key2, key3, reviewsCallback) {
+    latestReviews: function(token, user, key1, key2, key3, reviewsCallback) {
         const REVIEWS_ALL = "SELECT " +
             "   title, body " +
             "FROM " +
@@ -35,7 +35,9 @@ module.exports = {
             "   ($2::varchar IS NULL OR $2::varchar = user_id) AND " +
             "   ($3::varchar IS NULL OR $3::varchar = key1) AND " +
             "   ($4::varchar IS NULL OR $4::varchar = key2) AND " +
-            "   ($5::varchar IS NULL OR $5::varchar = key3)";
+            "   ($5::varchar IS NULL OR $5::varchar = key3)" +
+            "ORDER BY timestamp DESC " +
+            "LIMIT 30";
 
         pg.connect(config.db.url, function(err, client, done) {
             if (err) throw err;

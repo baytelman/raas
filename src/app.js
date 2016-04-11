@@ -49,7 +49,7 @@ if (process.env.APP == 'web') {
     app.put(base_url + 'ratings', ratingsResource.insert);
     app.post(base_url + 'ratings', ratingsResource.insert);
 
-    app.get(base_url + 'reviews', reviewsResource.all);
+    app.get(base_url + 'reviews', reviewsResource.latest);
     app.post(base_url + 'reviews', reviewsResource.insert);
 }
 

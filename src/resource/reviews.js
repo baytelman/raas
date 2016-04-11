@@ -27,7 +27,7 @@ module.exports = {
             });
         }
     },
-    all: function(req, res) {
+    latest: function(req, res) {
         console.track('api-reviews-all');
         var token = req.query.token;
         var user = req.query.user;
@@ -35,7 +35,7 @@ module.exports = {
         var key2 = req.query.key2;
         var key3 = req.query.key3;
 
-        reviewsDao.allReviews(token, user, key1, key2, key3, function(reviews) {
+        reviewsDao.latestReviews(token, user, key1, key2, key3, function(reviews) {
             res.send({
                 message: 'reviews',
                 reviews: reviews,

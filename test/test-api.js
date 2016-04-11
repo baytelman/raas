@@ -72,7 +72,7 @@ describe('Ratings', function() {
                 done();
             });
     });
-    it('puting a GOOD RATING will provide GOOD RATING average', function(done) {
+    it('putting a GOOD RATING will provide GOOD RATING average', function(done) {
         chai.request(server)
             .put('/api/v1/ratings?token=' + currentToken + '&user=' + USER_ID + '&rating=' + RATE_GOOD + '&key1=' + KEY_1)
             .end(function(err, res){
@@ -118,6 +118,7 @@ describe('Ratings', function() {
                                         res.body.stats.average.should.equal((RATE_GOOD + RATE_OK)/2.0);
                                         res.body.stats.count.should.equal(2);
                                         res.body.stats.count5.should.equal(1);
+                                        res.body.stats.count3.should.equal(1);
                                         res.body.stats.count1.should.equal(0);
 
                                         res.body.stats.should.have.property('stddev');
