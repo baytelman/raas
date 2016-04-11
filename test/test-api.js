@@ -23,7 +23,7 @@ const KEY_2 = 200;
 const RATE_GOOD = 5;
 const RATE_OK = 3;
 const RATE_BAD = 1;
-const USER_ID = 9;
+const USER_ID = "internal_user_id_9";
 
 var currentToken = null;
 
@@ -238,7 +238,9 @@ describe('Reviews', function() {
                         res.body.should.be.a('object');
                         res.body.should.have.property('reviews');
                         res.body.reviews.should.be.not.empty;
-                        res.body.reviews[0].should.deep.equal(review);
+                        res.body.reviews[0].title.should.equal(review.title);
+                        res.body.reviews[0].body.should.equal(review.body);
+                        res.body.reviews[0].user.should.equal(USER_ID);
                         done();
                     });
             });
