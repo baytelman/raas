@@ -1,0 +1,23 @@
+html
+  include header
+  body(role="documemt")
+    include navbar
+
+    .jumbotron
+      .container
+        h1 Welcome to RAASTA!
+        p
+          | You are all set!
+          br
+          |             We will send you an email with instructions.
+          br
+          |             Please check your inbox and follow the instructions.
+        p
+          | By the way, don't bother the Register field will stay there. Just ignore it. :D
+    .container
+      hr
+      footer
+        p © 2016 Felipe Baytelman.
+    script.
+      mixpanel.track("welcome");
+

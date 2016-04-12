@@ -24,6 +24,19 @@ if (process.env.ENV != 'test' && process.env.ENV != 'travis') {
 var app = express();
 
 if (process.env.APP == 'web') {
+    app.set('view engine', 'jade');
+    app.set('views', 'resources/static/templates')
+
+    app.get('/', function (req, res) {
+        res.render('index');
+    });
+    app.get('/welcome', function (req, res) {
+        res.render('welcome');
+    });
+    app.get('/welcome.html', function (req, res) {
+        res.render('welcome');
+    });
+
     app.use("/", express.static('resources/static'));
 } else {
     app.use(bodyParser.urlencoded({ extended: false }));
