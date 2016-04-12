@@ -27,7 +27,7 @@ module.exports = {
         git.short(function (hash) {
             callback({
                 commit: hash,
-                version: 1
+                version: 2
             });
         });
     },

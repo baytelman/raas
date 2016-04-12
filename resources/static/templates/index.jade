@@ -1,0 +1,12 @@
+html
+    include header
+    body(role="documemt")
+        include navbar
+
+        include index/jumbotron
+        include index/quick
+        include index/usage
+        include index/about_contact
+
+    script.
+            mixpanel.track("index");
