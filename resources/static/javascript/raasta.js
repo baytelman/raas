@@ -146,6 +146,8 @@ raasta.chooser = function(params) {
     var key3 = params.key3;
     var chooser = params.chooser;
 
+    var prompt = params.prompt?params.prompt:"Click to rate";
+
     var callbackId = "";
     if (key1) {
         callbackId += "_" + key1;
@@ -179,7 +181,7 @@ raasta.chooser = function(params) {
         "unselectable='on' " +
         "onmouseleave='raasta._chooserUpdateClass(event);' " +
         "onmousemove='raasta._chooserUpdateClass(event);' " +
-        "onClick='raasta._chooserCallbacks[\"" + callbackId + "\"](event); return false;'>Rate</span>";
+        "onClick='raasta._chooserCallbacks[\"" + callbackId + "\"](event); return false;'>" + prompt + "</span>";
 
     var element = (typeof(chooser) == "string") ? document.getElementById(chooser) : chooser;
     if (element) {

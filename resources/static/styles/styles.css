@@ -3,15 +3,30 @@
     width: 160px;
     height: 30px;
     background-size: 32px 90px;
-
+    line-height:30px;
+    
     -moz-user-select: none;
     -webkit-user-select: none;
     -ms-user-select:none;
     user-select:none;
-    -o-user-select:none;"
+    -o-user-select:none;
+
+    transition-property: color;
+    transition-duration:0.3s;
+    
+    text-align: center;
+    
+    color: black;
+    text-shadow: 0px 0px 10px white, 1px 0px 11px white, -1px 0px 12px white, 0px 1px 13px white, 0px -1px 14px white, 0px 0px 20px white, 1px 0px 21px white, -1px 0px 22px white, 0px 1px 23px white, 0px -1px 24px white;
+}
+.raasta_stars:hover {
+    color: rgba(0,0,0,0);
+    text-shadow: none;
 }
 .raasta_stars.disabled {
     opacity: .5;
+    color: rgba(0,0,0,0);
+    text-shadow: none;
 }
 .raasta_stars.raasta_5_0 {
     background:
