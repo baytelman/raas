@@ -1,7 +1,7 @@
 .container
     h1#usage.page-header
         a.anchorjs-link(href='#usage', aria-label='Anchor link for: usage', data-anchorjs-icon='', style='font-family: anchorjs-icons; font-style: normal; font-variant-ligatures: normal; font-variant-position: normal; font-variant-caps: normal; font-variant-numeric: normal; font-variant-alternates: normal; font-variant-east-asian: normal; font-weight: normal; position: absolute; margin-left: -1em; padding-right: 0.5em;')
-        |         Usage: Client-side Javascript Library (ratings only, soon reviews)
+        | Usage: Client-side Javascript Library (ratings only, soon reviews)
     ul
         li
             h4 Store user-ratings
@@ -9,12 +9,12 @@
                 | High-level Javascript wrapper to call low-level POST requests.
             ul
                 li
-                    | Calling 
+                    | Calling
                     code raasta.rate(...)
                 li
                     | will submit a new user-rating for item [ITEM_ID], and
                 li
-                    | call the success 
+                    | call the success
                     u [SUCCESS]
                     |  callback.
             script.
@@ -78,13 +78,13 @@
                     br
                     |                     &nbsp;&nbsp;&nbsp;&nbsp;
                     rating rating: [NUMERIC_RATING]
-                    |                     , 
+                    |                     ,
                     br
                     |                     &nbsp;&nbsp;&nbsp;&nbsp;
                     key1 key1:[ITEM_ID]
-                    |                     , // optional 
+                    |                     , // optional
                     br
-                    |                     &nbsp;&nbsp;&nbsp;&nbsp;success:[SUCCESS_CALLBACK] // optional 
+                    |                     &nbsp;&nbsp;&nbsp;&nbsp;success:[SUCCESS_CALLBACK] // optional
                     br
                     |                     &nbsp;&nbsp;});
                     br
@@ -99,16 +99,16 @@
                 | High-level Javascript wrapper to call low-level GET requests.
             ul
                 li
-                    | Calling 
+                    | Calling
                     code raasta.get(...)
                 li
                     | will load the user-rating average of item [ITEM_ID],
                 li
-                    | set the 
+                    | set the
                     u content
                     |  of DOM element [DISPLAY_ELEMENT_ID], and
                 li
-                    | set the 
+                    | set the
                     u style
                     |  of DOM element [raasta_stars_ID].
             script.
@@ -156,11 +156,11 @@
                     br
                     |                     &nbsp;&nbsp;&nbsp;&nbsp;
                     key1 key1:[ITEM_ID]
-                    |                     , // optional 
+                    |                     , // optional
                     br
-                    |                     &nbsp;&nbsp;&nbsp;&nbsp;display:[DISPLAY_ELEMENT_ID], // optional 
+                    |                     &nbsp;&nbsp;&nbsp;&nbsp;display:[DISPLAY_ELEMENT_ID], // optional
                     br
-                    |                     &nbsp;&nbsp;&nbsp;&nbsp;style:[raasta_stars_ID] // optional 
+                    |                     &nbsp;&nbsp;&nbsp;&nbsp;style:[raasta_stars_ID] // optional
                     br
                     |                     &nbsp;&nbsp;});
                     br
@@ -174,7 +174,7 @@
             p
                 | Call this low-level end-point from website or backend.
             code
-                b  curl -X PUT 
+                b  curl -X PUT
                 |  &quot;https://raasta.heroku.com/api/v1/ratings?
                 token token=[ACCESS_TOKEN]
                 | &amp;
@@ -190,7 +190,7 @@
                 |                 will be stored.
         li
             h4
-                | Ratings: Retrieve average and other stats for an 
+                | Ratings: Retrieve average and other stats for an
                 key1 item or service
             p
                 | Retrieve the average user-rating for a specific item, so you can pass the value to your frontend/UI.
@@ -246,7 +246,7 @@
                 | Call this low-level end-point from website or backend.
                 br
                 code
-                    b  curl -X PUT 
+                    b  curl -X PUT
                     |  &quot;https://raasta.heroku.com/api/v1/reviews?
                     token token=[ACCESS_TOKEN]
                     | &amp;
@@ -258,9 +258,9 @@
                 | Body:
                 br
                 code
-                    | { 
+                    | {
                     b title
-                    | : &quot;The title of the review&quot;, 
+                    | : &quot;The title of the review&quot;,
                     b body
                     | : &quot;Long text to completely describe the user&apos;s opinion for this item&quot; }
             p
@@ -269,7 +269,7 @@
                 |                 will be stored.
         li
             h4
-                | Reviews: Retrieve latest reviews for an 
+                | Reviews: Retrieve latest reviews for an
                 key1 item or service
             p
                 | Retrieve the latest reviews (up to 30) for a specific item, so you can pass the value to your frontend/UI.
@@ -317,4 +317,3 @@
                     |                       ]
                     br
                     |                     }
-
