@@ -113,6 +113,82 @@ raasta.get = function(params) {
     });
 };
 
+raasta._chooserCallbacks = {};
+raasta._chooserRating = function(event) {
+    var rating = Math.round(0.5 + 5.0 * event.offsetX / event.currentTarget.clientWidth);
+    if (rating > 5) {
+        rating = 5;
+    } else if (rating < 1) {
+        rating = 1;
+    }
+    return rating;
+};
+raasta._chooserUpdateClass = function(event) {
+    event.preventDefault();
+    if (event.currentTarget.disabled) {
+        if (event.currentTarget.className.indexOf("disabled") < 0) {
+            event.currentTarget.className += " disabled";
+        }
+        return;
+    }
+    var rating;
+    if (event.type === 'mouseleave' || event.type === 'mouseexit') {
+        rating = 0;
+    } else {
+        rating = raasta._chooserRating(event);
+    }
+    event.currentTarget.className = "raasta_stars raasta_" + rating + "_0";
+};
+
+raasta.chooser = function(params) {
+    var key1 = params.key1;
+    var key2 = params.key2;
+    var key3 = params.key3;
+    var chooser = params.chooser;
+
+    var prompt = params.prompt?params.prompt:"Click to rate";
+
+    var callbackId = "";
+    if (key1) {
+        callbackId += "_" + key1;
+    }
+    if (key2) {
+        callbackId += "_" + key2;
+    }
+    if (key3) {
+        callbackId += "_" + key3;
+    }
+
+    raasta._chooserCallbacks[callbackId] = function(event) {
+        
+        if (event.currentTarget.disabled) {
+            return;
+        }
+        var _params = params;
+        var rating = raasta._chooserRating(event);
+        _params.rating = rating;
+        _params.success = function() {
+            var _sParams = _params;
+            _sParams.success = null;
+            raasta.get(_sParams);
+        };
+        raasta.rate(_params);
+        event.currentTarget.disabled = true; 
+        raasta._chooserUpdateClass(event);
+    };
+
+    var html = "<span class='raasta_stars raasta_0_0' " +
+        "unselectable='on' " +
+        "onmouseleave='raasta._chooserUpdateClass(event);' " +
+        "onmousemove='raasta._chooserUpdateClass(event);' " +
+        "onClick='raasta._chooserCallbacks[\"" + callbackId + "\"](event); return false;'>" + prompt + "</span>";
+
+    var element = (typeof(chooser) == "string") ? document.getElementById(chooser) : chooser;
+    if (element) {
+        element.innerHTML = html;
+    }
+};
+
 raasta._send = function(method, url, success) {
     var xmlhttp = new XMLHttpRequest();
 
@@ -131,4 +207,4 @@ raasta._send = function(method, url, success) {
 raasta._classNameForAverage = function(average) {
     var round = "" + (Math.round(average * 2) / 2.0).toFixed(1);
     return ("raasta_" + round).replace(".", "_").replace(",", "_");
-}
+};
