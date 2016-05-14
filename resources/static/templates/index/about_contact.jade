@@ -1,0 +1,74 @@
+.container
+    h1#about.page-header
+        a.anchorjs-link(href='#about', aria-label='Anchor link for: about', data-anchorjs-icon='', style='font-family: anchorjs-icons; font-style: normal; font-variant-ligatures: normal; font-variant-position: normal; font-variant-caps: normal; font-variant-numeric: normal; font-variant-alternates: normal; font-variant-east-asian: normal; font-weight: normal; position: absolute; margin-left: -1em; padding-right: 0.5em;')
+        |         About RAASTA
+    h3 Motivation
+    ul
+        li
+            | Along our careers, we've witnessed multiple teams struggling to solve the user-ratings problem in an
+            | effective,
+            | efficient way.
+            | RAASTA intends to summarize these learnings, by focusing on performance and simplicity.
+        li
+            | RAASTA was conceived as an experimental project, to measure the Time-To-Market
+            | of a new service based on NodeJS+Express, and to test the performance of NodeJS with a Postgres DB.
+    h3 Tech Stack and Development Practices
+    ul
+        li
+            | Server: NodeJS (v5.7) and Express (v4.x)
+            ul
+                li Mocha (2.x) and Chai (2.x) for TDD
+        li Database: Postgres (v9.x) with an Append-Only data model
+        li Hosting: Heroku
+        li Monitoring: NewRelic APM
+        li Logging: Papertrail
+        li CI: Wercker
+    h3 License and Legal Agreement
+    ul
+        li
+            | By using your access token, you agree to consume this service at your own risk.
+        li
+            | Be aware that RAASTA is in a pretty early stage: Don't connect it to life monitors or bet your marriage on
+            | it
+            | (yet).
+        li
+            | You own your data: we will soon add endpoints to export it.
+        li
+            | Given you are only providing the IDs of your internal entities and user representation, RAASTA does not keep
+            | any
+            | copy of your data beyond these ratings.
+.container
+    h1#contact.page-header
+        a.anchorjs-link(href='#contact', aria-label='Anchor link for: contact', data-anchorjs-icon='', style='font-family: anchorjs-icons; font-style: normal; font-variant-ligatures: normal; font-variant-position: normal; font-variant-caps: normal; font-variant-numeric: normal; font-variant-alternates: normal; font-variant-east-asian: normal; font-weight: normal; position: absolute; margin-left: -1em; padding-right: 0.5em;')
+        |         Contact
+    p
+        | Created and maintained by
+    ul
+        li
+            | Felipe Baytelman: Software engineer, Experience Designer
+            ul
+                li
+                    | Twitter 
+                    a(href='http://twitter.com/baytelman', target='_blank') @baytelman
+                li
+                    | GitHub 
+                    a(href='http://github.com/baytelman', target='_blank') @baytelman
+                li
+                    | LinkedIn 
+                    a(href='https://www.linkedin.com/in/baytelman', target='_blank') in/baytelman
+        li Thanks to Sepehr
+        li
+            | Interested in collaborating? Contact us on 
+            a(href='http://twitter.com/baytelman', target='_blank') twitter
+            | !
+    h3
+        a(name='improve')
+        | Help improve RAASTA
+    p
+        | Do you want to help improve RASTA? Take this one-question survey to choose
+        a(href='http://goo.gl/forms/sjMEedCVdF', target='_blank') what feature we should add next!
+.container
+    hr
+    footer
+        p © 2016 Felipe Baytelman.
+

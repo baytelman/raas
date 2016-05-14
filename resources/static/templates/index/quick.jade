@@ -1,0 +1,42 @@
+.container
+  h1#quick.page-header
+    a.anchorjs-link(href='#quick', aria-label='Anchor link for: quick', data-anchorjs-icon='', style='font-family: anchorjs-icons; font-style: normal; font-variant-ligatures: normal; font-variant-position: normal; font-variant-caps: normal; font-variant-numeric: normal; font-variant-alternates: normal; font-variant-east-asian: normal; font-weight: normal; position: absolute; margin-left: -1em; padding-right: 0.5em;')
+    |         Quick Start: Integrating the client-side library
+  p
+    | The client-side library lets you STORE and RETRIEVE user-ratings directly from your client-side app.
+    | For example, allow your users to rate items with 1-5 stars, and show previous user's ratings in your listing.
+    | You can choose to use a 1-5 stars rating system, or any other numeric range.
+  center
+    img.figure-img.img-fluid.img-rounded(src='./images/RAASTA.png', width='202', alt='Two different users rate items and visualize listing.')
+    div
+      | Fig. 1: Two users rate different items and visualize result in listing.
+  .row
+    .col-md-4
+      h2 Get your Access Token
+      p
+        | Register your organization and project to receive your access-token.
+        | Both the client-side library and the API call will require this token.
+      p
+        | Use the upper-right "Register" box to get your access-token.
+      // <p><a class="btn btn-default" href="#" role="button">Register »</a></p>
+    .col-md-4
+      h2 Gather ratings & reviews
+      p
+        | Call RAASTA's
+        code rate
+        |  function from your custom input component,
+        |                 or include one of the predefined user-rating UI components.
+        |                 You can store ratings and reviews for a specific item,
+        |                 but also for its category, its parent structure or any other relation.
+      p
+        a.btn.btn-default.disabled(href='#', role='button') View tutorial (SOON) »
+    .col-md-4
+      h2 Display user-ratings
+      p
+        | Once your users have rated items, you can display past ratings in your items listing or detail views.
+        | The
+        code get
+        |  call will get the user-rating average for a specific item.
+        |                 You can choose to show its numeric value or alter the style of a rating's graphic representation.
+      p
+        a.btn.btn-default.disabled(href='#', role='button') View tutorial (SOON) »
