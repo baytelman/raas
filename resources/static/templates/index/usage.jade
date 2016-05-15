@@ -1,115 +1,191 @@
 .container
     h1#usage.page-header
         a.anchorjs-link(href='#usage', aria-label='Anchor link for: usage', data-anchorjs-icon='', style='font-family: anchorjs-icons; font-style: normal; font-variant-ligatures: normal; font-variant-position: normal; font-variant-caps: normal; font-variant-numeric: normal; font-variant-alternates: normal; font-variant-east-asian: normal; font-weight: normal; position: absolute; margin-left: -1em; padding-right: 0.5em;')
-        | Usage: Client-side Javascript Library (ratings only, soon reviews)
+        |  Usage: Client-side Javascript Library (ratings only, soon reviews)
     ul
         li
-            h4 Store user-ratings
+            h4 Chooser: Default UI to capture ratings
             p
-                | High-level Javascript wrapper to call low-level POST requests.
+                |  Predefined UI to capture and submit new ratings.
             ul
                 li
-                    | Calling
-                    code raasta.rate(...)
+                    |  Calling
+                    code raasta.chooser(...)
                 li
-                    | will submit a new user-rating for item [ITEM_ID], and
+                    |  will create the UI to rate 
+                    key1_arg [ITEM_ID]
+                    | , and place it inside DOM element
+                    chooser_arg [CHOOSER_DOM_ID].
                 li
-                    | call the success
-                    u [SUCCESS]
-                    |  callback.
+                    |  After submitting the new rating, it will retrieve the updated ratings (See 
+                    a(href="#retrieve") Retrieve
+                    | ).
+            p
+                strong Try it:
+                |  Submit a new rating for item "demo-item-id-123"
+                table(border=1)
+                    tr
+                        td#chooser_demo(style="padding:5px;margin:5px;")
+                        td#chooser_demo_result_display(style="padding:5px;margin:5px;")
+                            |  Fetched results will show here
+                        td(style="border:1px;padding:5px;margin:5px;")
+                            span#chooser_demo_result_style.raasta_stars
             script.
                 var demoToken = "df3a9d58-8c13-4d9c-9b13-46f032704ef0";
                 var demoUser = "demo-user";
                 var demoItem = "demo-item-id-123";
                 raasta.init(demoToken, demoUser);
+                raasta.chooser({
+                    key1: demoItem,
+                    chooser: 'chooser_demo',
+                    display: 'chooser_demo_result_display',
+                    style: 'chooser_demo_result_style'
+                });
+            p
+                |  Source:
+                br
+                code
+                    |  &lt;script src=&quot;https://raasta.herokuapp.com/javascript/raasta.js&quot;&gt;&lt;/script&gt;
+                    br
+                    |  &lt;link rel="stylesheet" href="https://raasta.herokuapp.com/styles/styles.css"/&gt;
+                    br
+                    |  &lt;script&gt;
+                    br
+                    |  &nbsp;&nbsp;/* Init must be called before any other RAASTA method. You only need it ONCE per
+                    |  page-load.
+                    |  */
+                    br
+                    |  &nbsp;&nbsp;raasta.init(
+                    token [ACCESS_TOKEN]
+                    | ,
+                    user [USER_ID]
+                    |  );
+                    br
+                    |  &nbsp;&nbsp;/* Create UI to capture user-rating for item 
+                    key1_arg  [ITEM_ID]
+                    | : */
+                    br
+                    |  &nbsp;&nbsp;raasta.chooser(
+                    br
+                    |  &nbsp;&nbsp;&nbsp;&nbsp; 
+                    key1_arg key1:[ITEM_ID],
+                    br
+                    |  &nbsp;&nbsp;&nbsp;&nbsp; 
+                    chooser_arg chooser:[CHOOSER_DOM_ID],
+                    br
+                    |  &nbsp;&nbsp;&nbsp;&nbsp; 
+                    display_arg display:[DISPLAY_DOM_ID],
+                    | // optional. (See 
+                    a(href="#retrieve") Retrieve
+                    | ).
+                    br
+                    |  &nbsp;&nbsp;&nbsp;&nbsp; 
+                    style_arg style:[STYLE_DOM_ID] 
+                    | // optional. See (See 
+                    a(href="#retrieve") Retrieve
+                    | ).
+                    br
+                    |  &nbsp;&nbsp;});
+                    br
+                    |  &lt;/script&gt;
+        li
+            h4 Manually store user-ratings
+            p
+                |  High-level Javascript wrapper to call low-level POST requests.
+            ul
+                li
+                    |  Calling
+                    code raasta.rate(...)
+                li
+                    |  will submit a new user-rating for item [ITEM_ID], and
+                li
+                    |  call the success
+                    u [SUCCESS]
+                    |  callback.
+            script.
                 var demoRate = function (rating) {
                     var className = raasta.rate({key1: demoItem, rating: rating, success: demoRateSuccess});
-                    document.getElementById("demo_get_result_style").className = "raasta_stars " + className;
+                    document.getElementById("rate_demo_get_result_style").className = "raasta_stars " + className;
                 };
                 var demoRateSuccess = function (result) {
-                    document.getElementById("demo_get_result").textContent = JSON.stringify(result);
+                    document.getElementById("rate_demo_get_result").textContent = JSON.stringify(result);
                 };
             p
                 strong Try it:
                 |  Submit a new rating for item "demo-item-id-123"
-                table
+                table(border=1)
                     tr
-                        td
+                        td(style="padding:5px;margin:5px;")
                             button(onclick='demoRate(1)') 1 Star
                             button(onclick='demoRate(2)') 2 Star
                             button(onclick='demoRate(3)') 3 Star
                             button(onclick='demoRate(4)') 4 Star
                             button(onclick='demoRate(5)') 5 Star
-                    tr
-                        td#demo_get_result ...
-                    tr
+                        td#rate_demo_get_result(style="padding:5px;margin:5px;")
+                            |  Fetched results will show here
                         td
-                            span#demo_get_result_style.raasta_stars
+                            span#rate_demo_get_result_style.raasta_stars(style="padding:5px;margin:5px;")
             p
-                | Source:
+                |  Source:
                 br
                 code
-                    | &lt;script src=&quot;https://raasta.herokuapp.com/javascript/raasta.js&quot;&gt;&lt;/script&gt;
+                    |  &lt;script src=&quot;https://raasta.herokuapp.com/javascript/raasta.js&quot;&gt;&lt;/script&gt;
                     br
-                    |                     &lt;script&gt;
+                    |  &lt;script&gt;
                     br
-                    |                     &nbsp;&nbsp;/* Init must be called before any other RAASTA method. You only need it ONCE per
-                    |                     page-load.
-                    |                     */
+                    |  &nbsp;&nbsp;/* Init must be called before any other RAASTA method. You only need it ONCE per
+                    |  page-load.
+                    |  */
                     br
-                    |                     &nbsp;&nbsp;raasta.init(
-                    token [ACCESS_TOKEN]
-                    |                     ,
-                    user [USER_ID]
-                    |                     );
+                    |  &nbsp;&nbsp;raasta.init(
+                    token_arg [ACCESS_TOKEN]
+                    | ,
+                    user_arg [USER_ID]
+                    |  );
                     br
-                    |                     &lt;/script&gt;
+                    |  &nbsp;&nbsp;/* Store user-rating for user
+                    user_arg [USER_ID]
+                    |  about item
+                    key1_arg [ITEM_ID]
+                    | : */
                     br
+                    |  &nbsp;&nbsp;raasta.rate(
                     br
-                    |                     &lt;script&gt;
-                    br
-                    |                     &nbsp;&nbsp;/* Store user-rating for user
-                    user [USER_ID]
-                    |                     about item
-                    key1 [ITEM_ID]
-                    |                     : */
-                    br
-                    |                     &nbsp;&nbsp;raasta.rate(
-                    br
-                    |                     &nbsp;&nbsp;&nbsp;&nbsp;
+                    |  &nbsp;&nbsp;&nbsp;&nbsp;
                     rating rating: [NUMERIC_RATING]
-                    |                     ,
+                    | ,
                     br
-                    |                     &nbsp;&nbsp;&nbsp;&nbsp;
-                    key1 key1:[ITEM_ID]
-                    |                     , // optional
+                    |  &nbsp;&nbsp;&nbsp;&nbsp;
+                    key1_arg key1:[ITEM_ID]
+                    | , // optional
                     br
-                    |                     &nbsp;&nbsp;&nbsp;&nbsp;success:[SUCCESS_CALLBACK] // optional
+                    |  &nbsp;&nbsp;&nbsp;&nbsp;success:[SUCCESS_CALLBACK] // optional
                     br
-                    |                     &nbsp;&nbsp;});
+                    |  &nbsp;&nbsp;});
                     br
-                    |                     &lt;/script&gt;
+                    |  &lt;/script&gt;
             p
-                | A User-Rating for
-                key1 item or service [ITEM_ID]
-                |                 will be stored.
+                |  A User-Rating for
+                key1_arg item or service [ITEM_ID]
+                |  will be stored.
         li
-            h4 Retrieve and display user-ratings' average
+            h4
+                a(name="retrieve") Retrieve and display user-ratings' average
             p
-                | High-level Javascript wrapper to call low-level GET requests.
+                |  High-level Javascript wrapper to call low-level GET requests.
             ul
                 li
-                    | Calling
+                    |  Calling
                     code raasta.get(...)
                 li
-                    | will load the user-rating average of item [ITEM_ID],
+                    |  will load the user-rating average of item [ITEM_ID],
                 li
-                    | set the
-                    u content
+                    |  set the 
+                    u  content
                     |  of DOM element [DISPLAY_ELEMENT_ID], and
                 li
-                    | set the
-                    u style
+                    |  set the 
+                    u  style
                     |  of DOM element [raasta_stars_ID].
             script.
                 var demoGet = function () {
@@ -122,7 +198,7 @@
                 tr
                     td(colspan='2')
                 tr
-                    td Display element:
+                    td Display element: 
                     td
                         span#display_element_id [...]
                 tr
@@ -130,190 +206,185 @@
                     td
                         span#raasta_stars_id.raasta_stars
             p
-                | Source:
+                |  Source:
                 br
                 code
-                    | &lt;script src=&quot;https://raasta.herokuapp.com/javascript/raasta.js&quot;&gt;&lt;/script&gt;
+                    |  &lt;script src=&quot;https://raasta.herokuapp.com/javascript/raasta.js&quot;&gt;&lt;/script&gt;
                     br
-                    |                     &lt;script&gt;
+                    |  &lt;script&gt;
                     br
-                    |                     &nbsp;&nbsp;/* Init must be called before any other RAASTA method. You only need it ONCE per
-                    |                     page-load.
-                    |                     */
+                    |  &nbsp;&nbsp;/* Init must be called before any other RAASTA method. You only need it ONCE per
+                    |  page-load.
+                    |  */
                     br
-                    |                     &nbsp;&nbsp;raasta.init(
-                    token [ACCESS_TOKEN]
-                    |                     ,
-                    user [USER_ID]
-                    |                     );
+                    |  &nbsp;&nbsp;raasta.init(
+                    token_arg [ACCESS_TOKEN]
+                    | ,
+                    user_arg [USER_ID]
+                    |  );
                     br
-                    |                     &lt;/script&gt;
+                    |  &nbsp;&nbsp;raasta.get({
                     br
+                    |  &nbsp;&nbsp;&nbsp;&nbsp;
+                    key1_arg key1:[ITEM_ID]
+                    | , // optional
                     br
-                    |                     &lt;script&gt;
+                    |  &nbsp;&nbsp;&nbsp;&nbsp;display:[DISPLAY_ELEMENT_ID], // optional
                     br
-                    |                     &nbsp;&nbsp;raasta.get({
+                    |  &nbsp;&nbsp;&nbsp;&nbsp;style:[raasta_stars_ID] // optional
                     br
-                    |                     &nbsp;&nbsp;&nbsp;&nbsp;
-                    key1 key1:[ITEM_ID]
-                    |                     , // optional
+                    |  &nbsp;&nbsp;});
                     br
-                    |                     &nbsp;&nbsp;&nbsp;&nbsp;display:[DISPLAY_ELEMENT_ID], // optional
-                    br
-                    |                     &nbsp;&nbsp;&nbsp;&nbsp;style:[raasta_stars_ID] // optional
-                    br
-                    |                     &nbsp;&nbsp;});
-                    br
-                    |                     &lt;/script&gt;
+                    |  &lt;/script&gt;
     h1#api_usage.page-header
         a.anchorjs-link(href='#usage', aria-label='Anchor link for: api_usage', data-anchorjs-icon='', style='font-family: anchorjs-icons; font-style: normal; font-variant-ligatures: normal; font-variant-position: normal; font-variant-caps: normal; font-variant-numeric: normal; font-variant-alternates: normal; font-variant-east-asian: normal; font-weight: normal; position: absolute; margin-left: -1em; padding-right: 0.5em;')
-        |         Usage: Low-level REST API requests (ratings & reviews)
+        |  Usage: Low-level REST API requests (ratings & reviews)
     ul
         li
             h4 Ratings: Store
             p
-                | Call this low-level end-point from website or backend.
+                |  Call this low-level end-point from website or backend.
             code
                 b  curl -X PUT
                 |  &quot;https://raasta.heroku.com/api/v1/ratings?
-                token token=[ACCESS_TOKEN]
-                | &amp;
-                user user=[USER_ID]
-                | &amp;
-                rating rating=[NUMERIC_RATING]
-                | &amp;
-                key1 key1=[ITEM_ID]
-                | &quot;
+                token_arg token=[ACCESS_TOKEN]
+                |  &amp;
+                user_arg user=[USER_ID]
+                |  &amp;
+                rating_arg rating=[NUMERIC_RATING]
+                |  &amp;
+                key1_arg key1=[ITEM_ID]
+                |  &quot;
             p
-                | A User-Rating for
-                key1 item or service [ITEM_ID]
-                |                 will be stored.
+                |  A User-Rating for
+                key1_arg item or service [ITEM_ID]
+                |  will be stored.
         li
             h4
-                | Ratings: Retrieve average and other stats for an
-                key1 item or service
+                |  Ratings: Retrieve average and other stats for an
+                key1_arg item or service
             p
-                | Retrieve the average user-rating for a specific item, so you can pass the value to your frontend/UI.
+                |  Retrieve the average user-rating for a specific item, so you can pass the value to your frontend/UI.
             code
                 b curl -X GET
                 |  &quot;https://raasta.heroku.com/api/v1/ratings?
-                token token=[ACCESS_TOKEN]
-                | &amp;
-                key1 key1=[ITEM_ID]
-                | &quot;
+                token_arg token=[ACCESS_TOKEN]
+                |  &amp;
+                key1_arg key1=[ITEM_ID]
+                |  &quot;
             p
-                | Retrieved statistics of User-Ratings for
-                key1 item or service [ITEM_ID]
-                |                 will be returned.
+                |  Retrieved statistics of User-Ratings for
+                key1_arg item or service [ITEM_ID]
+                |  will be returned.
                 br
                 samp
-                    | {
+                    |  {
                     br
-                    |                       "message": "stats",
+                    |    "message": "stats",
                     br
-                    |                       "params": {
+                    |    "params": {
                     br
-                    key1 "key1": [ITEM_ID]
+                    key1_arg "key1": [ITEM_ID]
                     br
-                    |                       }
+                    |    }
                     br
-                    |                       "stats": {
+                    |    "stats": {
                     br
-                    |                         "average": [AVERAGE],
+                    |      "average": [AVERAGE],
                     br
-                    |                         "count": [TOTAL RATINGS],
+                    |      "count": [TOTAL RATINGS],
                     br
-                    |                         "count1": [RATINGS WITH 1-STAR],
+                    |      "count1": [RATINGS WITH 1-STAR],
                     br
-                    |                         "count2": [RATINGS WITH 2-STAR],
+                    |      "count2": [RATINGS WITH 2-STAR],
                     br
-                    |                         "count3": [RATINGS WITH 3-STAR],
+                    |      "count3": [RATINGS WITH 3-STAR],
                     br
-                    |                         "count4": [RATINGS WITH 4-STAR],
+                    |      "count4": [RATINGS WITH 4-STAR],
                     br
-                    |                         "count5": [RATINGS WITH 5-STAR],
+                    |      "count5": [RATINGS WITH 5-STAR],
                     br
-                    |                         "stddev": [STANDARD DEVIATION],
+                    |      "stddev": [STANDARD DEVIATION],
                     br
-                    |                         "variance": [VARIANCE]
+                    |      "variance": [VARIANCE]
                     br
-                    |                       }
+                    |    }
                     br
-                    |                     }
+                    |  }
         li
             h4 Reviews: Store
             p
-                | Call this low-level end-point from website or backend.
+                |  Call this low-level end-point from website or backend.
                 br
                 code
                     b  curl -X PUT
                     |  &quot;https://raasta.heroku.com/api/v1/reviews?
-                    token token=[ACCESS_TOKEN]
-                    | &amp;
-                    user user=[USER_ID]
-                    | &amp;
-                    key1 key1=[ITEM_ID]
-                    | &quot;
+                    token_arg token=[ACCESS_TOKEN]
+                    |  &amp;
+                    user_arg user=[USER_ID]
+                    |  &amp;
+                    key1_arg key1=[ITEM_ID]
+                    |  &quot;
             p
-                | Body:
+                |  Body:
                 br
                 code
-                    | {
+                    |  {
                     b title
-                    | : &quot;The title of the review&quot;,
+                    |  : &quot;The title of the review&quot;,
                     b body
-                    | : &quot;Long text to completely describe the user&apos;s opinion for this item&quot; }
+                    |  : &quot;Long text to completely describe the user&apos;s opinion for this item&quot; }
             p
-                | A User-Review for
-                key1 item or service [ITEM_ID]
-                |                 will be stored.
+                |  A User-Review for
+                key1_arg item or service [ITEM_ID]
+                |  will be stored.
         li
             h4
-                | Reviews: Retrieve latest reviews for an
-                key1 item or service
+                |  Reviews: Retrieve latest reviews for an
+                key1_arg item or service
             p
-                | Retrieve the latest reviews (up to 30) for a specific item, so you can pass the value to your frontend/UI.
+                |  Retrieve the latest reviews (up to 30) for a specific item, so you can pass the value to your frontend/UI.
             code
                 b curl -X GET
                 |  &quot;https://raasta.heroku.com/api/v1/reviews?
-                token token=[ACCESS_TOKEN]
-                | &amp;
-                key1 key1=[ITEM_ID]
-                | &quot;
+                token_arg token=[ACCESS_TOKEN]
+                |  &amp;
+                key1_arg key1=[ITEM_ID]
+                |  &quot;
             p
-                | A list of most recent reviews (descending) for the
-                key1 item or service [ITEM_ID]
-                |                 will be returned.
+                |  A list of most recent reviews (descending) for the
+                key1_arg item or service [ITEM_ID]
+                |  will be returned.
                 br
                 samp
-                    | {
+                    |  {
                     br
-                    |                       "message": "reviews",
+                    |    "message": "reviews",
                     br
-                    |                       "params": {
+                    |    "params": {
                     br
-                    key1 "key1": [ITEM_ID]
+                    key1_arg "key1": [ITEM_ID]
                     br
-                    |                       }
+                    |    }
                     br
-                    |                       "reviews": [
+                    |    "reviews": [
                     br
-                    |                         {
+                    |      {
                     br
-                    |                           "title": [REVIEW_1 TITLE],
+                    |        "title": [REVIEW_1 TITLE],
                     br
-                    |                           "body": [REVIEW_1 BODY],
+                    |        "body": [REVIEW_1 BODY],
                     br
-                    |                           "user": [REVIEW_1 USER],
+                    |        "user": [REVIEW_1 USER],
                     br
-                    |                           "timestamp": [REVIEW_1 TIMESTAMP]
+                    |        "timestamp": [REVIEW_1 TIMESTAMP]
                     br
-                    |                         }, {
+                    |      }, {
                     br
-                    |                           ...
+                    |        ...
                     br
-                    |                         }
+                    |      }
                     br
-                    |                       ]
+                    |    ]
                     br
-                    |                     }
+                    |  }

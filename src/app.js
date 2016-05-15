@@ -52,6 +52,7 @@ if (process.env.APP == 'web') {
         res.redirect("https://get-raasta.herokuapp.com");
     });
     app.use("/javascript", express.static('resources/static/javascript'));
+    app.use("/styles", express.static('resources/static/styles'));
 
     var base_url = '/api/v1/';
     app.get(base_url + 'version', projectsResource.version);
